@@ -1,0 +1,32 @@
+// Responsive Styles
+// --------------------------- 
+
+// Smartphones (portrait and landscape)
+@media only screen 
+and (min-width : 319px) 
+and (max-width : 1023px) {
+	@import "mobile/index";
+}
+
+/* Small Screens ----------- */
+@media only screen
+and (min-width: 1024px)
+and (max-width: 1159px) {
+	@import "smallScreen/index";
+}
+
+/* Normal Screens ---------- */
+@media only screen 
+and (min-width: 1160px)
+and (max-width: 1823px) {
+	@import "normalScreen/index";
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+	@import "largeScreen/index";
+}
+
+/* Utilities --------------- */
+@import "utilities.less";

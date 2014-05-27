@@ -9,3 +9,25 @@ Terminating in response to SpringBoard's termination.
 2014-05-23 19:02:46.951 HelloWorld[3663:70b] Multi-tasking -> Device: YES, App: YES
 2014-05-23 19:02:47.063 HelloWorld[3663:70b] Resetting plugins due to page load.
 2014-05-23 19:02:47.124 HelloWorld[3663:70b] Finished load of: file:///Users/martin/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/0D3124C6-5192-4B9B-9C8B-87B874340C2B/HelloWorld.app/www/index.html
+2014-05-27 17:10:10.096 HelloWorld[26938:70b] Multi-tasking -> Device: YES, App: YES
+2014-05-27 17:10:10.481 HelloWorld[26938:70b] Resetting plugins due to page load.
+2014-05-27 17:10:10.646 HelloWorld[26938:70b] setting movie path: 
+2014-05-27 17:10:10.655 HelloWorld[26938:70b] Finished load of: file:///Users/martin/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/0D3124C6-5192-4B9B-9C8B-87B874340C2B/HelloWorld.app/www/index.html
+2014-05-27 17:10:10.822 HelloWorld[26938:4003] ERROR whitelist rejection: url='https://beta.whispeer.de:3001/socket.io/1/?t=1401203410822'
+2014-05-27 17:10:10.822 HelloWorld[26938:4003] ERROR whitelist rejection: url='https://beta.whispeer.de:3001/socket.io/1/?t=1401203410822'
+2014-05-27 17:10:10.823 HelloWorld[26938:4003] ERROR whitelist rejection: url='https://beta.whispeer.de:3001/socket.io/1/?t=1401203410822'
+May 27 17:12:06 trizz.local HelloWorld[26938] <Error>: CGImageCreate: invalid image size: 0 x 0.
+2014-05-27 17:22:49.808 HelloWorld[28565:70b] Multi-tasking -> Device: YES, App: YES
+2014-05-27 17:22:49.922 HelloWorld[28565:70b] Resetting plugins due to page load.
+2014-05-27 17:22:50.011 HelloWorld[28565:70b] setting movie path: 
+2014-05-27 17:22:50.019 HelloWorld[28565:70b] Finished load of: file:///Users/martin/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/0D3124C6-5192-4B9B-9C8B-87B874340C2B/HelloWorld.app/www/index.html
+2014-05-27 17:22:50.212 HelloWorld[28565:3f03] ERROR whitelist rejection: url='https://beta.whispeer.de:3001/socket.io/1/?t=1401204170210'
+2014-05-27 17:22:50.213 HelloWorld[28565:3f03] ERROR whitelist rejection: url='https://beta.whispeer.de:3001/socket.io/1/?t=1401204170210'
+2014-05-27 17:22:50.213 HelloWorld[28565:3f03] ERROR whitelist rejection: url='https://beta.whispeer.de:3001/socket.io/1/?t=1401204170210'
+May 27 17:24:21 trizz.local HelloWorld[28565] <Error>: CGImageCreate: invalid image size: 0 x 0.
+2014-05-27 17:29:37.287 HelloWorld[29899:70b] Multi-tasking -> Device: YES, App: YES
+2014-05-27 17:29:37.385 HelloWorld[29899:70b] Resetting plugins due to page load.
+2014-05-27 17:29:37.468 HelloWorld[29899:70b] setting movie path: 
+2014-05-27 17:29:37.473 HelloWorld[29899:70b] Finished load of: file:///Users/martin/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/0D3124C6-5192-4B9B-9C8B-87B874340C2B/HelloWorld.app/www/index.html
+May 27 17:30:14 trizz.local HelloWorld[29899] <Error>: CGImageCreate: invalid image size: 0 x 0.
+May 27 17:59:17 trizz.local HelloWorld[29899] <Error>: CGImageCreate: invalid image size: 0 x 0.
