@@ -2,18 +2,15 @@ define(["app"], function (app) {
 	"use strict";
 
 	return app.config(["$routeProvider", "$provide", "$locationProvider", function ($routeProvider, $provide, $locationProvider) {
-		/*if (window.location.href.indexOf("app://") === 0) {
+		$locationProvider.html5Mode(true);
+		$locationProvider.hashPrefix("!");
+
+		if (window.location.href.indexOf("file:///") === 0) {
 			$provide.decorator('$sniffer', function($delegate) {
 				$delegate.history = false;
 				return $delegate;
 			});
 		}
-
-		$locationProvider.html5Mode(true);
-		$locationProvider.hashPrefix("!");
-		*/
-
-		
 
 		function addMain(name, reloadOnSearch) {
 			if (reloadOnSearch !== false) {
@@ -36,6 +33,7 @@ define(["app"], function (app) {
 		addMain("help");
 		addMain("loading");
 		addMain("version");
+		addMain("legal");
 
 		$routeProvider.when("/logout", {
 			templateUrl: "assets/views/pages/loading.html",

@@ -1,8 +1,18 @@
+var useServer = false;
+
 var config = {
 	https: true,
 	ws: "beta.whispeer.de",
 	wsPort: 3001
 };
+
+if (useServer) {
+	config = {
+		https: true,
+		ws: "beta.whispeer.de",
+		wsPort: 3001
+	};
+}
 
 if (typeof module != "undefined" && module.exports) {
     module.exports = config;
