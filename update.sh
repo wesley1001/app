@@ -1,7 +1,14 @@
 #!/bin/zsh
 
+PREVIOUS=`pwd`
+
 # pull recent changes to dependencies and update theirs.
 git submodule foreach 'git pull && git submodule update --init' 2> /dev/null
+
+# update styles.
+cd dependencies/ssn/main/
+./build.sh
+cd $PREVIOUS
 
 # copy whispeer assets to www.
 cp -r ./dependencies/ssn/main/* ./www/
