@@ -1,0 +1,3 @@
+[submodule "dependencies/ssn"]
+	path = dependencies/ssn
+	url = ssh://git@whispeer.de:4351/ssn
