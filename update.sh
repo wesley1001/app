@@ -6,8 +6,10 @@ PREVIOUS=`pwd`
 git submodule foreach 'git pull && git submodule update --init' 2> /dev/null
 
 # update styles.
-cd dependencies/ssn/main/
-./build.sh
+cd dependencies/ssn/main/ && ./build.sh
+cd $PREVIOUS
+
+cd www && find . | grep \.git$ | xargs rm -rf
 cd $PREVIOUS
 
 # copy whispeer assets to www.
