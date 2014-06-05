@@ -17,6 +17,7 @@
 			height: 100%;
 			overflow-y: scroll;
 			overflow-x: hidden;
+			-webkit-overflow-scrolling: touch;
 		}
 		section {
 			header {
@@ -29,8 +30,18 @@
 					margin-left: 5px;
 				}
 			}
-			&#general header {
-				margin: 0 0 10px 0;
+			&#general {
+				header {
+					margin: 0 0 10px 0;
+				}
+				label {
+					&.btn {
+						.column(12);
+					}
+					input {
+						width: auto !important;
+					}
+				}
 			}
 			.config {
 				.column(8,8);
@@ -57,6 +68,11 @@
 					}
 				}
 				.config {
+					span {
+						span {
+							width: 100% !important;
+						}
+					}
 					button {
 						.width(12);
 						margin-top: 10px;

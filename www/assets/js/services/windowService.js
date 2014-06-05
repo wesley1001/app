@@ -1,7 +1,7 @@
 define(["asset/observer"], function (Observer) {
 	"use strict";
 
-	function service(localize) {
+	function service(localize, $location, $rootScope) {
 		var advancedTitle = {}, count = 0, topicInternalCount = 0;
 
 		function cycleTitle() {
@@ -42,10 +42,39 @@ define(["asset/observer"], function (Observer) {
 			},
 			playMessageSound: function () {
 				document.getElementById("sound").play();
+			},
+			sendLocalNotification: function(type, obj) {
+				debugger;
+				if (window.Notification) {
+					if (type === 'message') {
+						if (Notification.permission === 'granted') {
+							var n = new Notification(
+								localize.getLocalizedString("notification.newmessage").replace("{user}", obj.sender.name),
+								{
+									'body': obj.sender.basic.shortname + ': ' + obj.text,
+									'tag':	obj.timestamp,
+									'icon':	obj.sender.basic.image
+								}
+							);
+							n.onclick = function () {
+								$rootScope.$apply(function () {
+									$location.path("/messages").search({topicid: obj.obj.getTopicID()});
+								});
+
+								this.close();
+							};
+						}
+					}
+				}		
 			}
 		};
 
 		Observer.call(api);
+		
+		// get Permissions for Notifications
+		if (window.Notification && Notification.permission === 'default') {
+			window.Notification.requestPermission();
+		}
 
 		var hidden = "hidden";
 
@@ -95,7 +124,7 @@ define(["asset/observer"], function (Observer) {
 		return api;
 	}
 
-	service.$inject = ["localize"];
+	service.$inject = ["localize", "$location", "$rootScope"];
 
 	return service;
 });
