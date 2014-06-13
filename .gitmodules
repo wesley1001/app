@@ -1,6 +1,3 @@
-[submodule "dependencies/ssn"]
-	path = dependencies/ssn
-	url = ssh://git@whispeer.de:4351/ssn
 [submodule "dependencies/main"]
 	path = dependencies/main
 	url = ssh://git@whispeer.de:4351/whispeerFrontend
