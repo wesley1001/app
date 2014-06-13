@@ -18,7 +18,7 @@ cp -r ./dependencies/main/* ./www/
 
 # override config and crypto webworkers.
 cp ./overrides/config.js ./www/assets/js/config.js
-cp ./overrides/config.xml ./www/config.xml
+cp ./overrides/config.xml ./config.xml
 cp ./overrides/generalWorkerInclude.js ./www/assets/js/cryptoWorker/generalWorkerInclude.js
 
 # override base href.
