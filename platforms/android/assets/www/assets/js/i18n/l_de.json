@@ -1,0 +1,732 @@
+{
+	"window": {
+		"title": {
+			"newmessage": "{data}: Neue Nachricht",
+			"basic": "whispeer",
+			"terms": "AGB",
+			"data": "Datenschutzbestimmungen",
+			"contact": "Kontakt",
+			"notice": "Impressum"
+		}
+	},
+	"views": {
+		"mail": {
+			"verify": "E-Mail bestätigen",
+			"updateMe": "Ich möchte Updates per E-Mail erhalten",
+			"verifying": "E-Mail wird verifiziert.",
+			"verified": "Deine E-Mail Adresse wurde bestätigt.",
+			"backToLogin": "Zurück zum Login",
+			"failed": "Aktivierung fehlgeschlagen!\n Möglicherweise ist dein Aktivierungscode abgelaufen."
+		},
+		"circles": {
+			"searchFriends": "Gib die Namen deiner Freunde ein, die du zum Kreis hinzufügen möchtest!",
+			"titleForNew": "Gib einen Titel für den neuen Kreis ein!",
+			"header": {
+				"title":	"Kreise anzeigen",
+				"createGroup": "Als Gruppe kopieren",
+				"sendMessage": "Nachricht an Kreis",
+				"edit":	"Kreis bearbeiten",
+				"save":	"Kreis speichern",
+				"remove":	"Kreis löschen"
+			},
+			"newCircle":	"Neuen Kreis anlegen",
+			"new": "Neuer Kreis",
+			"createCircle": "Kreis erstellen",
+			"personCount":	"Es befinden sich {count} Personen in diesem Kreis",
+			"personsInCircle":"Personen im Kreis \"{name}\"",
+			"nocircle": "Keine Kreise gefunden"
+		}
+	},
+	"start": {
+		"welcome": "Willkommen bei whispeer - dem sicheren sozialen Netzwerk!",
+		"more": "Mehr Info",
+		"moreInfo": "Mehr Informationen zu whispeer",
+		"regnow": "Jetzt anmelden!",
+		"loading": "Laden..."
+	},
+	"directives": {
+		"allfriends": "Alle Freunde",
+		"friendsoffriends": "Freunde von Freunden"
+	},
+	"usersearch": {
+		"mutualFriends": "mutual friends",
+		"from": "aus",
+		"age": "Alter:",
+		"message": "Nachricht senden",
+		"add": "Als Freund hinzufügen"
+	},
+	"general": {
+		"send":	"Absenden",
+		"cancel":	"Abbrechen",
+		"disconnected":	"Du hast deine Verbindung zu den whispeer-Servern verloren."
+	},
+	"notification": {
+		"newmessage":	"Neue Nachricht von {user}"
+	},
+	"version": {
+		"heading":		"Versions-Historie"
+	},
+	"date": {
+		"month": {
+			"1": "Januar",
+			"2": "Februar",
+			"3": "März",
+			"4": "April",
+			"5": "Mai",
+			"6": "Juni",
+			"7": "Juli",
+			"8": "August",
+			"9": "September",
+			"10": "Oktober",
+			"11": "November",
+			"12": "Dezember",
+			"january": "Januar",
+			"february": "Februar",
+			"march": "März",
+			"april": "April",
+			"may": "Mai",
+			"june": "Juni",
+			"july": "Juli",
+			"august": "August",
+			"september": "September",
+			"october": "Oktober",
+			"november": "November",
+			"december": "Dezember"
+		},
+		"time": {
+			"justNow": "gerade eben",
+			"oneMinuteAgo":	"vor einer Minute",
+			"minutesAgo":	"vor {minutes} Minuten",
+			"oneHourAgo":	"vor einer Stunde und {minutes} Minuten",
+			"hoursAgo":		"vor {hours} Stunden und {minutes} Minuten"
+		}	
+	},
+	"notimplemented": "Noch nicht implementiert :(",
+	"search": "Personen werden gesucht",
+	"menu": {
+		"newsfeed":	"Newsfeed",
+		"profil": "Profil",
+		"friends": "Freunde ({count})",
+		"messages": "Nachrichten ({count})",
+		"media": "Medien",
+		"circles": "Kreise",
+		"settings": "Einstellungen",
+		"help": "Hilfe",
+		"logout": "Logout",
+		"search": "Suchen...",
+		"legal":	"Rechtliches"
+	},
+	"login": {
+		"username": "Benutzername",
+		"password": "Passwort",
+		"link": "Einloggen",
+		"loginFailed": "Benutzername und Password stimmen nicht überein!",
+		"moreInfo":	"Mehr Info",
+		"register": {
+			"errors": {
+				"nickInvalid": "Invalider Username",
+				"nickUsed": "Dieser Username ist schon vergeben",
+				"mailInvalid": "Invalide E-Mail",
+				"mailUsed": "Diese E-Mail ist schon vergeben",
+				"passwordWeak": "Passwort zu schwach",
+				"passwordNoMatch": "Passwort stimmen nicht überein"
+			},
+
+			"link":	"Registrieren",
+			"next": "Weiter",
+			"previous": "Zurück",
+			"repeatPassword":	"Password wiederholen",
+			"passwordstrength":	"Punkte für dein Passwort: ",
+			"email":	"E-Mail Adresse",
+			"repeatEmail":	"E-Mail Adresse wiederholen",
+
+			"firstname": "Vorname",
+			"lastname": "Nachname",
+
+			"country":	"Land",
+			"location":	"Wohnort",
+			"uploadImage":	"Profilbild hochladen!",
+			"more": "Weitere Informationen",
+			"intro": "Bitte teile uns dein Geschlecht, deinen Namen, dein Geburtsdatum und deinen Wohnort mit. Dies ermöglicht deinen Freunden bei whispeer, dich zu finden. Selbstverständlich zwingen wir dich nicht dazu, diese Angaben zu machen!",
+			"newaccount": "Neues Konto erstellen"
+		}
+	},
+	"wall": {
+		"createPost": "Einen Post verfassen!",
+		"postit": {
+			"receiver": "Wer soll deinen Beitrag lesen können?",
+			"text": "Was möchtest du den Leuten mitteilen?",
+			"send": "Senden"
+		},
+		"filter": {
+			"title": "Filter",
+			"placeholder": "Wessen Posts möchtest du im News-Feed sehen?"
+		},
+		"info": {
+			"with": "Mit {name}",
+			"awesome":	"Awesomeness: {count}",
+			"comments":	{
+				"count":	"{count} Kommentare",
+				"showem":	"Kommentare anzeigen",
+				"hideem":	"Kommentare verbergen"
+			}
+		},
+		"post": {
+			"sender": {
+				"name":	"{{sender}}:"
+			},
+			"content": "{{content}}"
+		},
+		"comments": {
+			"time":	"Am {date} um {time}"
+		}
+	},
+	"messages": {
+		"title": "Nachrichten",
+		"chat" :"Chat mit",
+		"newMessage": "Neue Nachricht",
+		"search": "Wer soll diese Nachricht empfangen?",
+		"sendMessage": {
+			"text": "Gib deine Nachricht ein!",
+			"send": "Senden"
+		}
+	},
+	"profile": {
+		"edit":	"Bearbeiten",
+		"head":	{
+			"info":	"Info",
+			"wall":	"Pinnwand",
+			"friends":	"Freunde"
+		},
+		"actions": {
+			"addFriend":	"{user} als Freund hinzufügen",
+			"addToCircle":	"Zu welchen Kreisen möchtest du {user} hinzufügen?",
+			"sendMessage": "{user} eine Nachricht senden"
+		},
+		"section":	{
+			"general": {
+				"headers":	{
+					"title":	"Allgemein",
+					"education":	"Ausbildung",
+					"location":	"Orte",
+					"family":	"Familie",
+					"music":	"Musik",
+					"quotes":	"Zitate",
+					"contact":	"Kontakt"
+				},
+				"changeImage": "Profilbild ändern",
+				"birthday": {
+					"text":	"Geboren am {day}. {month} {year}",
+					"day":	"Tag",
+					"month":	"Monat",
+					"year":	"Jahr",
+					"info": "Geburtstag"
+				},
+				"location": {
+					"": "Wohnt in {town}, {state}, {country}",
+					"country": "Wohnt in {country}",
+					"state": "Wohnt in {state}",
+					"countrystate": "Wohnt in {state}, {country}",
+					"town": "Wohnt in {town}",
+					"countrytown": "Wohnt in {town}, {country}",
+					"statetown": "Wohnt in {town}, {state}",
+					"countrystatetown": "Wohnt in {town}, {state}, {country}"
+				},
+				"relation":	{
+					"": "",
+					"namesincetype": "seit {since} {relationType} mit {name}",
+					"sincetype": "seit {since} {relationType}",
+					"nametype": "{relationType} mit {name}",
+					"name": "mit {name}",
+					"type": "{relationType}",
+
+					"default": "{relationType} mit {partner}",
+					"noPartner": "{relationType}",
+
+					"status": {
+						"": "",
+						"single":	"single",
+						"relationship":	"in einer Beziehung",
+						"engaged":	"verlobt",
+						"married":	"verheiratet",
+						"divorced":	"geschieden",
+						"widowed":	"verwitwet",
+						"complicated":	"kompliziert",
+						"open":	"in einer offenen Beziehung",
+						"inlove":	"verliebt"
+					}
+				},
+				"education":	"schulische Ausbildung: {school}",
+				"work":	{
+					"whatwhere": "arbeitet als {what} bei {where}",
+					"what": "arbeitet als {what}",
+					"where": "arbeitet bei {where}"
+				},
+				"gender":	{
+					"": "",
+					"gender": "Geschlecht",
+					"default":	"{gender}",
+					"m":	"männlich",
+					"f":	"weiblich",
+					"n":	"Keine Angabe"
+				},
+				"languages":	"{language}"
+			},
+			"wall": {
+				"title":	"Pinnwand",
+				"postIt":	"Schreibe etwas an die Pinnwand von {user}"
+			},
+			"friends": {
+				"info":	"Freunde"
+			}
+		}
+	},
+	"friends": {
+		"mutualFriends":	"{count} gemeinsame Freunde",
+		"title":			"Freundesliste"
+	},
+	"help": {
+		"headers": {
+			"title":	"Hilfe",
+			"general":	"Allgemein",
+			"safety":	"Sicherheit",
+			"privacy":	"Privatsphäre",
+			"functionality":	"Funktionsweise",
+			"newQuestion":	"Stelle eine Frage"
+		},
+		"askQuestion": "Stelle deine Frage!",
+		"faq": {
+			"register": {
+				"question": "Muss ich beim Registrieren meinen vollen Namen und meine E-Mail-Adresse angeben?",
+				"answer":	"Nein. Wenn du dich registrieren möchtest, kannst du dies schon mit einem Username. Du kannst aber auch nur eine E-Mail-Adresse angeben. Natürlich kannst du dir aussuchen, ob du deinen vollen Namen angeben möchtest, oder vielleicht nur einen Teil davon. Allerdings kannst du deinen Namen auch verschlüsseln, sodass später nur deine Freunde auf whispeer deinen ganzen Namen sehen können."
+			},
+			"password": {
+				"question": "Wie erstelle ich ein sicheres Passwort?",
+				"answer":	"Wir haben uns ein  10-Punkte-System überlegt, das euch hilft, bessere und sichere Passörter zu finden. Mehr darüber lest ihr in dem Blogeintrag über das System: http://blog.whispeer.de/de/2013/08/update-wie-whispeer-dir-hilft-ein-sicheres-passwort-zu-finden/ und http://blog.whispeer.de/de/2013/07/wie-whispeer-dir-hilft-ein-sicheres-passwort-zu-finden/ "
+			},
+			"profile": {
+				"question": "Wie kann ich mein Profil bearbeiten?",
+				"answer":	"Wenn du auf deinem eigenen Profil bist, steht links oben bei deinen Informationen 'Bearbeiten'. Klicke darauf, um deine Angaben in deinem Profil ändern. Wenn du fertig bist mit deinen Änderungen, klicke auf den 'Speichern'-Button. Deine Änderungen an deinem Profil werden dann übernommen."
+			},
+			"search": {
+				"question": "Wie funktioniert die Suche?",
+				"answer":	"Im Moment kannst du nach Vornamen, Nachnamen und Usernamen suchen. Du tippst also einen Namen in die Suche ein und bekommst dann User, die auf deine Suchanfrage passen, vorgeschlagen."
+			},
+			"messages": {
+				"question": "Wie wähle ich aus, wer meine Nachrichten erhält? Kann ich auch Nachrichten an mehrere Personen verschicken?",
+				"answer":	"Durch einen Klick auf 'Nachrichten' im Menü oder auf 'Neue Nachricht' über der Übersicht deiner Nachrichten kommst du auf die Seite, auf der du eine neue Nachricht verschicken kannst. Dort gibst du in das obere Feld alle Personen ein, die diese Nachricht erhalten sollen. Du kannst auch den Namen eines Kreises eingeben, dann bekommt jede Person des Kreises eine einzelne Nachricht von dir (als ob du sie einzeln angeschrieben hättest). In das untere Feld schreibst du dann deine Nachricht und über den 'Senden'-Button verschickst du diese."
+			},
+			"filter": {
+				"question": "Wie benutze ich den Filter?",
+				"answer":	"Tippe einfach den Namen eines Freundes oder eines Kreises in das Eingabefeld. In deinem Newsfeed siehst du dann alles, was mit dieser Person/den Personen aus dem Kreis zu tun hat, also z.B. ihre Statusmeldungen, Pinnwandeinträge und Kommentare."
+			},
+			"circle": {
+				"question": "Wie erstelle ich einen neuen Kreis?",
+				"answer":	"Klicke rechts im Menü auf 'Kreise'. Es erscheinen zwei Eingabefelder. In das obere trägst du den Namen ein, den dein neuer Kreis haben soll. In das untere tippst du die Namen deiner Freunde, die in diesem Kreis sein sollen. Wenn du alle Namen eingetragen hast und dein Kreis einen Titel hat, klickst du auf 'Kreis erstellen' und dein neuer Kreis ist fertig!"
+			},
+			"post": {
+				"question": "Wie kann ich auswählen, wer meine Statusmeldungen sieht?",
+				"answer":	"Wenn du einen Post schreibst, hast du zwei Eingabefelder. In das obere Eingabefeld schreibst du die Namen von den Personen und/oder Kreisen, die diesen Post sehen sollen. In das untere Feld schreibst du deinen Post. Wenn du alle Personen ausgewählt hast, und deinen Post geschrieben hast, klicke auf den Button 'Senden', um den Post für diese Personen zu veröffentlichen."
+			},
+			"magicbar": {
+				"question": "Was ist die MagicBar und wie benutze ich sie?",
+				"answer":	"Die MagicBar ist eines der einzigartigen Features von whispeer. Sie erscheint, wenn du rechts oben auf eines der vier verschiedenen Icons klickst. Die MagicBar dient dazu, dir einen besseren Überblick zu geben. Außerdem zeigt sie dir deine letzten und deine neuen Nachrichten, Frendschaftsanfragen und Benachrichtigungen an. Freundschaftsanfragen kannst du direkt in der MagicBar bestätigen oder ablehnen. Durch einen Klick auf eine Nachricht kommst du direkt zu der Konversation. Wenn du mehr über die MagicBar erfahren möchtest, liest du am besten unseren Blogeintrag darüber: http://blog.whispeer.de/2013/08/die-whispeer-oberflaeche-3-die-magicbar/ "
+			},
+			"report": {
+				"question": "Wie kann ich jemanden melden?",
+				"answer":	"Momentan musst du uns eine Mail mit dem Namen der Person, bzw. ihrem Usernamen oder ihrer E-Mail senden. Die Adresse ist support@whispeer.de . Es wird jedoch so bald wie möglich einen Melden-Button geben."
+			},
+			"account": {
+				"question": "Wo kann ich meine Konto-Daten (Passwort, Username, E-Mail-Adresse) ändern?",
+				"answer":	"Deine Konto-Daten kannst du ändern, wenn du im Menü links auf 'Einstellungen' klickst. Du wirst dann auf die Einstellungs-Seite weitergeleitet, und unter dem ersten Thema 'Allgemein' kannst du deine Angaben ändern."
+			},
+			"privacy": {
+				"question": "Wo kann ich meine Privatsphäre-Einstellungen ändern?",
+				"answer":	"Ähnlich wie bei deinen Konto-Daten klickst gehst du zunächst einmal auf die Einstellungs-Seite durch einen Klick auf 'Einstellungen' im Menü links. Deine Privatsphäre-Einstellungen kannst du unter dem dritten Thema 'Privatsphäre' ändern."
+			},
+			"safety": {
+				"question": "Wo kann ich auswählen, welche meiner Daten verschlüsselt werden?",
+				"answer": "Unter den Einstellungen (Menü links) kannst du unter dem zweiten Thema 'Sicherheit' genau auswählen, welche deiner Daten verschlüsselt werden und welche öffentlich sind."
+			}
+		}
+	},
+	"settings": {
+		"safety": {
+			"title": "Sicherheit - Welche deiner Profildaten sollen verschlüsselt werden?",
+			"reset": "Zurücksetzen",
+			"attributes": {
+				"location": "Wohnort",
+				"birthday": "Geburtstag",
+				"relationship": "Beziehungsstatus",
+				"education": "Ausbildung",
+				"work": "Arbeit",
+				"gender": "Geschlecht",
+				"languages": "Sprachen",
+				"names": {
+					"header": "Name",
+					"firstname": "Vorname",
+					"lastname": "Nachname",
+					"username": "Username"
+				}
+			},
+			"whomayseeit": {
+				"firstname":	"Wer darf deinen Vornamen sehen?",
+				"lastname":		"Wer darf deinen Nachnamen sehen?",
+				"birthday":		"Wer darf dein Geburtsdatum sehen?",
+				"location":		"Wer darf deinen Wohnort sehen?",
+				"relationship":	"Wer darf deinen Beziehungsstatus sehen?",
+				"education":	"Wer darf deine Ausbildung sehen?",
+				"work":			"Wer darf deine Arbeitsstelle sehen?",
+				"gender":		"Wer darf dein Geschlecht sehen?",
+				"languages":	"Wer darf sehen, welche Sprachen du sprichst?"
+			}
+		},
+		"header": {
+			"title":	"Einstellungen"
+		},
+		"changes": {
+			"general": {
+				"title": "Allgemein",
+				"sendMethod": {
+					"title":		"Wie möchtest du Nachrichten absenden?",
+					"enter":		"Enter",
+					"ctrlEnter":	"STRG Enter"
+				},
+				"notificationSounds": {
+					"title":		"Benachrichtigungstöne",
+					"on":			"An",
+					"off":			"Aus"	
+				}
+			},	
+			"account":	"Benutzerkonto",
+			"changeName": "Namen ändern",
+			"changeUsername": "Usernamen ändern",
+			"changeMail": "E-Mail Adresse ändern",
+			"changePassword": "Passwort ändern",
+			"save": "Speichern",
+			"mail": "E-Mail Adresse"
+		}
+	},
+	"magicbar": {
+		"close": "Schließen",
+		"messages": {
+			"none": "Keine Nachrichten vorhanden!",
+			"title": "Nachrichten"
+		},
+		"requests":{
+			"none": "Keine Anfragen vorhanden!",
+			"title": "Anfragen",
+			"mutuals": "{count} gemeinsame Freunde",
+			"accept":	"Annehmen",
+			"decline":	"Ignorieren"
+		},
+		"settings": {
+			"title": "Optionen"
+		},
+		"news": {
+			"title": "Neuigkeiten",
+			"none": "Keine Neuigkeiten vorhanden!",
+			"action": {
+				"comment": {
+					"photo": {
+						"you": {
+							"own": "{user} hat dein Foto kommentiert: \"{what}\"",
+							"commented": "{user} hat ein Foto von {owner} kommentiert, das du auch kommentiert hast: \"{what}\"",
+							"awesomed":	"{user} hat ein Foto von {owner} kommentiert, das du awesome findest: \"{what}\"",
+							"shared":	"{user} hat dein geteiltes Foto kommentiert: \"{what}\""
+						},
+						"his": {
+							"commented": "{user} hat sein eigenes Foto kommentiert, das du auch kommentiert hast: \"{what}\"",
+							"awesomed":	"{user} hat sein eigenes Foto kommentiert, das du awesome findest: \"{what}\"",
+							"linked": "{user} hat sein eigenes Foto kommentierst, auf dem du verlinkt bist: \"{what}\""
+						},
+						"her": {
+							"commented": "{user} hat ihr eigenes Foto kommentiert, das du auch kommentiert hast: \"{what}\"",
+							"awesomed":	"{user} hat ihr eigenes Foto kommentiert, das du awesome findest: \"{what}\"",
+							"linked": "{user} hat ihr eigenes Foto kommentierst, auf dem du verlinkt bist: \"{what}\""
+						}
+					},
+					"post": {
+						"you": {
+							"own": "{user} hat deinen Status kommentiert: \"{what}\"",
+							"commented": "{user} hat einen Status von {owner} kommentiert, den du auch kommentiert hast: \"{what}\"",
+							"awesomed":	"{user} hat einen Status von {owner} kommentiert, den du awesome findest: \"{what}\"",
+							"shared":	"{user} hat deinen geteilten Status kommentiert: \"{what}\""
+						},
+						"his": {
+							"commented": "{user} hat seinen eigenen Status kommentiert, den du auch kommentiert hast: \"{what}\"",
+							"awesomed":	"{user} hat seinen eigenen Status kommentiert, den du awesome findest: \"{what}\"",
+							"tagged": "{user} hat seinen eigenen Status kommentierst, in dem du verlinkt bist!"
+						},
+						"her": {
+							"commented": "{user} hat ihren eigenen Status kommentiert, den du auch kommentiert hast: \"{what}\"",
+							"awesomed":	"{user} hat ihren eigenen Status kommentiert, den du awesome findest: \"{what}\"",
+							"tagged": "{user} hat ihren eigenen Status kommentierst, in dem du verlinkt bist: \"{what}\""
+						}
+					},
+					"wallpost": {
+						"you": {
+							"own": "{user} hat deinen Pinnwandeintrag kommentiert: \"{what}\"",
+							"commented": "{user} hat einen Pinnwandeintrag von {owner} kommentiert, den du auch kommentiert hast: \"{what}\"",
+							"awesomed":	"{user} hat einen Pinnwandeintrag von {owner} kommentiert, den du awesome findest: \"{what}\"",
+							"shared":	"{user} hat deinen geteilten Pinnwandeintrag kommentiert: \"{what}\""
+						},
+						"his": {
+							"commented": "{user} hat seinen eigenen Pinnwandeintrag kommentiert, den du auch kommentiert hast: \"{what}\"",
+							"awesomed":	"{user} hat seinen eigenen Pinnwandeintrag kommentiert, den du awesome findest: \"{what}\"",
+							"tagged": "{user} hat seinen eigenen Pinnwandeintrag kommentierst, in dem du verlinkt bist!"
+						},
+						"her": {
+							"commented": "{user} hat ihren eigenen Pinnwandeintrag kommentiert, den du auch kommentiert hast: \"{what}\"",
+							"awesomed":	"{user} hat ihren eigenen Pinnwandeintrag kommentiert, den du awesome findest: \"{what}\"",
+							"tagged": "{user} hat ihren eigenen Pinnwandeintrag kommentierst, in dem du verlinkt bist: \"{what}\""
+						}
+					},
+					"link": {
+						"you": {
+							"own": "{user} hat deinen Link kommentiert!",
+							"commented": "{user} hat einen Link von {owner} kommentiert, den du kommentiert hast: \"{what}\"",
+							"awesomed":	"{user} hat einen Link von {owner} kommentiert, den du awesome findest: \"{what}\"",
+							"shared":	"{user} hat deinen geteilten Link kommentiert: \"{what}\""
+						},
+						"his": {
+							"commented": "{user} hat seinen eigenen Link kommentiert, den du auch kommentiert hast: \"{what}\"",
+							"awesomed":	"{user} hat seinen eigenen Link kommentiert, den du awesome findest: \"{what}\"",
+							"tagged": "{user} hat seinen eigenen Link kommentierst, in dem du verlinkt bist: \"{what}\""
+						},
+						"her": {
+							"commented": "{user} hat ihren eigenen Link kommentiert, den du auch kommentiert hast: \"{what}\"",
+							"awesomed":	"{user} hat ihren eigenen Link kommentiert, den du awesome findest: \"{what}\"",
+							"tagged": "{user} hat ihren eigenen Link kommentierst, in dem du verlinkt bist: \"{what}\""
+						}
+					}
+				},
+				"awesome": {
+					"photo": {
+						"you": {
+							"own": "{user} findet dein Foto awesome!",
+							"commented": "{user} findet ein Foto von {owner} awesome, das du kommentiert hast!",
+							"awesomed":	"{user} findet ein Foto von {owner} awesome, das du auch awesome findest!",
+							"shared":	"{user} findet dein geteiltes Foto awesome!"
+						},
+						"his": {
+							"commented": "{user} findet sein eigenes Foto awesome, das du kommentiert hast!",
+							"awesomed":	"{user} findet sein eigenes Foto awesome, das du auch awesome findest!",
+							"tagged": "{user} findet sein eigenes Foto awesome, auf dem du verlinkt bist!"
+						},
+						"her": {
+							"commented": "{user} findet ihr eigenes Foto awesome, das du kommentiert hast!",
+							"awesomed":	"{user} findet ihr eigenes Foto awesome, das du auch awesome findest!",
+							"tagged": "{user} findet ihr eigenes Foto awesome, auf dem du verlinkt bist!"
+						}
+					},
+					"post": {
+						"you": {
+							"own": "{user} findet deinen Status awesome!",
+							"commented": "{user} findet einen Status von {owner} awesome, den du kommentiert hast!",
+							"awesomed":	"{user} findet einen Status von {owner} awesome, den du auch awesome findest!",
+							"shared":	"{user} findet deinen geteilten Status awesome!"
+						},
+						"his": {
+							"commented": "{user} findet seinen eigenen Status awesome, den du kommentiert hast!",
+							"awesomed":	"{user} findet seinen eigenen Status awesome, den du auch awesome findest!",
+							"tagged": "{user} findet seinen eigenen Status awesome, in dem du verlinkt bist!"
+						},
+						"her": {
+							"commented": "{user} findet ihren eigenen Status awesome, den du kommentiert hast!",
+							"awesomed":	"{user} findet ihren eigenen Status awesome, den du auch awesome findest!",
+							"tagged": "{user} findet ihren eigenen Status awesome, in dem du verlinkt bist!"
+						}
+					},
+					"wallpost": {
+						"you": {
+							"own": "{user} findet deinen Pinnwandeintrag awesome!",
+							"commented": "{user} findet einen Pinnwandeintrag von {owner} awesome, den du kommentiert hast!",
+							"awesomed":	"{user} findet einen Pinnwandeintrag von {owner} awesome, den du auch awesome findest!",
+							"shared":	"{user} findet deinen geteilten Pinnwandeintrag awesome!"
+						},
+						"his": {
+							"commented": "{user} findet seinen eigenen Pinnwandeintrag awesome, den du kommentiert hast!",
+							"awesomed":	"{user} findet seinen eigenen Pinnwandeintrag awesome, den du auch awesome findest!",
+							"tagged": "{user} findet seinen eigenen Pinnwandeintrag awesome, in dem du verlinkt bist!"
+						},
+						"her": {
+							"commented": "{user} findet ihren eigenen Pinnwandeintrag awesome, den du kommentiert hast!",
+							"awesomed":	"{user} findet ihren eigenen Pinnwandeintrag awesome, den du auch awesome findest!",
+							"tagged": "{user} findet ihren eigenen Pinnwandeintrag awesome, in dem du verlinkt bist!"
+						}
+					},
+					"comment": {
+						"you": {
+							"own": "{user} findet deinen Kommentar awesome!",
+							"commented": "{user} findet einen Kommentar von {owner} awesome, den du kommentiert hast!",
+							"awesomed":	"{user} findet einen Kommentar von {owner} awesome, den du auch awesome findest!"
+						},
+						"his": {
+							"commented": "{user} findet seinen eigenen Kommentar awesome, den du kommentiert hast!",
+							"awesomed":	"{user} findet seinen eigenen Kommentar awesome, den du auch awesome findest!",
+							"tagged": "{user} findet seinen eigenen Kommentar awesome, in dem du verlinkt bist!"
+						},
+						"her": {
+							"commented": "{user} findet ihren eigenen Kommentar awesome, den du kommentiert hast!",
+							"awesomed":	"{user} findet ihren eigenen Kommentar awesome, den du auch awesome findest!",
+							"tagged": "{user} findet ihren eigenen Kommentar awesome, in dem du verlinkt bist!"
+						}
+					}
+				},
+				"share": {
+					"photo": {
+						"you": {
+							"own": "{user} hat dein Foto geteilt!",
+							"commented": "{user} hat ein Foto von {owner} geteilt, das du kommentiert hast!",
+							"awesomed":	"{user} hat ein Foto von {owner} geteilt, das du awesome findest!",
+							"shared":	"{user} hat dein geteiltes Foto geteilt!"
+						},
+						"his": {
+							"commented": "{user} hat sein eigenes Foto geteilt, das du kommentiert hast!",
+							"awesomed":	"{user} hat sein eigenes Foto geteilt, das du awesome findest!",
+							"tagged": "{user} hat sein eigenes Foto geteilt, auf dem du verlinkt bist!"
+						},
+						"her": {
+							"commented": "{user} hat ihr eigenes Foto geteilt, das du kommentiert hast!",
+							"awesomed":	"{user} hat ihr eigenes Foto geteilt, das du awesome findest!",
+							"tagged": "{user} hat ihr eigenes Foto geteilt, auf dem du verlinkt bist!"
+						}
+					},
+					"post": {
+						"you": {
+							"own": "{user} hat deinen Status geteilt!",
+							"commented": "{user} hat einen Status von {owner} geteilt, den du kommentiert hast!",
+							"awesomed":	"{user} hat einen Status von {owner} geteilt, den du awesome findest!",
+							"shared":	"{user} hat deinen geteilten Status geteilt!"
+						},
+						"his": {
+							"commented": "{user} hat seinen eigenen Status geteilt, den du kommentiert hast!",
+							"awesomed":	"{user} hat seinen eigenen Status geteilt, den du awesome findest!",
+							"tagged": "{user} hat seinen eigenen Status geteilt, in dem du verlinkt bist!"
+						},
+						"her": {
+							"commented": "{user} hat ihren eigenen Status geteilt, den du kommentiert hast!",
+							"awesomed":	"{user} hat ihren eigenen Status geteilt, den du awesome findest!",
+							"tagged": "{user} hat ihren eigenen Status geteilt, in dem du verlinkt bist!"
+						}
+					},
+					"wallpost": {
+						"you": {
+							"own": "{user} hat deinen Pinnwandeintrag geteilt!",
+							"commented": "{user} hat einen Pinnwandeintrag von {owner} geteilt, den du kommentiert hast!",
+							"awesomed":	"{user} hat einen Pinnwandeintrag von {owner} geteilt, den du awesome findest!",
+							"shared":	"{user} hat deinen geteilten Pinnwandeintrag geteilt!"
+						},
+						"his": {
+							"commented": "{user} hat seinen eigenen Pinnwandeintrag geteilt, den du kommentiert hast!",
+							"awesomed":	"{user} hat seinen eigenen Pinnwandeintrag geteilt, den du awesome findest!",
+							"tagged": "{user} hat seinen eigenen Pinnwandeintrag geteilt, in dem du verlinkt bist!"
+						},
+						"her": {
+							"commented": "{user} hat ihren eigenen Pinnwandeintrag geteilt, den du kommentiert hast!",
+							"awesomed":	"{user} hat ihren eigenen Pinnwandeintrag geteilt, den du awesome findest!",
+							"tagged": "{user} hat ihren eigenen Pinnwandeintrag geteilt, in dem du verlinkt bist!"
+						}
+					},
+					"link": {
+						"you": {
+							"own": "{user} hat deinen Link geteilt!",
+							"commented": "{user} hat einen Link von {owner} geteilt, den du kommentiert hast!",
+							"awesomed":	"{user} hat einen Link von {owner} geteilt, den du awesome findest!",
+							"shared":	"{user} hat deinen geteilten Link geteilt!"
+						},
+						"his": {
+							"commented": "{user} hat seinen eigenen Link geteilt, den du kommentiert hast!",
+							"awesomed":	"{user} hat seinen eigenen Link geteilt, den du awesome findest!",
+							"tagged": "{user} hat seinen eigenen Link geteilt, in dem du verlinkt bist!"
+						},
+						"her": {
+							"commented": "{user} hat ihren eigenen Link geteilt, den du kommentiert hast!",
+							"awesomed":	"{user} hat ihren eigenen Link geteilt, den du awesome findest!",
+							"tagged": "{user} hat ihren eigenen Link geteilt, in dem du verlinkt bist!"
+						}
+					}
+				},
+				"whatever": {
+					"photo": {
+						"you": {
+							"own": "{user} hat bei deinem Foto auf whatever geklickt.",
+							"shared":	"{user} hat bei deinem geteilten Foto auf whatever geklickt.",
+							"tagged": "{user} hat bei einem Foto, auf dem du verlinkt bist, auf whatever geklickt."
+						}
+					},
+					"post": {
+						"you": {
+							"own": "{user} hat bei deinem Status auf whatever geklickt.",
+							"shared":	"{user} hat bei deinem geteilten Status auf whatever geklickt.",
+							"tagged": "{user} hat bei einem Status, auf dem du verlinkt bist, auf whatever geklickt."
+						}
+					},
+					"wallpost": {
+						"you": {
+							"own": "{user} hat bei deinem Pinnwandeintrag auf whatever geklickt.",
+							"shared":	"{user} hat bei deinem geteilten Pinnwandeintrag auf whatever geklickt.",
+							"tagged": "{user} hat bei einem Pinnwandeintrag, auf dem du verlinkt bist, auf whatever geklickt."
+						}
+					},
+					"link": {
+						"you": {
+							"own": "{user} hat bei deinem Link auf whatever geklickt.",
+							"shared":	"{user} hat bei deinem geteilten Link auf whatever geklickt.",
+							"tagged": "{user} hat bei einem Link, auf dem du verlinkt bist, auf whatever geklickt."
+						}
+					},
+					"comment": {
+						"you": {
+							"own": "{user} hat bei deinem Kommentar auf whatever geklickt.",
+							"tagged": "{user} hat bei einem Foto, auf dem du verlinkt bist, auf whatever geklickt."
+						}
+					}
+				},
+				"newfriend": {
+					"you": {
+						"own": "{user} ist jetzt mit dir befreundet!"
+					}
+				},
+				"posted": {
+					"wallpost": {
+						"you": {
+							"own": {
+								"post": "{user} hat etwas an deine Pinnwand gepostet: \"{what}\"",
+								"photo": "{user} hat ein Foto an deine Pinnwand gepostet.",
+								"link": "{user} hat einen Link an deine Pinnwand gepostet: \"{what}\""
+							}
+						}
+					}
+				},
+				"tagged": {
+					"photo": {
+						"you": {
+							"own": "{user} hat dich in deinem Foto markiert.",
+							"else": "{user} hat dich in einem Foto von {owner} markiert."
+						},
+						"somebody": {
+							"own": "{user} hat {somebody} in deinem Foto markiert."
+						}
+					},
+					"post": {
+						"you": {
+							"tagged": "{user} hat dich in einem Status markiert: \"{what}\""
+						}
+					},
+					"wallpost": {
+						"you": {
+							"tagged": "{user} hat dich in einem Pinnwandeintrag markiert: \"{what}\""
+						}
+					},
+					"comment": {
+						"you": {
+							"tagged": "{user} hat dich in einem Kommentar markiert: \"{what}\""
+						}
+					}
+				}
+			}
+		}
+	}
+}
