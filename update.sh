@@ -6,7 +6,7 @@ PREVIOUS=`pwd`
 git submodule foreach 'git pull && git submodule update --init' 2> /dev/null
 
 # update styles.
-cd dependencies/ssn/main/ && ./build.sh
+cd dependencies/main/ && ./build.sh
 cd $PREVIOUS
 
 cd www
@@ -14,7 +14,7 @@ find . | grep \.git\$ | xargs rm -rf
 cd $PREVIOUS
 
 # copy whispeer assets to www.
-cp -r ./dependencies/ssn/main/* ./www/
+cp -r ./dependencies/main/* ./www/
 
 # override config and crypto webworkers.
 cp ./overrides/config.js ./www/assets/js/config.js
