@@ -600,8 +600,8 @@ body:not(.mainView, .registerView) #main {
   text-align: center;
 }
 body {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 300;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 200;
   line-height: 20px;
   font-size: 14px;
 }
@@ -611,8 +611,8 @@ small {
 }
 strong,
 b {
-  font-weight: 600;
-  font-family: "ubuntulight", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 400;
+  font-family: "ubuntulight", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 em,
 i {
@@ -652,7 +652,7 @@ h4,
 h5,
 h6 {
   margin: 10px 0;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   color: inherit;
   text-rendering: optimizelegibility;
@@ -670,7 +670,7 @@ h6 small {
 h1 {
   font-size: 35px;
   line-height: 40px;
-  font-weight: 900;
+  font-weight: 400;
 }
 h1 small {
   font-size: 25;
@@ -678,7 +678,7 @@ h1 small {
 h2 {
   font-size: 28px;
   line-height: 40px;
-  font-weight: 800;
+  font-weight: 300;
 }
 h2 small {
   font-size: 20;
@@ -686,7 +686,7 @@ h2 small {
 h3 {
   font-size: 23px;
   line-height: 40px;
-  font-weight: 600;
+  font-weight: 300;
 }
 h3 small {
   font-size: 13;
@@ -694,12 +694,12 @@ h3 small {
 h4 {
   font-size: 18px;
   line-height: 20px;
-  font-weight: 500;
+  font-weight: 300;
 }
 h5 {
   font-size: 14px;
   line-height: 20px;
-  font-weight: 400;
+  font-weight: 300;
 }
 h6 {
   font-size: 10px;
@@ -782,6 +782,31 @@ a:hover {
     margin-top: -30px;
   }
 }
+.box header button {
+  padding: 2px 7px;
+  margin-top: -5px !important;
+  margin-right: 0 !important;
+  outline: none;
+  border: none;
+  height: 30px;
+  background: transparent;
+  font-weight: 300;
+  text-align: left;
+}
+.box header button.right {
+  float: right;
+  border-left: 1px solid #bbb;
+}
+.box header button.left {
+  float: left;
+  border-right: 1px solid #bbb;
+}
+.box header button:hover {
+  background: rgba(202, 202, 202, 0.2);
+}
+.box header button:focus {
+  box-shadow: inset 0px 0px 2px #999999;
+}
 .box section {
   padding: 5px 0;
   -webkit-border-top-right-radius: 0;
@@ -834,11 +859,11 @@ a:hover {
 .box section h6 {
   margin-left: 0.5%;
 }
-input:not([type="submit"], [type="reset"], [type="button"], [type="file"], [type="checkbox"], [type="radio"]) {
+input:not([type="submit"]):not([type="reset"]):not([type="button"]):not([type="file"]):not([type="radio"]):not([type="checkbox"]) {
   padding: 9px;
   border: solid 1px #8c8c8c;
   outline: 0;
-  font: normal 14/100% "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font: normal 14/100% "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: #ffffff;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -856,7 +881,7 @@ input:not([type="submit"], [type="reset"], [type="button"], [type="file"], [type
   box-sizing: border-box;
   /* Opera/IE 8+ */
 }
-input:not([type="submit"], [type="reset"], [type="button"], [type="file"], [type="checkbox"], [type="radio"]):focus {
+input:not([type="submit"]):not([type="reset"]):not([type="button"]):not([type="file"]):not([type="radio"]):not([type="checkbox"]):focus {
   outline: 0;
   border: solid 1px #285800;
   -webkit-box-shadow: inset 0px 0px 5px rgba(84, 171, 12, 0.75);
@@ -875,7 +900,7 @@ textarea {
   padding: 9px;
   border: solid 1px #8c8c8c;
   outline: 0;
-  font: normal 14/100% "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font: normal 14/100% "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: #ffffff;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -1336,6 +1361,8 @@ dd {
   /* Opera/IE 8+ */
   border: none;
   border-bottom: 1px solid #dedede;
+  transition: background-color 0.1s ease;
+  cursor: pointer;
 }
 .magic .body ul li.message .left {
   display: inline-block;
@@ -1348,19 +1375,25 @@ dd {
   margin: 2% 2% 2%;
   padding: 0;
   height: 40px;
+  background: transparent;
 }
-.magic .body ul li.message .left img {
-  width: 100%;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+.magic .body ul li.message .left .imgWrap {
+  background-color: #b2b2b2;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.magic .body ul li.message .left .imgWrap img {
+  width: 100%;
+  height: 100%;
 }
 .magic .body ul li.message.groupChat .left {
-  background-color: #b2b2b2;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -1385,78 +1418,6 @@ dd {
   margin: 0 0 0 0;
   height: 50%;
 }
-.magic .body ul li.message.groupChat .left img:nth-child(1),
-.magic .body ul li.message.groupChat .left span:nth-child(1) {
-  -webkit-border-top-right-radius: 0;
-  -webkit-border-bottom-right-radius: 0;
-  -webkit-border-bottom-left-radius: 0;
-  -webkit-border-top-left-radius: 5px;
-  -moz-border-radius-topright: 0;
-  -moz-border-radius-bottomright: 0;
-  -moz-border-radius-bottomleft: 0;
-  -moz-border-radius-topleft: 5px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 5px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
-.magic .body ul li.message.groupChat .left img:nth-child(2),
-.magic .body ul li.message.groupChat .left span:nth-child(2) {
-  -webkit-border-top-right-radius: 5px;
-  -webkit-border-bottom-right-radius: 0;
-  -webkit-border-bottom-left-radius: 0;
-  -webkit-border-top-left-radius: 0;
-  -moz-border-radius-topright: 5px;
-  -moz-border-radius-bottomright: 0;
-  -moz-border-radius-bottomleft: 0;
-  -moz-border-radius-topleft: 0;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
-.magic .body ul li.message.groupChat .left img:nth-child(3),
-.magic .body ul li.message.groupChat .left span:nth-child(3) {
-  -webkit-border-top-right-radius: 0;
-  -webkit-border-bottom-right-radius: 0;
-  -webkit-border-bottom-left-radius: 5px;
-  -webkit-border-top-left-radius: 0;
-  -moz-border-radius-topright: 0;
-  -moz-border-radius-bottomright: 0;
-  -moz-border-radius-bottomleft: 5px;
-  -moz-border-radius-topleft: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 0;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
-.magic .body ul li.message.groupChat .left img:nth-child(4),
-.magic .body ul li.message.groupChat .left span:nth-child(4) {
-  -webkit-border-top-right-radius: 0;
-  -webkit-border-bottom-right-radius: 5px;
-  -webkit-border-bottom-left-radius: 0;
-  -webkit-border-top-left-radius: 0;
-  -moz-border-radius-topright: 0;
-  -moz-border-radius-bottomright: 5px;
-  -moz-border-radius-bottomleft: 0;
-  -moz-border-radius-topleft: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
 .magic .body ul li.message.groupChat .left span {
   background-color: #343434;
   color: #ffffff;
@@ -1468,6 +1429,10 @@ dd {
   /* Firefox, other Gecko */
   box-sizing: border-box;
   /* Opera/IE 8+ */
+}
+.magic .body ul li.message .username,
+.magic .body ul li.message .text {
+  transition: color 0.1s ease;
 }
 .magic .body ul li.message .username {
   display: inline-block;
@@ -1543,6 +1508,10 @@ dd {
   margin: 0 1% 0 1%;
   color: #777;
   font-size: 0.9em;
+}
+.magic .body ul li.request .username,
+.magic .body ul li.request .similar {
+  transition: color 0.1s ease;
 }
 .magic .body ul li.request .action {
   width: 99%;
@@ -1669,13 +1638,21 @@ dd {
 }
 #userpanel .userimg {
   float: none;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  width: 100%;
+  width: 80%;
+  margin: 0 20%;
+  border: 1px solid #ccc;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
 }
 #userpanel #menu {
   margin-top: 10px;
@@ -1753,6 +1730,157 @@ dd {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   color: #f5ffe9;
+  border: none;
+}
+.post {
+  border: none;
+  height: auto !important;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+.post .userimg img {
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  vertical-align: middle;
+  margin: 0 0 10px 0;
+}
+.post .postWrap {
+  background: -webkit-linear-gradient(#fdfffc 0%, #f9fff3 100%);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  box-shadow: 0px 0px 3px 1px #ccc;
+  height: 100%;
+}
+.post .postContent {
+  background: transparent;
+  word-break: break-all !important;
+}
+.post .postContent .postText,
+.post .postContent .postImage {
+  padding-left: 10px;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+}
+.post .postContent .postImage {
+  margin-top: 10px;
+}
+.post .postContent .author {
+  width: 100%;
+  float: left;
+  display: block;
+}
+.post .postContent .author .poster {
+  float: left;
+}
+.post .postContent .author .walluserWrap {
+  float: left;
+  max-width: none;
+  width: auto;
+  display: block;
+}
+.post .postContent .author .walluserWrap .arrow {
+  float: left;
+  margin: 6px 5px;
+  display: block;
+}
+.post .postContent .author .walluserWrap .walluser {
+  float: left;
+  width: 100%;
+  display: block;
+  position: relative;
+  margin: -20px 15px;
+}
+.post .postInfo {
+  margin-top: -5px;
+  margin-bottom: 10px;
+  text-align: right;
+}
+.post .postInfo p {
+  margin: 0;
+  color: #aaa;
+  transition: color 0.3s ease;
+}
+.post .postInfo p:hover {
+  color: #000;
+}
+.post ol.comments {
+  margin-left: 0;
+  list-style: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  overflow: hidden;
+  padding: 5px;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+}
+.post ol.comments li {
+  margin-bottom: 5px;
+  background-color: #e5e5e5;
+  background: -webkit-gradient(linear, left top, left bottom, from(#e5e5e5), to(#d6d6d6));
+  background: -webkit-linear-gradient(top, #e5e5e5, #d6d6d6);
+  background: -moz-linear-gradient(top, #e5e5e5, #d6d6d6);
+  background: -ms-linear-gradient(top, #e5e5e5, #d6d6d6);
+  background: -o-linear-gradient(top, #e5e5e5, #d6d6d6);
+  border: 1px solid #b2b2b2;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  overflow-x: hidden;
+}
+.post ol.comments li.header {
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+}
+.post ol.comments li.me {
+  background-color: #54ab0c;
+  background: -webkit-gradient(linear, left top, left bottom, from(#54ab0c), to(#3a8100));
+  background: -webkit-linear-gradient(top, #54ab0c, #3a8100);
+  background: -moz-linear-gradient(top, #54ab0c, #3a8100);
+  background: -ms-linear-gradient(top, #54ab0c, #3a8100);
+  background: -o-linear-gradient(top, #54ab0c, #3a8100);
+  color: #000;
+}
+.post ol.comments li .text {
+  word-break: break-all;
+}
+.post ol.comments li aside {
+  font-size: 0.85em;
+}
+.post ol.comments li.newComment input {
+  margin-top: 8px;
+}
+.post ol.comments li.newComment button {
+  margin-top: 10px;
+}
+.post:last-child {
   border: none;
 }
 .person {
@@ -1995,6 +2123,17 @@ dd {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  border: 0 !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background: transparent !important;
 }
 .searchBar .formSearch .inputWrap li.searchResult {
   -webkit-tab-highlight-color: transparent;
@@ -3924,7 +4063,7 @@ body.loading #container:before {
   height: 100%;
   width: 100%;
   float: left;
-  padding-top: 100px;
+  padding-top: 80px;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;
@@ -3941,13 +4080,10 @@ body.loading #container:before {
   width: 98%;
   margin: 0 1% 0 1%;
   padding-top: 10px;
-  margin-top: -100px;
+  margin-top: -85px;
   text-align: center;
-  height: 100px;
+  height: 85px;
   z-index: 1000;
-  -webkit-box-shadow: 0 2px 4px -2px #54ab0c;
-  -moz-box-shadow: 0 2px 4px -2px #54ab0c;
-  box-shadow: 0 2px 4px -2px #54ab0c;
   -webkit-border-top-right-radius: 2px;
   -webkit-border-bottom-right-radius: 0;
   -webkit-border-bottom-left-radius: 0;
@@ -4285,131 +4421,9 @@ body.loading #container:before {
 .mainView #wall .posts {
   float: left;
   width: 100% !important;
-  margin: 0 0 0 1%;
+  margin: 0;
   overflow-y: scroll;
   height: 100%;
-}
-.mainView #wall .posts article {
-  border-bottom: 1px solid #bbb;
-  height: auto !important;
-}
-.mainView #wall .posts article .userimg {
-  border-radius: 10px;
-  vertical-align: middle;
-  margin: 0 0 10px 0;
-}
-.mainView #wall .posts article .postContent {
-  margin-top: -5px;
-  margin-bottom: 10px;
-}
-.mainView #wall .posts article .postContent .postText,
-.mainView #wall .posts article .postContent .postImage {
-  padding-left: 10px;
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
-}
-.mainView #wall .posts article .postContent .author {
-  width: 100%;
-  float: left;
-  display: block;
-}
-.mainView #wall .posts article .postContent .author .poster {
-  float: left;
-}
-.mainView #wall .posts article .postContent .author .walluserWrap {
-  float: left;
-  max-width: none;
-  width: auto;
-  display: block;
-}
-.mainView #wall .posts article .postContent .author .walluserWrap .arrow {
-  float: left;
-  margin: 6px 5px;
-  display: block;
-}
-.mainView #wall .posts article .postContent .author .walluserWrap .walluser {
-  float: left;
-  width: 100%;
-  display: block;
-  position: relative;
-  margin: -20px 15px;
-}
-.mainView #wall .posts article .postInfo {
-  margin-top: -5px;
-  margin-bottom: 10px;
-  text-align: right;
-}
-.mainView #wall .posts article ol.comments {
-  margin-left: 0;
-  list-style: none;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  overflow: hidden;
-  padding: 5px;
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
-}
-.mainView #wall .posts article ol.comments li {
-  margin-bottom: 5px;
-  background-color: #e5e5e5;
-  background: -webkit-gradient(linear, left top, left bottom, from(#e5e5e5), to(#d6d6d6));
-  background: -webkit-linear-gradient(top, #e5e5e5, #d6d6d6);
-  background: -moz-linear-gradient(top, #e5e5e5, #d6d6d6);
-  background: -ms-linear-gradient(top, #e5e5e5, #d6d6d6);
-  background: -o-linear-gradient(top, #e5e5e5, #d6d6d6);
-  border: 1px solid #b2b2b2;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  overflow-x: hidden;
-}
-.mainView #wall .posts article ol.comments li.header {
-  text-align: center;
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
-}
-.mainView #wall .posts article ol.comments li.me {
-  background-color: #54ab0c;
-  background: -webkit-gradient(linear, left top, left bottom, from(#54ab0c), to(#3a8100));
-  background: -webkit-linear-gradient(top, #54ab0c, #3a8100);
-  background: -moz-linear-gradient(top, #54ab0c, #3a8100);
-  background: -ms-linear-gradient(top, #54ab0c, #3a8100);
-  background: -o-linear-gradient(top, #54ab0c, #3a8100);
-  color: #000;
-}
-.mainView #wall .posts article ol.comments li .text {
-  word-break: break-all;
-}
-.mainView #wall .posts article ol.comments li aside {
-  font-size: 0.85em;
-}
-.mainView #wall .posts article ol.comments li.newComment input {
-  margin-top: 8px;
-}
-.mainView #wall .posts article ol.comments li.newComment button {
-  margin-top: 10px;
-}
-.mainView #wall .posts article:last-child {
-  border: none;
 }
 .profileView .box {
   border-top: none !important;
@@ -4534,46 +4548,53 @@ body.loading #container:before {
 .profileView #main #info article input {
   padding: 2px !important;
 }
-.profileView #main #info article#generalInfo {
-  display: inline-block;
-  *display: inline;
-  /* IE7 inline-block hack */
-  *zoom: 1;
-  float: left;
-  width: 98%;
-  margin: 0 1% 0 1%;
-}
 .profileView #main #info article#generalInfo .userimage img {
   width: 100%;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   float: left;
+  border: 1px solid #ccc;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
 }
 .profileView #main #info article#generalInfo .userimage .editImage {
   width: 100%;
   margin: 0;
-  margin-top: -30px;
-  background: rgba(0, 0, 0, 0.6);
-  float: left;
-  -webkit-border-top-right-radius: 0;
-  -webkit-border-bottom-right-radius: 5px;
-  -webkit-border-bottom-left-radius: 5px;
-  -webkit-border-top-left-radius: 0;
-  -moz-border-radius-topright: 0;
-  -moz-border-radius-bottomright: 5px;
-  -moz-border-radius-bottomleft: 5px;
-  -moz-border-radius-topleft: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 0;
+  margin-top: 5px;
+  -webkit-tab-highlight-color: transparent;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: inline-block;
+  padding: 4px 15px;
+  /* Safari/Chrome, other WebKit */
+  /* Firefox, other Gecko */
+  /* Opera/IE 8+ */
+  background-image: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
+  background-color: #ffffff;
+  color: #333333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  border: 1px solid #bbbbbb;
+  text-decoration: none !important;
+  background-color: #3a8100;
+  color: #ffffff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  float: left;
   padding: 5px;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
@@ -4583,15 +4604,143 @@ body.loading #container:before {
   /* Opera/IE 8+ */
   color: #ffffff;
   text-align: center;
-  opacity: 0;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   cursor: pointer;
 }
-.profileView #main #info article#generalInfo .userimage:hover .editImage {
-  opacity: 1;
+.profileView #main #info article#generalInfo .userimage .editImage:focus {
+  outline: 0;
+}
+.profileView #main #info article#generalInfo .userimage .editImage:-moz-focus-inner {
+  border: 0;
+}
+.profileView #main #info article#generalInfo .userimage .editImage:hover {
+  background-color: #f2f2f2;
+}
+.profileView #main #info article#generalInfo .userimage .editImage:focus {
+  background-color: #e6e6e6;
+}
+.profileView #main #info article#generalInfo .userimage .editImage:active {
+  background-color: #e6e6e6;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--big {
+  padding: 10px 10px;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--small {
+  padding: 2px 7px;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--input {
+  padding: 9px;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--primary {
+  background-color: #3a8100;
+  color: #ffffff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--primary:hover {
+  background-color: #3b7b06;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--primary:focus {
+  background-color: #326f00;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--primary:active {
+  background-color: #326f00;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--danger {
+  background-color: #d83a2e;
+  color: #ffffff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--danger:hover {
+  background-color: #bd2e23;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--danger:focus {
+  background-color: #aa291f;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--danger:active {
+  background-color: #aa291f;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--warning {
+  background-color: #f7b61b;
+  color: #ffffff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--warning:hover {
+  background-color: #f6af08;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--warning:focus {
+  background-color: #eca808;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--warning:active {
+  background-color: #eca808;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--info {
+  background-color: #049cdb;
+  color: #ffffff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--info:hover {
+  background-color: #0381b5;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--info:focus {
+  background-color: #037eb0;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--info:active {
+  background-color: #037aab;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--saveButton.success {
+  background-color: #3a8100;
+  color: #ffffff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--saveButton.success:hover {
+  background-color: #3b7b06;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--saveButton.success:focus {
+  background-color: #326f00;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--saveButton.success:active {
+  background-color: #326f00;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--saveButton.operation {
+  background-color: #444444;
+  color: #ffffff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--saveButton.operation:hover {
+  background-color: #3a3a3a;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--saveButton.operation:focus {
+  background-color: #303030;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--saveButton.operation:active {
+  background-color: #303030;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--saveButton.operation .spinner {
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--saveButton.failure {
+  background-color: #d83a2e;
+  color: #ffffff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--saveButton.failure:hover {
+  background-color: #bd2e23;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--saveButton.failure:focus {
+  background-color: #aa291f;
+}
+.profileView #main #info article#generalInfo .userimage .editImage.btn--saveButton.failure:active {
+  background-color: #aa291f;
+}
+.profileView #main #info article#generalInfo .userimage .editImage:hover {
+  background-color: #3b7b06;
+}
+.profileView #main #info article#generalInfo .userimage .editImage:focus {
+  background-color: #326f00;
+}
+.profileView #main #info article#generalInfo .userimage .editImage:active {
+  background-color: #326f00;
 }
 .profileView #main #info article#generalInfo .userimage.editing {
   text-align: center;
@@ -5447,168 +5596,6 @@ body.loading #container:before {
 .profileView #main #wall #postIt button[type="submit"]:active {
   background-color: #326f00;
 }
-.profileView #main #wall article {
-  border-bottom: 1px solid #aaa !important;
-}
-.profileView #main #wall article .userimg {
-  border-radius: 10px;
-}
-.profileView #main #wall article .postContent {
-  display: inline-block;
-  *display: inline;
-  /* IE7 inline-block hack */
-  *zoom: 1;
-  float: left;
-  width: 48%;
-  margin: 0 1% 0 1%;
-  padding-top: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.profileView #main #wall article .postContent .postText {
-  padding-left: 10px;
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
-}
-.profileView #main #wall article .postContent .author {
-  width: 100%;
-  float: left;
-  display: block;
-}
-.profileView #main #wall article .postContent .author .poster {
-  float: left;
-}
-.profileView #main #wall article .postContent .author .walluserWrap {
-  float: left;
-  max-width: none;
-  width: auto;
-  display: block;
-}
-.profileView #main #wall article .postContent .author .walluserWrap .arrow {
-  float: left;
-  margin: 6px 5px;
-  display: block;
-}
-.profileView #main #wall article .postContent .author .walluserWrap .walluser {
-  float: left;
-  width: 100%;
-  display: block;
-  position: relative;
-  margin: -20px 15px;
-}
-.profileView #main #wall article .postInfo {
-  display: inline-block;
-  *display: inline;
-  /* IE7 inline-block hack */
-  *zoom: 1;
-  float: left;
-  width: 23%;
-  margin: 0 1% 0 1%;
-  padding-top: 5px;
-  margin-bottom: 10px;
-  text-align: right;
-}
-.profileView #main #wall article ol.comments {
-  margin-left: 0;
-  list-style: none;
-  display: inline-block;
-  *display: inline;
-  /* IE7 inline-block hack */
-  *zoom: 1;
-  float: left;
-  width: 64.66666667%;
-  margin: 0 1% 0 1%;
-  margin-left: 1.04166667% !important;
-  border: 1px solid #999999;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  margin-bottom: 5px;
-}
-.profileView #main #wall article ol.comments li {
-  background-color: #eeeeee;
-  width: 100%;
-  *zoom: 1;
-  margin: 0;
-  border-bottom: 1px solid #999999;
-}
-.profileView #main #wall article ol.comments li:before,
-.profileView #main #wall article ol.comments li:after {
-  content: "";
-  display: table;
-}
-.profileView #main #wall article ol.comments li:after {
-  clear: both;
-}
-.profileView #main #wall article ol.comments li:last-child {
-  border: none;
-}
-.profileView #main #wall article ol.comments li img {
-  display: inline-block;
-  *display: inline;
-  /* IE7 inline-block hack */
-  *zoom: 1;
-  float: left;
-  width: 6.33333333%;
-  margin: 0 1% 0 1%;
-  margin-left: 0;
-}
-.profileView #main #wall article ol.comments li .text {
-  display: inline-block;
-  *display: inline;
-  /* IE7 inline-block hack */
-  *zoom: 1;
-  float: left;
-  width: 73%;
-  margin: 0 1% 0 1%;
-  margin-top: 5px;
-}
-.profileView #main #wall article ol.comments li .timestamp {
-  display: inline-block;
-  *display: inline;
-  /* IE7 inline-block hack */
-  *zoom: 1;
-  float: left;
-  width: 14.66666667%;
-  margin: 0 1% 0 1%;
-  margin-top: 5px;
-}
-.profileView #main #wall article ol.comments li.newComment {
-  background-color: #ffffff;
-}
-.profileView #main #wall article ol.comments li.newComment input {
-  display: inline-block;
-  *display: inline;
-  /* IE7 inline-block hack */
-  *zoom: 1;
-  float: left;
-  width: 73%;
-  margin: 0 1% 0 1%;
-  margin-top: 8px;
-}
-.profileView #main #wall article ol.comments li.newComment button {
-  display: inline-block;
-  *display: inline;
-  /* IE7 inline-block hack */
-  *zoom: 1;
-  float: left;
-  width: 14.66666667%;
-  margin: 0 1% 0 1%;
-  margin-top: 10px;
-}
-.profileView #main #wall article:last-child {
-  border: none !important;
-}
-.profileView #main #wall article:first-child {
-  border-top: 1px solid #000 !important;
-}
 .profileView #main #friends {
   display: inline-block;
   *display: inline;
@@ -5738,6 +5725,31 @@ body.loading #container:before {
     margin-top: -30px;
   }
 }
+.messagesView #main header button {
+  padding: 2px 7px;
+  margin-top: -5px !important;
+  margin-right: 0 !important;
+  outline: none;
+  border: none;
+  height: 30px;
+  background: transparent;
+  font-weight: 300;
+  text-align: left;
+}
+.messagesView #main header button.right {
+  float: right;
+  border-left: 1px solid #bbb;
+}
+.messagesView #main header button.left {
+  float: left;
+  border-right: 1px solid #bbb;
+}
+.messagesView #main header button:hover {
+  background: rgba(202, 202, 202, 0.2);
+}
+.messagesView #main header button:focus {
+  box-shadow: inset 0px 0px 2px #999999;
+}
 .messagesView #main section {
   padding: 5px 0;
   -webkit-border-top-right-radius: 0;
@@ -5812,13 +5824,7 @@ body.loading #container:before {
   /* Opera/IE 8+ */
 }
 .messagesView #topicListWrap #topicList .topic {
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #ddd;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;
@@ -5827,23 +5833,33 @@ body.loading #container:before {
   /* Opera/IE 8+ */
   cursor: pointer;
   position: relative;
+  transition: background-color 0.1s ease;
 }
 .messagesView #topicListWrap #topicList .topic .left .userimg {
-  -webkit-border-top-right-radius: 0px;
-  -webkit-border-bottom-right-radius: 0px;
-  -webkit-border-bottom-left-radius: 5px;
-  -webkit-border-top-left-radius: 5px;
-  -moz-border-radius-topright: 0px;
-  -moz-border-radius-bottomright: 0px;
-  -moz-border-radius-bottomleft: 5px;
-  -moz-border-radius-topleft: 5px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
+  border: 1px solid #f2f2f2;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
+}
+.messagesView #topicListWrap #topicList .topic .username,
+.messagesView #topicListWrap #topicList .topic .lastMessage {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.messagesView #topicListWrap #topicList .topic .username,
+.messagesView #topicListWrap #topicList .topic .lastMessage,
+.messagesView #topicListWrap #topicList .topic .time {
+  transition: color 0.1s ease;
 }
 .messagesView #topicListWrap #topicList .topic .username {
   font-size: 0.9em!important;
@@ -5864,10 +5880,10 @@ body.loading #container:before {
   text-overflow: ellipsis;
   line-height: 12px;
   display: block;
-  margin-bottom: 0;
+  margin-bottom: 2%;
   position: absolute;
   bottom: 1%;
-  right: 1%;
+  right: 2%;
   text-align: right;
 }
 .messagesView #topicListWrap #topicList .topic:hover {
@@ -5914,34 +5930,50 @@ body.loading #container:before {
 }
 .messagesView #topicListWrap #topicList .topic#newmessage {
   border: none;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
   background: transparent;
 }
 .messagesView #topicListWrap #topicList .topic#newmessage .btn {
   width: 100%;
-}
-.messagesView #topicListWrap #topicList .topic.groupChat .left {
-  background-color: #b2b2b2;
-  -webkit-border-top-right-radius: 0;
-  -webkit-border-bottom-right-radius: 0;
-  -webkit-border-bottom-left-radius: 5px;
-  -webkit-border-top-left-radius: 5px;
-  -moz-border-radius-topright: 0;
-  -moz-border-radius-bottomright: 0;
-  -moz-border-radius-bottomleft: 5px;
-  -moz-border-radius-topleft: 5px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
+}
+.messagesView #topicListWrap #topicList .topic.groupChat .left,
+.messagesView #topicListWrap #topicList .topic.peerChat .left {
+  padding: 2%;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+}
+.messagesView #topicListWrap #topicList .topic.groupChat .left .imgWrap,
+.messagesView #topicListWrap #topicList .topic.peerChat .left .imgWrap {
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 0;
+  margin: 0;
+  float: left;
+}
+.messagesView #topicListWrap #topicList .topic.groupChat .left {
+  background: transparent;
+}
+.messagesView #topicListWrap #topicList .topic.groupChat .left .imgWrap {
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  overflow: hidden;
+  border: 1px solid #f2f2f2;
+  background-color: #b2b2b2;
 }
 .messagesView #topicListWrap #topicList .topic.groupChat .left img,
 .messagesView #topicListWrap #topicList .topic.groupChat .left span,
@@ -5952,64 +5984,7 @@ body.loading #container:before {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-}
-.messagesView #topicListWrap #topicList .topic.groupChat .left img:nth-child(1),
-.messagesView #topicListWrap #topicList .topic.groupChat .left span:nth-child(1),
-.messagesView #topicListWrap #topicList .topic.groupChat .left div:nth-child(1) {
-  -webkit-border-top-right-radius: 0;
-  -webkit-border-bottom-right-radius: 0;
-  -webkit-border-bottom-left-radius: 0;
-  -webkit-border-top-left-radius: 5px;
-  -moz-border-radius-topright: 0;
-  -moz-border-radius-bottomright: 0;
-  -moz-border-radius-bottomleft: 0;
-  -moz-border-radius-topleft: 5px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 5px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
-.messagesView #topicListWrap #topicList .topic.groupChat .left img:nth-child(2),
-.messagesView #topicListWrap #topicList .topic.groupChat .left span:nth-child(2),
-.messagesView #topicListWrap #topicList .topic.groupChat .left div:nth-child(2) {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
-.messagesView #topicListWrap #topicList .topic.groupChat .left img:nth-child(3),
-.messagesView #topicListWrap #topicList .topic.groupChat .left span:nth-child(3),
-.messagesView #topicListWrap #topicList .topic.groupChat .left div:nth-child(3) {
-  -webkit-border-top-right-radius: 0;
-  -webkit-border-bottom-right-radius: 0;
-  -webkit-border-bottom-left-radius: 5px;
-  -webkit-border-top-left-radius: 0;
-  -moz-border-radius-topright: 0;
-  -moz-border-radius-bottomright: 0;
-  -moz-border-radius-bottomleft: 5px;
-  -moz-border-radius-topleft: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 0;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
-.messagesView #topicListWrap #topicList .topic.groupChat .left img:nth-child(4),
-.messagesView #topicListWrap #topicList .topic.groupChat .left span:nth-child(4),
-.messagesView #topicListWrap #topicList .topic.groupChat .left div:nth-child(4) {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
+  border: none;
 }
 .messagesView #topicListWrap #topicList .topic.groupChat .left span,
 .messagesView #topicListWrap #topicList .topic.groupChat .left div {
@@ -6022,6 +5997,14 @@ body.loading #container:before {
   box-sizing: border-box;
   /* Opera/IE 8+ */
   height: 100%;
+}
+.messagesView #topicWrap #messageList {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
 }
 .messagesView #topicWrap #messageList .message .messageContent {
   background: #d5d5d5;
@@ -6076,6 +6059,9 @@ body.loading #container:before {
 }
 .messagesView #topicWrap #messageList .message.me .messageContent .time {
   color: #eee;
+}
+.messagesView #topicWrap #messageList .message:first-child {
+  margin-top: 5px;
 }
 .messagesView #topicWrap.peerChat #messageList {
   margin-left: 0;
@@ -6193,6 +6179,31 @@ body.loading #container:before {
   .friendsView #main header {
     margin-top: -30px;
   }
+}
+.friendsView #main header button {
+  padding: 2px 7px;
+  margin-top: -5px !important;
+  margin-right: 0 !important;
+  outline: none;
+  border: none;
+  height: 30px;
+  background: transparent;
+  font-weight: 300;
+  text-align: left;
+}
+.friendsView #main header button.right {
+  float: right;
+  border-left: 1px solid #bbb;
+}
+.friendsView #main header button.left {
+  float: left;
+  border-right: 1px solid #bbb;
+}
+.friendsView #main header button:hover {
+  background: rgba(202, 202, 202, 0.2);
+}
+.friendsView #main header button:focus {
+  box-shadow: inset 0px 0px 2px #999999;
 }
 .friendsView #main section {
   padding: 5px 0;
@@ -6352,6 +6363,31 @@ body.loading #container:before {
   .circlesView #main header {
     margin-top: -30px;
   }
+}
+.circlesView #main header button {
+  padding: 2px 7px;
+  margin-top: -5px !important;
+  margin-right: 0 !important;
+  outline: none;
+  border: none;
+  height: 30px;
+  background: transparent;
+  font-weight: 300;
+  text-align: left;
+}
+.circlesView #main header button.right {
+  float: right;
+  border-left: 1px solid #bbb;
+}
+.circlesView #main header button.left {
+  float: left;
+  border-right: 1px solid #bbb;
+}
+.circlesView #main header button:hover {
+  background: rgba(202, 202, 202, 0.2);
+}
+.circlesView #main header button:focus {
+  box-shadow: inset 0px 0px 2px #999999;
 }
 .circlesView #main section {
   padding: 5px 0;
@@ -6782,6 +6818,31 @@ body.loading #container:before {
     margin-top: -30px;
   }
 }
+.helpView #main header button {
+  padding: 2px 7px;
+  margin-top: -5px !important;
+  margin-right: 0 !important;
+  outline: none;
+  border: none;
+  height: 30px;
+  background: transparent;
+  font-weight: 300;
+  text-align: left;
+}
+.helpView #main header button.right {
+  float: right;
+  border-left: 1px solid #bbb;
+}
+.helpView #main header button.left {
+  float: left;
+  border-right: 1px solid #bbb;
+}
+.helpView #main header button:hover {
+  background: rgba(202, 202, 202, 0.2);
+}
+.helpView #main header button:focus {
+  box-shadow: inset 0px 0px 2px #999999;
+}
 .helpView #main section {
   padding: 5px 0;
   -webkit-border-top-right-radius: 0;
@@ -6991,6 +7052,31 @@ body.loading #container:before {
   .settingsView #main header {
     margin-top: -30px;
   }
+}
+.settingsView #main header button {
+  padding: 2px 7px;
+  margin-top: -5px !important;
+  margin-right: 0 !important;
+  outline: none;
+  border: none;
+  height: 30px;
+  background: transparent;
+  font-weight: 300;
+  text-align: left;
+}
+.settingsView #main header button.right {
+  float: right;
+  border-left: 1px solid #bbb;
+}
+.settingsView #main header button.left {
+  float: left;
+  border-right: 1px solid #bbb;
+}
+.settingsView #main header button:hover {
+  background: rgba(202, 202, 202, 0.2);
+}
+.settingsView #main header button:focus {
+  box-shadow: inset 0px 0px 2px #999999;
 }
 .settingsView #main section {
   padding: 5px 0;
@@ -7418,6 +7504,31 @@ body.loading #container:before {
   .legalView #main header {
     margin-top: -30px;
   }
+}
+.legalView #main header button {
+  padding: 2px 7px;
+  margin-top: -5px !important;
+  margin-right: 0 !important;
+  outline: none;
+  border: none;
+  height: 30px;
+  background: transparent;
+  font-weight: 300;
+  text-align: left;
+}
+.legalView #main header button.right {
+  float: right;
+  border-left: 1px solid #bbb;
+}
+.legalView #main header button.left {
+  float: left;
+  border-right: 1px solid #bbb;
+}
+.legalView #main header button:hover {
+  background: rgba(202, 202, 202, 0.2);
+}
+.legalView #main header button:focus {
+  box-shadow: inset 0px 0px 2px #999999;
 }
 .legalView #main section {
   padding: 5px 0;
@@ -8029,13 +8140,15 @@ body.loading #container:before {
     margin: 0 1% 0 1%;
     margin: 0 auto !important;
     float: none;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    max-width: 50px;
+  }
+  body #container #sidebar-right .mobileMenu a img.userimg {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    max-width: 50px;
   }
   body #container #sidebar-right .mobileMenu a i {
     font-size: 216.66666667%;
@@ -8081,6 +8194,248 @@ body.loading #container:before {
   }
   .person .pushup .status {
     margin-top: -28px;
+  }
+  .post .userimg {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 12.28571429%;
+    margin: 0 1% 0 1%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .post .userimg img {
+    width: 100%;
+  }
+  .post .postWrap {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 83.71428571%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postContent {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 5px !important;
+    position: relative;
+  }
+  .post .postContent .postText {
+    padding-left: 10px;
+    -webkit-box-sizing: padding-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: padding-box;
+    /* Firefox, other Gecko */
+    box-sizing: padding-box;
+    /* Opera/IE 8+ */
+  }
+  .post .postContent .postImage img {
+    max-width: 98%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post .postContent .author {
+    float: left;
+    margin-top: 10px;
+  }
+  .post .postInfo {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+    padding-top: 0px !important;
+    margin-bottom: 10px;
+    border-top: 1px dotted #ccc;
+  }
+  .post .postInfo .with {
+    color: #666;
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postInfo .awesome {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postInfo p.comments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postInfo .showComments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postInfo p.date {
+    text-align: right;
+    display: inline;
+    width: auto;
+    float: none;
+  }
+  .post ol.comments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 64.66666667%;
+    margin: 0 1% 0 1%;
+    margin-left: 1.04166667% !important;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    margin-bottom: 5px;
+  }
+  .post ol.comments li {
+    width: 100%;
+    margin: 0;
+    min-height: 40px;
+  }
+  .post ol.comments li:last-child {
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topright: 0;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-topleft: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border-bottom: none !important;
+  }
+  .post ol.comments li:first-child {
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 0;
+    -moz-border-radius-topleft: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border-top: none;
+  }
+  .post ol.comments li:only-child {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post ol.comments li img {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 6.33333333%;
+    margin: 0 1% 0 1%;
+    margin-left: 0;
+    height: 40px;
+    width: auto !important;
+  }
+  .post ol.comments li .text {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 63%;
+    margin: 0 1% 0 1%;
+    padding: 3px;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
+  }
+  .post ol.comments li .timestamp {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 23%;
+    margin: 0 1% 0 1%;
+  }
+  .post ol.comments li.newComment {
+    padding: 0;
+  }
+  .post ol.comments li.newComment img {
+    width: auto;
+  }
+  .post ol.comments li.newComment input {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 68%;
+    margin: 0 1% 0 1%;
+    margin-top: 2px !important;
+  }
+  .post ol.comments li.newComment button {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 18.83333333%;
+    margin: 0 1% 0 1%;
+    margin-top: 5px !important;
   }
   .searchBar .formSearch {
     overflow-y: hidden;
@@ -8284,8 +8639,8 @@ body.loading #container:before {
     margin-left: 3% !important;
   }
   #topNav #navInner #mobileCounter {
-    top: 25px;
-    right: 2%;
+    top: 15px;
+    left: 15%;
   }
   #topNav .searchBar {
     display: inline-block;
@@ -8325,36 +8680,12 @@ body.loading #container:before {
     top: 50px;
     margin: 5px 0;
   }
-  #topNav #navIcons {
-    height: 100%;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: right;
-    width: 14.66666667%;
-    margin: 0 1% 0 1%;
-    display: none;
-  }
-  #topNav #navIcons .navIcon {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 23%;
-    margin: 0 1% 0 1%;
-  }
-  #topNav #navIcons .navIcon .icon {
-    margin-top: 7px;
-    width: 35px;
-  }
-  #topNav #navIcons .navIcon .badge {
+  #topNav .badge {
     padding: 1px 2px 1px 2px;
-    margin-left: -13px;
-    margin-top: 25px;
     position: absolute;
     font-size: 11px;
+    width: 20px;
+    height: 20px;
   }
   #searchSuggestions li img {
     display: inline-block;
@@ -8564,7 +8895,7 @@ body.loading #container:before {
   }
   .messagesView #main {
     padding-top: 30px;
-    padding-bottom: 10px;
+    padding-bottom: 0;
     height: 100%;
     margin-top: 5px !important;
     overflow: hidden !important;
@@ -8575,6 +8906,14 @@ body.loading #container:before {
     padding: 5px;
   }
   .messagesView header .title {
+    display: none;
+    visibility: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .messagesView header .title.chat,
+  .messagesView header .title.newMessage {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
@@ -8582,11 +8921,9 @@ body.loading #container:before {
     float: left;
     width: 83.71428571%;
     margin: 0 1% 0 1%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    visibility: visible;
   }
-  .messagesView header button {
+  .messagesView header #showTopics {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
@@ -8594,15 +8931,17 @@ body.loading #container:before {
     float: right;
     width: 12.28571429%;
     margin: 0 1% 0 1%;
-    width: 12.28571429% !important;
-    padding: 2px 7px;
-    margin-top: -5px !important;
-    margin-right: 0 !important;
-    outline: none;
-    border: none;
-    border-left: 1px solid #bbb;
-    height: 30px;
-    background: transparent;
+    text-align: center !important;
+  }
+  .messagesView header #newmessage {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 100%;
+    margin: 0 0 0 0;
+    border: none !important;
   }
   .messagesView #topicListWrap {
     display: inline-block;
@@ -8610,15 +8949,13 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
+    width: 100%;
+    margin: 0 0 0 0;
     height: 100%;
   }
   .messagesView #topicListWrap #topicList {
     height: 100%;
     width: 100%;
-    padding-top: 15px;
-    padding-bottom: 11px;
   }
   .messagesView #topicListWrap #topicList #topicListScroll {
     float: left;
@@ -8628,8 +8965,9 @@ body.loading #container:before {
     height: 100%;
   }
   .messagesView #topicListWrap #topicList .topic {
-    margin-bottom: 5px;
+    margin-bottom: 0;
     padding: 0;
+    width: 100%;
   }
   .messagesView #topicListWrap #topicList .topic .left {
     display: inline-block;
@@ -8703,7 +9041,7 @@ body.loading #container:before {
   }
   .messagesView #topicWrap #messageWrap {
     height: 100%;
-    padding-bottom: 50px;
+    padding-bottom: 55px;
     -webkit-box-sizing: border-box;
     /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;
@@ -8716,6 +9054,7 @@ body.loading #container:before {
     height: 100%;
     position: relative;
     -webkit-overflow-scrolling: touch;
+    margin-bottom: 5px;
   }
   .messagesView #topicWrap #messageList .message {
     display: inline-block;
@@ -8797,6 +9136,7 @@ body.loading #container:before {
     width: 23%;
     margin: 0 1% 0 1%;
     height: 45px;
+    padding-left: 11px;
   }
   .messagesView #topicWrap.newMessage {
     display: inline-block;
@@ -9132,236 +9472,9 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-    margin: 0 !important;
-  }
-  .mainView .posts article .userimg {
-    border-radius: 200px;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 12.28571429%;
-    margin: 0 1% 0 1%;
-    margin: 5px 0px 5px 0px !important;
-  }
-  .mainView .posts article .postContent {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 83.71428571%;
-    margin: 0 1% 0 1%;
-    padding-top: 0px !important;
-    margin-top: 0px !important;
-    margin-bottom: 5px !important;
-    position: relative;
-  }
-  .mainView .posts article .postContent .postText {
-    padding-left: 10px;
-    -webkit-box-sizing: padding-box;
-    /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: padding-box;
-    /* Firefox, other Gecko */
-    box-sizing: padding-box;
-    /* Opera/IE 8+ */
-  }
-  .mainView .posts article .postContent .postImage img {
-    max-width: 98%;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .mainView .posts article .postContent .author {
-    float: left;
-    margin-top: 10px;
-  }
-  .mainView .posts article .postInfo {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-    padding-top: 0px !important;
-    margin-bottom: 10px;
-    text-align: left !important;
-  }
-  .mainView .posts article .postInfo .with {
-    color: #666;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article .postInfo .awesome {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article .postInfo p.comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article .postInfo .showComments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article ol.comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 64.66666667%;
-    margin: 0 1% 0 1%;
-    margin-left: 1.04166667% !important;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    margin-bottom: 5px;
-  }
-  .mainView .posts article ol.comments li {
     width: 100%;
-    margin: 0;
-    min-height: 40px;
-  }
-  .mainView .posts article ol.comments li:last-child {
-    -webkit-border-top-right-radius: 0;
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -webkit-border-top-left-radius: 0;
-    -moz-border-radius-topright: 0;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    -moz-border-radius-topleft: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 0;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border-bottom: none !important;
-  }
-  .mainView .posts article ol.comments li:first-child {
-    -webkit-border-top-right-radius: 5px;
-    -webkit-border-bottom-right-radius: 0;
-    -webkit-border-bottom-left-radius: 0;
-    -webkit-border-top-left-radius: 5px;
-    -moz-border-radius-topright: 5px;
-    -moz-border-radius-bottomright: 0;
-    -moz-border-radius-bottomleft: 0;
-    -moz-border-radius-topleft: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border-top: none;
-  }
-  .mainView .posts article ol.comments li:only-child {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .mainView .posts article ol.comments li img {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 6.33333333%;
-    margin: 0 1% 0 1%;
-    margin-left: 0;
-    height: 40px;
-    width: auto !important;
-  }
-  .mainView .posts article ol.comments li .text {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 63%;
-    margin: 0 1% 0 1%;
-    padding: 3px;
-    -webkit-box-sizing: border-box;
-    /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;
-    /* Firefox, other Gecko */
-    box-sizing: border-box;
-    /* Opera/IE 8+ */
-  }
-  .mainView .posts article ol.comments li .timestamp {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 23%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article ol.comments li.newComment {
-    padding: 0;
-  }
-  .mainView .posts article ol.comments li.newComment img {
-    width: auto;
-  }
-  .mainView .posts article ol.comments li.newComment input {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 68%;
-    margin: 0 1% 0 1%;
-    margin-top: 2px !important;
-  }
-  .mainView .posts article ol.comments li.newComment button {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 18.83333333%;
-    margin: 0 1% 0 1%;
-    margin-top: 5px !important;
-  }
-  .mainView .posts article:last-child {
-    border: none;
+    margin: 0 0 0 0;
+    margin-top: 10px;
   }
   .profileView #main {
     padding-top: 10px;
@@ -9489,7 +9602,7 @@ body.loading #container:before {
     float: left;
     width: 23%;
     margin: 0 1% 0 1%;
-    margin-top: 1%;
+    margin-top: 15px;
     margin-bottom: 1%;
   }
   .profileView #main #info article#generalInfo .userimage.editing {
@@ -9519,7 +9632,6 @@ body.loading #container:before {
     float: left;
     width: 73%;
     margin: 0 1% 0 1%;
-    margin-top: -10px;
     line-height: 10px;
   }
   .profileView #main #info article#generalInfo .actions {
@@ -9643,64 +9755,7 @@ body.loading #container:before {
     float: left;
     width: 100%;
     margin: 0 0 0 0;
-  }
-  .profileView #main #wall article .userimg {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 16.75%;
-    margin: 0 1% 0 1%;
     margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .profileView #main #wall article .postContent {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 79.25%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-top: 0;
-    margin-bottom: 0px;
-    min-height: none;
-    height: auto;
-  }
-  .profileView #main #wall article .postContent .author {
-    margin-bottom: 5px;
-  }
-  .profileView #main #wall article .postContent .postText {
-    padding-left: 10px;
-  }
-  .profileView #main #wall article .postInfo {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 77.16666667%;
-    margin: 0 1% 0 1%;
-    margin-left: 20.83333333% !important;
-    padding-top: 5px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-  }
-  .profileView #main #wall article .postInfo p {
-    padding: 0;
-    margin: 0;
-  }
-  .profileView #main #wall article .postInfo .awesome,
-  .profileView #main #wall article .postInfo .comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 48%;
-    margin: 0 1% 0 1%;
   }
   .profileView #main #friends {
     display: inline-block;
@@ -10755,7 +10810,6 @@ body.loading #container:before {
   .settingsView #main header {
     height: 20px !important;
     margin-top: -20px;
-    padding: 5px;
   }
   .settingsView #main header .links {
     float: right;
@@ -11206,9 +11260,11 @@ body.loading #container:before {
     width: 39.66666667%;
     margin: 0 1% 0 1%;
     margin-left: 29.16666667% !important;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+  }
+  body #container #sidebar-right .mobileMenu a img.userimg {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
@@ -11251,6 +11307,242 @@ body.loading #container:before {
   }
   .person:hover .pushup {
     height: 100px !important;
+  }
+  .post .userimg {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 10.5%;
+    margin: 0 1% 0 1%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .post .userimg img {
+    width: 100%;
+  }
+  .post .postWrap {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 85.5%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postContent {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 69.42857143%;
+    margin: 0 1% 0 1%;
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 5px !important;
+    position: relative;
+  }
+  .post .postContent .postText {
+    padding-left: 10px;
+    -webkit-box-sizing: padding-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: padding-box;
+    /* Firefox, other Gecko */
+    box-sizing: padding-box;
+    /* Opera/IE 8+ */
+  }
+  .post .postContent .postImage img {
+    max-width: 98%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post .postContent .author {
+    float: left;
+    margin-top: 10px;
+  }
+  .post .postInfo {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 26.57142857%;
+    margin: 0 1% 0 1%;
+    padding-top: 0px !important;
+    margin-bottom: 10px;
+    text-align: left !important;
+  }
+  .post .postInfo .with {
+    color: #666;
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postInfo .awesome {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postInfo p.comments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postInfo .showComments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post ol.comments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 64.66666667%;
+    margin: 0 1% 0 1%;
+    margin-left: 1.04166667% !important;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    margin-bottom: 5px;
+  }
+  .post ol.comments li {
+    width: 100%;
+    margin: 0;
+    min-height: 40px;
+  }
+  .post ol.comments li:last-child {
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topright: 0;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-topleft: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border-bottom: none !important;
+  }
+  .post ol.comments li:first-child {
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 0;
+    -moz-border-radius-topleft: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border-top: none;
+  }
+  .post ol.comments li:only-child {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post ol.comments li img {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 6.33333333%;
+    margin: 0 1% 0 1%;
+    margin-left: 0;
+    height: 40px;
+    width: auto !important;
+  }
+  .post ol.comments li .text {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 63%;
+    margin: 0 1% 0 1%;
+    padding: 3px;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
+  }
+  .post ol.comments li .timestamp {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 23%;
+    margin: 0 1% 0 1%;
+  }
+  .post ol.comments li.newComment {
+    padding: 0;
+  }
+  .post ol.comments li.newComment img {
+    width: auto;
+  }
+  .post ol.comments li.newComment input {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 68%;
+    margin: 0 1% 0 1%;
+    margin-top: 2px !important;
+  }
+  .post ol.comments li.newComment button {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 18.83333333%;
+    margin: 0 1% 0 1%;
+    margin-top: 5px !important;
   }
   .searchBar .formSearch {
     overflow-y: hidden;
@@ -11453,7 +11745,7 @@ body.loading #container:before {
     margin-left: 3% !important;
   }
   #topNav #navInner #mobileCounter {
-    top: 25px;
+    top: 15px;
     right: 2%;
   }
   #topNav .searchBar {
@@ -11494,36 +11786,12 @@ body.loading #container:before {
     top: 50px;
     margin: 5px 0;
   }
-  #topNav #navIcons {
-    height: 100%;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: right;
-    width: 14.66666667%;
-    margin: 0 1% 0 1%;
-    display: none;
-  }
-  #topNav #navIcons .navIcon {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 23%;
-    margin: 0 1% 0 1%;
-  }
-  #topNav #navIcons .navIcon .icon {
-    margin-top: 7px;
-    width: 35px;
-  }
-  #topNav #navIcons .navIcon .badge {
+  #topNav .badge {
     padding: 1px 2px 1px 2px;
-    margin-left: -13px;
-    margin-top: 25px;
     position: absolute;
     font-size: 11px;
+    width: 20px;
+    height: 20px;
   }
   #searchSuggestions li img {
     display: inline-block;
@@ -11731,7 +11999,7 @@ body.loading #container:before {
   }
   .messagesView #main {
     padding-top: 30px;
-    padding-bottom: 10px;
+    padding-bottom: 0;
     height: 100%;
     margin-top: 5px !important;
     overflow: hidden !important;
@@ -11742,6 +12010,14 @@ body.loading #container:before {
     padding: 5px;
   }
   .messagesView header .title {
+    display: none;
+    visibility: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .messagesView header .title.chat,
+  .messagesView header .title.newMessage {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
@@ -11749,11 +12025,9 @@ body.loading #container:before {
     float: left;
     width: 83.71428571%;
     margin: 0 1% 0 1%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    visibility: visible;
   }
-  .messagesView header button {
+  .messagesView header #showTopics {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
@@ -11761,15 +12035,17 @@ body.loading #container:before {
     float: right;
     width: 12.28571429%;
     margin: 0 1% 0 1%;
-    width: 12.28571429% !important;
-    padding: 2px 7px;
-    margin-top: -5px !important;
-    margin-right: 0 !important;
-    outline: none;
-    border: none;
-    border-left: 1px solid #bbb;
-    height: 30px;
-    background: transparent;
+    text-align: center !important;
+  }
+  .messagesView header #newmessage {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 100%;
+    margin: 0 0 0 0;
+    border: none !important;
   }
   .messagesView #topicListWrap {
     display: inline-block;
@@ -11777,15 +12053,13 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
+    width: 100%;
+    margin: 0 0 0 0;
     height: 100%;
   }
   .messagesView #topicListWrap #topicList {
     height: 100%;
     width: 100%;
-    padding-top: 15px;
-    padding-bottom: 11px;
   }
   .messagesView #topicListWrap #topicList #topicListScroll {
     float: left;
@@ -11795,7 +12069,7 @@ body.loading #container:before {
     height: 100%;
   }
   .messagesView #topicListWrap #topicList .topic {
-    margin-bottom: 5px;
+    margin-bottom: 0;
     padding: 0;
   }
   .messagesView #topicListWrap #topicList .topic .left {
@@ -11804,7 +12078,7 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 16.75%;
+    width: 13.625%;
     margin: 0 1% 0 1%;
     margin: 0 2% -5px 0;
   }
@@ -11870,7 +12144,7 @@ body.loading #container:before {
   }
   .messagesView #topicWrap #messageWrap {
     height: 100%;
-    padding-bottom: 50px;
+    padding-bottom: 55px;
     -webkit-box-sizing: border-box;
     /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;
@@ -11883,6 +12157,7 @@ body.loading #container:before {
     height: 100%;
     position: relative;
     -webkit-overflow-scrolling: touch;
+    margin-bottom: 5px;
   }
   .messagesView #topicWrap #messageList .message {
     display: inline-block;
@@ -11974,8 +12249,7 @@ body.loading #container:before {
     width: 98%;
     margin: 0 1% 0 1%;
   }
-  .messagesView #topicWrap.newMessage #recieverInput,
-  .messagesView #topicWrap.newMessage #messageInput {
+  .messagesView #topicWrap.newMessage #recieverInput {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
@@ -11984,17 +12258,22 @@ body.loading #container:before {
     width: 98%;
     margin: 0 1% 0 1%;
     margin-top: 5px;
-    margin-bottom: 0px;
+    margin-bottom: 5px;
   }
-  .messagesView #topicWrap.newMessage #recieverInput .formSearch .inputWrap li.searchField,
-  .messagesView #topicWrap.newMessage #messageInput .formSearch .inputWrap li.searchField {
+  .messagesView #topicWrap.newMessage #recieverInput .formSearch .inputWrap li.searchField {
     width: 80%;
   }
-  .messagesView #topicWrap.newMessage #recieverInput .formSearch .inputWrap li.searchField input,
-  .messagesView #topicWrap.newMessage #messageInput .formSearch .inputWrap li.searchField input {
+  .messagesView #topicWrap.newMessage #recieverInput .formSearch .inputWrap li.searchField input {
     width: 100%;
   }
   .messagesView #topicWrap.newMessage #messageInput {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
     height: 100px;
     margin-bottom: 5px;
   }
@@ -12300,236 +12579,9 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-    margin: 0 !important;
-  }
-  .mainView .posts article .userimg {
-    border-radius: 200px;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 12.28571429%;
-    margin: 0 1% 0 1%;
-    margin: 5px 0px 5px 0px !important;
-  }
-  .mainView .posts article .postContent {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 55.14285714%;
-    margin: 0 1% 0 1%;
-    padding-top: 0px !important;
-    margin-top: 0px !important;
-    margin-bottom: 5px !important;
-    position: relative;
-  }
-  .mainView .posts article .postContent .postText {
-    padding-left: 10px;
-    -webkit-box-sizing: padding-box;
-    /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: padding-box;
-    /* Firefox, other Gecko */
-    box-sizing: padding-box;
-    /* Opera/IE 8+ */
-  }
-  .mainView .posts article .postContent .postImage img {
-    max-width: 98%;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .mainView .posts article .postContent .author {
-    float: left;
-    margin-top: 10px;
-  }
-  .mainView .posts article .postInfo {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 26.57142857%;
-    margin: 0 1% 0 1%;
-    padding-top: 0px !important;
-    margin-bottom: 10px;
-    text-align: left !important;
-  }
-  .mainView .posts article .postInfo .with {
-    color: #666;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article .postInfo .awesome {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article .postInfo p.comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article .postInfo .showComments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article ol.comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 64.66666667%;
-    margin: 0 1% 0 1%;
-    margin-left: 1.04166667% !important;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    margin-bottom: 5px;
-  }
-  .mainView .posts article ol.comments li {
     width: 100%;
-    margin: 0;
-    min-height: 40px;
-  }
-  .mainView .posts article ol.comments li:last-child {
-    -webkit-border-top-right-radius: 0;
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -webkit-border-top-left-radius: 0;
-    -moz-border-radius-topright: 0;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    -moz-border-radius-topleft: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 0;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border-bottom: none !important;
-  }
-  .mainView .posts article ol.comments li:first-child {
-    -webkit-border-top-right-radius: 5px;
-    -webkit-border-bottom-right-radius: 0;
-    -webkit-border-bottom-left-radius: 0;
-    -webkit-border-top-left-radius: 5px;
-    -moz-border-radius-topright: 5px;
-    -moz-border-radius-bottomright: 0;
-    -moz-border-radius-bottomleft: 0;
-    -moz-border-radius-topleft: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border-top: none;
-  }
-  .mainView .posts article ol.comments li:only-child {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .mainView .posts article ol.comments li img {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 6.33333333%;
-    margin: 0 1% 0 1%;
-    margin-left: 0;
-    height: 40px;
-    width: auto !important;
-  }
-  .mainView .posts article ol.comments li .text {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 63%;
-    margin: 0 1% 0 1%;
-    padding: 3px;
-    -webkit-box-sizing: border-box;
-    /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;
-    /* Firefox, other Gecko */
-    box-sizing: border-box;
-    /* Opera/IE 8+ */
-  }
-  .mainView .posts article ol.comments li .timestamp {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 23%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article ol.comments li.newComment {
-    padding: 0;
-  }
-  .mainView .posts article ol.comments li.newComment img {
-    width: auto;
-  }
-  .mainView .posts article ol.comments li.newComment input {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 68%;
-    margin: 0 1% 0 1%;
-    margin-top: 2px !important;
-  }
-  .mainView .posts article ol.comments li.newComment button {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 18.83333333%;
-    margin: 0 1% 0 1%;
-    margin-top: 5px !important;
-  }
-  .mainView .posts article:last-child {
-    border: none;
+    margin: 0 0 0 0;
+    margin-top: 10px;
   }
   .profileView #main {
     padding-top: 10px;
@@ -12657,7 +12709,7 @@ body.loading #container:before {
     float: left;
     width: 23%;
     margin: 0 1% 0 1%;
-    margin-top: 1%;
+    margin-top: 10px;
     margin-bottom: 1%;
   }
   .profileView #main #info article#generalInfo .userimage.editing {
@@ -12687,7 +12739,6 @@ body.loading #container:before {
     float: left;
     width: 73%;
     margin: 0 1% 0 1%;
-    margin-top: -10px;
     line-height: 10px;
   }
   .profileView #main #info article#generalInfo .actions {
@@ -12811,63 +12862,10 @@ body.loading #container:before {
     float: left;
     width: 100%;
     margin: 0 0 0 0;
-  }
-  .profileView #main #wall article .userimg {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 12.28571429%;
-    margin: 0 1% 0 1%;
     margin-top: 10px;
-    margin-bottom: 10px;
   }
-  .profileView #main #wall article .postContent {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 55.14285714%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-top: 0;
-    margin-bottom: 0px;
-    min-height: none;
-    height: auto;
-  }
-  .profileView #main #wall article .postContent .author {
-    margin-bottom: 5px;
-  }
-  .profileView #main #wall article .postContent .postText {
-    padding-left: 10px;
-  }
-  .profileView #main #wall article .postInfo {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 26.57142857%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-  }
-  .profileView #main #wall article .postInfo p {
-    padding: 0;
-    margin: 0;
-  }
-  .profileView #main #wall article .postInfo .awesome,
-  .profileView #main #wall article .postInfo .comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 48%;
-    margin: 0 1% 0 1%;
+  .profileView #main #wall article .postWrap {
+    margin-top: 10px;
   }
   .profileView #main #friends {
     display: inline-block;
@@ -13918,7 +13916,6 @@ body.loading #container:before {
   .settingsView #main header {
     height: 20px !important;
     margin-top: -20px;
-    padding: 5px;
   }
   .settingsView #main header .links {
     float: right;
@@ -14365,9 +14362,11 @@ body.loading #container:before {
     width: 39.66666667%;
     margin: 0 1% 0 1%;
     margin-left: 29.16666667% !important;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+  }
+  body #container #sidebar-right .mobileMenu a img.userimg {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
@@ -14410,6 +14409,248 @@ body.loading #container:before {
   }
   .person:hover .pushup {
     height: 100px !important;
+  }
+  .post .userimg {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 12.28571429%;
+    margin: 0 1% 0 1%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .post .userimg img {
+    width: 100%;
+  }
+  .post .postWrap {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 83.71428571%;
+    margin: 0 1% 0 1%;
+    margin-top: 15px;
+  }
+  .post .postContent {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 5px !important;
+    position: relative;
+  }
+  .post .postContent .postText {
+    padding-left: 10px;
+    -webkit-box-sizing: padding-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: padding-box;
+    /* Firefox, other Gecko */
+    box-sizing: padding-box;
+    /* Opera/IE 8+ */
+  }
+  .post .postContent .postImage img {
+    max-width: 98%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post .postContent .author {
+    float: left;
+    margin-top: 10px;
+  }
+  .post .postInfo {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+    padding-top: 0px !important;
+    margin-bottom: 10px;
+    border-top: 1px dotted #ccc;
+  }
+  .post .postInfo .with {
+    color: #666;
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postInfo .awesome {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postInfo p.comments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postInfo .showComments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postInfo p.date {
+    display: inline;
+    width: auto;
+    text-align: right;
+  }
+  .post ol.comments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 64.66666667%;
+    margin: 0 1% 0 1%;
+    margin-left: 1.04166667% !important;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    margin-bottom: 5px;
+  }
+  .post ol.comments li {
+    width: 100%;
+    margin: 0;
+    min-height: 40px;
+  }
+  .post ol.comments li:last-child {
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topright: 0;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-topleft: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border-bottom: none !important;
+  }
+  .post ol.comments li:first-child {
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 0;
+    -moz-border-radius-topleft: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border-top: none;
+  }
+  .post ol.comments li:only-child {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post ol.comments li img {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 6.33333333%;
+    margin: 0 1% 0 1%;
+    margin-left: 0;
+    height: 40px;
+    width: auto !important;
+  }
+  .post ol.comments li .text {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 63%;
+    margin: 0 1% 0 1%;
+    padding: 3px;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
+  }
+  .post ol.comments li .timestamp {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 23%;
+    margin: 0 1% 0 1%;
+  }
+  .post ol.comments li.newComment {
+    padding: 0;
+  }
+  .post ol.comments li.newComment img {
+    width: auto;
+  }
+  .post ol.comments li.newComment input {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 68%;
+    margin: 0 1% 0 1%;
+    margin-top: 2px !important;
+  }
+  .post ol.comments li.newComment button {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 18.83333333%;
+    margin: 0 1% 0 1%;
+    margin-top: 5px !important;
   }
   .searchBar .formSearch {
     overflow-y: hidden;
@@ -14612,8 +14853,8 @@ body.loading #container:before {
     margin-left: 3% !important;
   }
   #topNav #navInner #mobileCounter {
-    top: 25px;
-    right: 2%;
+    top: 15px;
+    left: 15%;
   }
   #topNav .searchBar {
     display: inline-block;
@@ -14653,36 +14894,12 @@ body.loading #container:before {
     top: 50px;
     margin: 5px 0;
   }
-  #topNav #navIcons {
-    height: 100%;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: right;
-    width: 14.66666667%;
-    margin: 0 1% 0 1%;
-    display: none;
-  }
-  #topNav #navIcons .navIcon {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 23%;
-    margin: 0 1% 0 1%;
-  }
-  #topNav #navIcons .navIcon .icon {
-    margin-top: 7px;
-    width: 35px;
-  }
-  #topNav #navIcons .navIcon .badge {
+  #topNav .badge {
     padding: 1px 2px 1px 2px;
-    margin-left: -13px;
-    margin-top: 25px;
     position: absolute;
     font-size: 11px;
+    width: 20px;
+    height: 20px;
   }
   #searchSuggestions li img {
     display: inline-block;
@@ -14892,7 +15109,7 @@ body.loading #container:before {
   }
   .messagesView #main {
     padding-top: 30px;
-    padding-bottom: 10px;
+    padding-bottom: 0;
     height: 100%;
     margin-top: 5px !important;
     overflow: hidden !important;
@@ -14903,6 +15120,14 @@ body.loading #container:before {
     padding: 5px;
   }
   .messagesView header .title {
+    display: none;
+    visibility: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .messagesView header .title.chat,
+  .messagesView header .title.newMessage {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
@@ -14910,11 +15135,9 @@ body.loading #container:before {
     float: left;
     width: 83.71428571%;
     margin: 0 1% 0 1%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    visibility: visible;
   }
-  .messagesView header button {
+  .messagesView header #showTopics {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
@@ -14922,15 +15145,17 @@ body.loading #container:before {
     float: right;
     width: 12.28571429%;
     margin: 0 1% 0 1%;
-    width: 12.28571429% !important;
-    padding: 2px 7px;
-    margin-top: -5px !important;
-    margin-right: 0 !important;
-    outline: none;
-    border: none;
-    border-left: 1px solid #bbb;
-    height: 30px;
-    background: transparent;
+    text-align: center !important;
+  }
+  .messagesView header #newmessage {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 100%;
+    margin: 0 0 0 0;
+    border: none !important;
   }
   .messagesView #topicListWrap {
     display: inline-block;
@@ -14938,15 +15163,13 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
+    width: 100%;
+    margin: 0 0 0 0;
     height: 100%;
   }
   .messagesView #topicListWrap #topicList {
     height: 100%;
     width: 100%;
-    padding-top: 15px;
-    padding-bottom: 11px;
   }
   .messagesView #topicListWrap #topicList #topicListScroll {
     float: left;
@@ -14956,7 +15179,7 @@ body.loading #container:before {
     height: 100%;
   }
   .messagesView #topicListWrap #topicList .topic {
-    margin-bottom: 5px;
+    margin-bottom: 0;
     padding: 0;
   }
   .messagesView #topicListWrap #topicList .topic .left {
@@ -15031,7 +15254,7 @@ body.loading #container:before {
   }
   .messagesView #topicWrap #messageWrap {
     height: 100%;
-    padding-bottom: 50px;
+    padding-bottom: 55px;
     -webkit-box-sizing: border-box;
     /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;
@@ -15044,6 +15267,7 @@ body.loading #container:before {
     height: 100%;
     position: relative;
     -webkit-overflow-scrolling: touch;
+    margin-bottom: 5px;
   }
   .messagesView #topicWrap #messageList .message {
     display: inline-block;
@@ -15145,7 +15369,7 @@ body.loading #container:before {
     width: 98%;
     margin: 0 1% 0 1%;
     margin-top: 5px;
-    margin-bottom: 0px;
+    margin-bottom: 5px;
   }
   .messagesView #topicWrap.newMessage #recieverInput .formSearch .inputWrap li.searchField,
   .messagesView #topicWrap.newMessage #messageInput .formSearch .inputWrap li.searchField {
@@ -15461,236 +15685,9 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-    margin: 0 !important;
-  }
-  .mainView .posts article .userimg {
-    border-radius: 200px;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 12.28571429%;
-    margin: 0 1% 0 1%;
-    margin: 5px 0px 5px 0px !important;
-  }
-  .mainView .posts article .postContent {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 55.14285714%;
-    margin: 0 1% 0 1%;
-    padding-top: 0px !important;
-    margin-top: 0px !important;
-    margin-bottom: 5px !important;
-    position: relative;
-  }
-  .mainView .posts article .postContent .postText {
-    padding-left: 10px;
-    -webkit-box-sizing: padding-box;
-    /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: padding-box;
-    /* Firefox, other Gecko */
-    box-sizing: padding-box;
-    /* Opera/IE 8+ */
-  }
-  .mainView .posts article .postContent .postImage img {
-    max-width: 98%;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .mainView .posts article .postContent .author {
-    float: left;
-    margin-top: 10px;
-  }
-  .mainView .posts article .postInfo {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 26.57142857%;
-    margin: 0 1% 0 1%;
-    padding-top: 0px !important;
-    margin-bottom: 10px;
-    text-align: left !important;
-  }
-  .mainView .posts article .postInfo .with {
-    color: #666;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article .postInfo .awesome {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article .postInfo p.comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article .postInfo .showComments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article ol.comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 64.66666667%;
-    margin: 0 1% 0 1%;
-    margin-left: 1.04166667% !important;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    margin-bottom: 5px;
-  }
-  .mainView .posts article ol.comments li {
     width: 100%;
-    margin: 0;
-    min-height: 40px;
-  }
-  .mainView .posts article ol.comments li:last-child {
-    -webkit-border-top-right-radius: 0;
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -webkit-border-top-left-radius: 0;
-    -moz-border-radius-topright: 0;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    -moz-border-radius-topleft: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 0;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border-bottom: none !important;
-  }
-  .mainView .posts article ol.comments li:first-child {
-    -webkit-border-top-right-radius: 5px;
-    -webkit-border-bottom-right-radius: 0;
-    -webkit-border-bottom-left-radius: 0;
-    -webkit-border-top-left-radius: 5px;
-    -moz-border-radius-topright: 5px;
-    -moz-border-radius-bottomright: 0;
-    -moz-border-radius-bottomleft: 0;
-    -moz-border-radius-topleft: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border-top: none;
-  }
-  .mainView .posts article ol.comments li:only-child {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .mainView .posts article ol.comments li img {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 6.33333333%;
-    margin: 0 1% 0 1%;
-    margin-left: 0;
-    height: 40px;
-    width: auto !important;
-  }
-  .mainView .posts article ol.comments li .text {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 63%;
-    margin: 0 1% 0 1%;
-    padding: 3px;
-    -webkit-box-sizing: border-box;
-    /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;
-    /* Firefox, other Gecko */
-    box-sizing: border-box;
-    /* Opera/IE 8+ */
-  }
-  .mainView .posts article ol.comments li .timestamp {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 23%;
-    margin: 0 1% 0 1%;
-  }
-  .mainView .posts article ol.comments li.newComment {
-    padding: 0;
-  }
-  .mainView .posts article ol.comments li.newComment img {
-    width: auto;
-  }
-  .mainView .posts article ol.comments li.newComment input {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 68%;
-    margin: 0 1% 0 1%;
-    margin-top: 2px !important;
-  }
-  .mainView .posts article ol.comments li.newComment button {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 18.83333333%;
-    margin: 0 1% 0 1%;
-    margin-top: 5px !important;
-  }
-  .mainView .posts article:last-child {
-    border: none;
+    margin: 0 0 0 0;
+    margin-top: 10px;
   }
   .profileView #main {
     padding-top: 10px;
@@ -15818,7 +15815,7 @@ body.loading #container:before {
     float: left;
     width: 23%;
     margin: 0 1% 0 1%;
-    margin-top: 1%;
+    margin-top: 10px;
     margin-bottom: 1%;
   }
   .profileView #main #info article#generalInfo .userimage.editing {
@@ -15848,7 +15845,6 @@ body.loading #container:before {
     float: left;
     width: 73%;
     margin: 0 1% 0 1%;
-    margin-top: -10px;
     line-height: 10px;
   }
   .profileView #main #info article#generalInfo .actions {
@@ -15972,63 +15968,7 @@ body.loading #container:before {
     float: left;
     width: 100%;
     margin: 0 0 0 0;
-  }
-  .profileView #main #wall article .userimg {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 12.28571429%;
-    margin: 0 1% 0 1%;
     margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .profileView #main #wall article .postContent {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 55.14285714%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-top: 0;
-    margin-bottom: 0px;
-    min-height: none;
-    height: auto;
-  }
-  .profileView #main #wall article .postContent .author {
-    margin-bottom: 5px;
-  }
-  .profileView #main #wall article .postContent .postText {
-    padding-left: 10px;
-  }
-  .profileView #main #wall article .postInfo {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 26.57142857%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-  }
-  .profileView #main #wall article .postInfo p {
-    padding: 0;
-    margin: 0;
-  }
-  .profileView #main #wall article .postInfo .awesome,
-  .profileView #main #wall article .postInfo .comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 48%;
-    margin: 0 1% 0 1%;
   }
   .profileView #main #friends {
     display: inline-block;
@@ -17079,7 +17019,6 @@ body.loading #container:before {
   .settingsView #main header {
     height: 20px !important;
     margin-top: -20px;
-    padding: 5px;
   }
   .settingsView #main header .links {
     float: right;
@@ -17296,6 +17235,240 @@ body.loading #container:before {
   }
   .person:hover .pushup {
     height: 80px;
+  }
+  .post .userimg {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 10.5%;
+    margin: 0 1% 0 1%;
+  }
+  .post .userimg img {
+    width: 100%;
+  }
+  .post .postWrap {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 85.5%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postContent {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .post .postContent .postText {
+    padding-left: 10px;
+  }
+  .post .postContent .postImage img {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post .postInfo {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+    padding-top: 5px;
+    margin-bottom: 10px;
+    border-top: 1px dotted #ccc;
+  }
+  .post .postInfo .with {
+    color: #666;
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 73%;
+    margin: 0 1% 0 1%;
+    margin-left: 18.75% !important;
+  }
+  .post .postInfo .awesome {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 35.5%;
+    margin: 0 1% 0 1%;
+    margin-left: 18.75% !important;
+  }
+  .post .postInfo p.comments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 35.5%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postInfo .showComments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 35.5%;
+    margin: 0 1% 0 1%;
+    margin-left: 56.25% !important;
+  }
+  .post .postInfo p.date {
+    width: auto;
+    display: inline;
+    text-align: right;
+  }
+  .post ol.comments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 64.66666667%;
+    margin: 0 1% 0 1%;
+    margin-left: 1.04166667% !important;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post ol.comments:last-child {
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topright: 0;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-topleft: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post ol.comments:first-child {
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 0;
+    -moz-border-radius-topleft: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post ol.comments:only-child {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post ol.comments li {
+    width: 100%;
+    margin: 0;
+    min-height: 40px;
+  }
+  .post ol.comments li img {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 6.33333333%;
+    margin: 0 1% 0 1%;
+    margin-left: 0;
+    height: 40px;
+    width: auto !important;
+  }
+  .post ol.comments li .text {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 64.66666667%;
+    margin: 0 1% 0 1%;
+    padding: 3px;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
+  }
+  .post ol.comments li .timestamp {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 14.66666667%;
+    margin: 0 1% 0 1%;
+  }
+  .post ol.comments li.newComment {
+    padding: 0;
+    height: 40px;
+  }
+  .post ol.comments li.newComment img {
+    width: auto;
+  }
+  .post ol.comments li.newComment input {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 60.5%;
+    margin: 0 1% 0 1%;
+    margin-top: 2px !important;
+  }
+  .post ol.comments li.newComment button {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 23%;
+    margin: 0 1% 0 1%;
+    margin-top: 5px !important;
   }
   .searchBar .formSearch .inputWrap {
     margin-left: 0;
@@ -17741,7 +17914,7 @@ body.loading #container:before {
   }
   .messagesView #main {
     padding-top: 30px;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     height: 100%;
   }
   .messagesView header {
@@ -17749,31 +17922,35 @@ body.loading #container:before {
     margin-top: -30px;
     padding: 5px;
   }
+  .messagesView header #newmessage {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 31.25%;
+    margin: 0 0 0 0;
+  }
   .messagesView #topicListWrap {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 27.125%;
-    margin: 0 0.5 0 0.5;
-    margin-right: 0;
-    margin-left: 1%;
+    width: 31.25%;
+    margin: 0 0 0 0;
     height: 100%;
   }
   .messagesView #topicListWrap #topicList {
     height: 100%;
-    padding-top: 15px;
-    padding-bottom: 11px;
   }
   .messagesView #topicListWrap #topicList #topicListScroll {
     height: 100%;
     overflow-y: scroll;
     width: 100%;
-    padding-right: 3.6%;
   }
   .messagesView #topicListWrap #topicList .topic {
-    margin-bottom: 5px;
+    margin-bottom: 0;
     padding: 0;
   }
   .messagesView #topicListWrap #topicList .topic .left {
@@ -17800,11 +17977,8 @@ body.loading #container:before {
     float: left;
     width: 63%;
     margin: 0 1% 0 1%;
-    text-overflow: ellipsis;
     max-height: 40px;
     max-width: 65%;
-    overflow: hidden;
-    white-space: nowrap;
   }
   .messagesView #topicListWrap #topicList .topic .lastMessage {
     font-size: 0.8em;
@@ -17821,11 +17995,6 @@ body.loading #container:before {
   }
   .messagesView #topicListWrap #topicList .topic .time {
     width: 60%;
-  }
-  .messagesView #topicListWrap #topicList .topic#newmessage {
-    height: 25px;
-    margin-top: -10px;
-    font-size: 0.9em;
   }
   .messagesView #topicListWrap #topicList .topic.groupChat .left {
     margin: 0 2% 0 0;
@@ -17853,10 +18022,10 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 69.875%;
-    margin: 0 1% 0 1%;
+    width: 68.75%;
+    margin: 0 0 0 0;
     height: 100%;
-    padding: 30px 0px 80px 0px;
+    padding: 0 0 80px 0;
     -webkit-box-sizing: border-box;
     /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;
@@ -17866,10 +18035,13 @@ body.loading #container:before {
   }
   .messagesView #topicWrap #messageWrap {
     height: 100%;
+    width: 100%;
   }
   .messagesView #topicWrap #messageList {
     overflow-y: scroll;
     height: 100%;
+    width: 100%;
+    margin-bottom: 5px;
   }
   .messagesView #topicWrap #messageList .message {
     display: inline-block;
@@ -17928,10 +18100,9 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 74%;
-    margin: 0 0.5% 0 0.5%;
+    width: 73%;
+    margin: 0 1% 0 1%;
     height: 70px;
-    margin: 0 1% 0 0;
   }
   .messagesView #topicWrap #inputWrap button {
     display: inline-block;
@@ -17959,10 +18130,8 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 99%;
-    margin: 0 0.5 0 0.5;
-    margin-left: 0;
-    margin-right: 1%;
+    width: 98%;
+    margin: 0 1% 0 1%;
     margin-bottom: 5px;
   }
   .messagesView #topicWrap.newMessage #recieverInput .formSearch .inputWrap li.searchField {
@@ -18210,228 +18379,6 @@ body.loading #container:before {
     margin: 0 1% 0 1%;
     margin: 10px 0 0 0;
   }
-  .posts article .userimg {
-    border-radius: 200px;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 16.75%;
-    margin: 0 1% 0 1%;
-    margin: 10px 0px 10px 0px;
-  }
-  .posts article .postContent {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 79.25%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .posts article .postContent .postText {
-    padding-left: 10px;
-  }
-  .posts article .postContent .postImage img {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .posts article .postInfo {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-bottom: 10px;
-  }
-  .posts article .postInfo .with {
-    color: #666;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 73%;
-    margin: 0 1% 0 1%;
-    margin-left: 18.75% !important;
-  }
-  .posts article .postInfo .awesome {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 35.5%;
-    margin: 0 1% 0 1%;
-    margin-left: 18.75% !important;
-  }
-  .posts article .postInfo p.comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 35.5%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article .postInfo .showComments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 35.5%;
-    margin: 0 1% 0 1%;
-    margin-left: 56.25% !important;
-  }
-  .posts article ol.comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 64.66666667%;
-    margin: 0 1% 0 1%;
-    margin-left: 1.04166667% !important;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .posts article ol.comments:last-child {
-    -webkit-border-top-right-radius: 0;
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -webkit-border-top-left-radius: 0;
-    -moz-border-radius-topright: 0;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    -moz-border-radius-topleft: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 0;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .posts article ol.comments:first-child {
-    -webkit-border-top-right-radius: 5px;
-    -webkit-border-bottom-right-radius: 0;
-    -webkit-border-bottom-left-radius: 0;
-    -webkit-border-top-left-radius: 5px;
-    -moz-border-radius-topright: 5px;
-    -moz-border-radius-bottomright: 0;
-    -moz-border-radius-bottomleft: 0;
-    -moz-border-radius-topleft: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .posts article ol.comments:only-child {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .posts article ol.comments li {
-    width: 100%;
-    margin: 0;
-    min-height: 40px;
-  }
-  .posts article ol.comments li img {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 6.33333333%;
-    margin: 0 1% 0 1%;
-    margin-left: 0;
-    height: 40px;
-    width: auto !important;
-  }
-  .posts article ol.comments li .text {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 64.66666667%;
-    margin: 0 1% 0 1%;
-    padding: 3px;
-    -webkit-box-sizing: border-box;
-    /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;
-    /* Firefox, other Gecko */
-    box-sizing: border-box;
-    /* Opera/IE 8+ */
-  }
-  .posts article ol.comments li .timestamp {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 14.66666667%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article ol.comments li.newComment {
-    padding: 0;
-    height: 40px;
-  }
-  .posts article ol.comments li.newComment img {
-    width: auto;
-  }
-  .posts article ol.comments li.newComment input {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 60.5%;
-    margin: 0 1% 0 1%;
-    margin-top: 2px !important;
-  }
-  .posts article ol.comments li.newComment button {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 23%;
-    margin: 0 1% 0 1%;
-    margin-top: 5px !important;
-  }
-  .posts article:last-child {
-    border: none;
-  }
   .profileView #main nav {
     display: inline-block;
     *display: inline;
@@ -18542,9 +18489,9 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 23%;
+    width: 14.66666667%;
     margin: 0 1% 0 1%;
-    margin-top: 1%;
+    margin-top: 10px;
     margin-bottom: 1%;
   }
   .profileView #main #info article#generalInfo .userimage.editing {
@@ -18556,9 +18503,8 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 73%;
+    width: 81.33333333%;
     margin: 0 1% 0 1%;
-    margin-top: -10px;
     line-height: 10px;
   }
   .profileView #main #info article#generalInfo .actions {
@@ -18696,50 +18642,7 @@ body.loading #container:before {
     float: left;
     width: 98%;
     margin: 0 1% 0 1%;
-  }
-  .profileView #main #wall article .userimg {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 13.625%;
-    margin: 0 1% 0 1%;
-    margin: 10px 0px 10px 0px;
-  }
-  .profileView #main #wall article .postContent {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 48%;
-    margin: 0 1% 0 1%;
-    padding-top: 0px;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  .profileView #main #wall article .postContent .author {
-    margin-bottom: 5px;
-  }
-  .profileView #main #wall article .postContent .postText {
-    padding-left: 10px;
-  }
-  .profileView #main #wall article .postInfo {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 29.25%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-  }
-  .profileView #main #wall article .postInfo p {
-    padding: 0;
-    margin: 0;
+    margin-top: 20px;
   }
   .profileView #main #friends {
     display: inline-block;
@@ -18795,7 +18698,6 @@ body.loading #container:before {
   .settingsView #main header {
     height: 20px;
     margin-top: -52px;
-    padding: 5px;
   }
   .settingsView #main header #links {
     float: right;
@@ -18990,6 +18892,205 @@ body.loading #container:before {
   }
   .person:hover .pushup {
     height: 80px;
+  }
+  article .userimg {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 12.28571429%;
+    margin: 0 1% 0 1%;
+  }
+  article .userimg img {
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+  }
+  article .postWrap {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 83.71428571%;
+    margin: 0 1% 0 1%;
+    margin-top: -5px;
+  }
+  article .postContent {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 69.42857143%;
+    margin: 0 1% 0 1%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  article .postContent .postText {
+    padding-left: 10px;
+    -webkit-box-sizing: padding-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: padding-box;
+    /* Firefox, other Gecko */
+    box-sizing: padding-box;
+    /* Opera/IE 8+ */
+  }
+  article .postContent .postImage img {
+    max-width: 98%;
+  }
+  article .postInfo {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 23%;
+    margin: 0 1% 0 1%;
+    padding-top: 20px;
+    margin-bottom: 10px;
+  }
+  article .postInfo .with {
+    color: #666;
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  article .postInfo .awesome {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  article .postInfo p.comments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  article .postInfo .showComments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  article ol.comments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    margin-bottom: 5px;
+  }
+  article ol.comments li {
+    width: 100%;
+    margin: 0;
+    min-height: 40px;
+  }
+  article ol.comments li img {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 6.33333333%;
+    margin: 0 1% 0 1%;
+    display: block;
+    margin-left: 0;
+    margin-right: 2%;
+  }
+  article ol.comments li .text {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 64.66666667%;
+    margin: 0 1% 0 1%;
+    padding: 3px;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
+  }
+  article ol.comments li aside {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 18.83333333%;
+    margin: 0 1% 0 1%;
+  }
+  article ol.comments li.header {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 48%;
+    margin: 0 1% 0 1%;
+    margin: 0 25%;
+    padding: 8px 0;
+  }
+  article ol.comments li.newComment {
+    padding: 0;
+  }
+  article ol.comments li.newComment img {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 6.33333333%;
+    margin: 0 1% 0 1%;
+    margin-left: 0;
+    margin-right: 2%;
+  }
+  article ol.comments li.newComment input {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 64.66666667%;
+    margin: 0 1% 0 1%;
+    margin-top: 6.5px !important;
+  }
+  article ol.comments li.newComment button {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 18.83333333%;
+    margin: 0 1% 0 1%;
+    margin-top: 9.5px !important;
+    margin-left: 2%;
+    margin-right: 0;
   }
   .searchBar .formSearch .inputWrap {
     margin-left: 0;
@@ -19432,7 +19533,7 @@ body.loading #container:before {
   }
   .messagesView #main {
     padding-top: 30px;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     height: 100%;
   }
   .messagesView header {
@@ -19440,31 +19541,35 @@ body.loading #container:before {
     margin-top: -30px;
     padding: 5px;
   }
+  .messagesView header #newmessage {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 31.25%;
+    margin: 0 0 0 0;
+  }
   .messagesView #topicListWrap {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 27.125%;
-    margin: 0 0.5 0 0.5;
-    margin-right: 0;
-    margin-left: 1%;
+    width: 31.25%;
+    margin: 0 0 0 0;
     height: 100%;
   }
   .messagesView #topicListWrap #topicList {
     height: 100%;
-    padding-top: 15px;
-    padding-bottom: 11px;
   }
   .messagesView #topicListWrap #topicList #topicListScroll {
     height: 100%;
     overflow-y: scroll;
     width: 100%;
-    padding-right: 3.6%;
   }
   .messagesView #topicListWrap #topicList .topic {
-    margin-bottom: 5px;
+    margin-bottom: 0;
     padding: 0;
   }
   .messagesView #topicListWrap #topicList .topic .left {
@@ -19512,10 +19617,6 @@ body.loading #container:before {
   .messagesView #topicListWrap #topicList .topic .time {
     width: 65%;
   }
-  .messagesView #topicListWrap #topicList .topic#newmessage {
-    height: 25px;
-    margin-top: -10px;
-  }
   .messagesView #topicListWrap #topicList .topic.groupChat .left {
     margin: 0 2% 0 0;
   }
@@ -19542,10 +19643,10 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 69.875%;
-    margin: 0 1% 0 1%;
+    width: 68.75%;
+    margin: 0 0 0 0;
     height: 100%;
-    padding: 30px 0px 80px 0px;
+    padding: 0 0 85px 0;
     -webkit-box-sizing: border-box;
     /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;
@@ -19559,6 +19660,8 @@ body.loading #container:before {
   .messagesView #topicWrap #messageList {
     overflow-y: scroll;
     height: 100%;
+    width: 100%;
+    margin: 0 0 5px 0;
   }
   .messagesView #topicWrap #messageList .message {
     display: inline-block;
@@ -19617,10 +19720,9 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 74%;
-    margin: 0 0.5% 0 0.5%;
+    width: 73%;
+    margin: 0 1% 0 1%;
     height: 70px;
-    margin: 0 1% 0 0;
   }
   .messagesView #topicWrap #inputWrap button {
     display: inline-block;
@@ -19648,10 +19750,8 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 99%;
-    margin: 0 0.5 0 0.5;
-    margin-left: 0;
-    margin-right: 1%;
+    width: 98%;
+    margin: 0 1% 0 1%;
     margin-bottom: 5px;
   }
   .messagesView #topicWrap.newMessage #recieverInput .formSearch .inputWrap li.searchField input {
@@ -19878,7 +19978,7 @@ body.loading #container:before {
   header #filter #theFilter .searchDrop {
     width: 19.4% !important;
   }
-  .posts article {
+  .posts .post {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
@@ -19886,204 +19986,7 @@ body.loading #container:before {
     float: left;
     width: 98%;
     margin: 0 1% 0 1%;
-    margin: 10px 0 0 0;
-  }
-  .posts article .userimg {
-    border-radius: 200px;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 12.28571429%;
-    margin: 0 1% 0 1%;
-    margin: 10px 0px 10px 0px;
-  }
-  .posts article .postContent {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 55.14285714%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .posts article .postContent .postText {
-    padding-left: 10px;
-    -webkit-box-sizing: padding-box;
-    /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: padding-box;
-    /* Firefox, other Gecko */
-    box-sizing: padding-box;
-    /* Opera/IE 8+ */
-  }
-  .posts article .postContent .postImage img {
-    max-width: 98%;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .posts article .postInfo {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 23%;
-    margin: 0 1% 0 1%;
-    padding-top: 20px;
-    margin-bottom: 10px;
-  }
-  .posts article .postInfo .with {
-    color: #666;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article .postInfo .awesome {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article .postInfo p.comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article .postInfo .showComments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article ol.comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    margin-bottom: 5px;
-  }
-  .posts article ol.comments li {
-    width: 100%;
-    margin: 0;
-    min-height: 40px;
-  }
-  .posts article ol.comments li img {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 6.33333333%;
-    margin: 0 1% 0 1%;
-    display: block;
-    margin-left: 0;
-    margin-right: 2%;
-  }
-  .posts article ol.comments li .text {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 64.66666667%;
-    margin: 0 1% 0 1%;
-    padding: 3px;
-    -webkit-box-sizing: border-box;
-    /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;
-    /* Firefox, other Gecko */
-    box-sizing: border-box;
-    /* Opera/IE 8+ */
-  }
-  .posts article ol.comments li aside {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 18.83333333%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article ol.comments li.header {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 48%;
-    margin: 0 1% 0 1%;
-    margin: 0 25%;
-    padding: 8px 0;
-  }
-  .posts article ol.comments li.newComment {
-    padding: 0;
-  }
-  .posts article ol.comments li.newComment img {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 6.33333333%;
-    margin: 0 1% 0 1%;
-    margin-left: 0;
-    margin-right: 2%;
-  }
-  .posts article ol.comments li.newComment input {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 64.66666667%;
-    margin: 0 1% 0 1%;
-    margin-top: 6.5px !important;
-  }
-  .posts article ol.comments li.newComment button {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 18.83333333%;
-    margin: 0 1% 0 1%;
-    margin-top: 9.5px !important;
-    margin-left: 2%;
-    margin-right: 0;
-  }
-  .posts article:last-child {
-    border: none;
+    margin: 20px 0 0 0;
   }
   .profileView #main nav {
     display: inline-block;
@@ -20198,9 +20101,9 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 23%;
+    width: 10.5%;
     margin: 0 1% 0 1%;
-    margin-top: 1%;
+    margin-top: 15px;
     margin-bottom: 1%;
   }
   .profileView #main #info article#generalInfo .userimage.editing {
@@ -20212,9 +20115,8 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 73%;
+    width: 85.5%;
     margin: 0 1% 0 1%;
-    margin-top: -10px;
     line-height: 10px;
   }
   .profileView #main #info article#generalInfo .actions {
@@ -20338,59 +20240,15 @@ body.loading #container:before {
     height: 20px;
     padding: 5px;
   }
-  .profileView #main #wall article {
+  .profileView #main #wall .post {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 100%;
-    margin: 0 0 0 0;
-  }
-  .profileView #main #wall article .userimg {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 13.625%;
+    width: 98%;
     margin: 0 1% 0 1%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .profileView #main #wall article .postContent {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 54.25%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  .profileView #main #wall article .postContent .author {
-    margin-bottom: 5px;
-  }
-  .profileView #main #wall article .postContent .postText {
-    padding-left: 10px;
-  }
-  .profileView #main #wall article .postInfo {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 26.125%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-  }
-  .profileView #main #wall article .postInfo p {
-    padding: 0;
-    margin: 0;
+    margin-top: 20px;
   }
   .profileView #main #friends {
     display: inline-block;
@@ -20442,7 +20300,6 @@ body.loading #container:before {
   .settingsView #main header {
     height: 20px;
     margin-top: -30px;
-    padding: 5px;
   }
   .settingsView #main header #links {
     float: right;
@@ -20644,6 +20501,216 @@ body.loading #container:before {
   }
   .person:hover .pushup {
     height: 80px;
+  }
+  .post .userimg {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 9.11111111%;
+    margin: 0 1% 0 1%;
+  }
+  .post .userimg img {
+    width: 100%;
+    margin: 0;
+  }
+  .post .postWrap {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 86.88888889%;
+    margin: 0 1% 0 1%;
+    margin-top: 0px;
+  }
+  .post .postWrap .postContent {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 76.57142857%;
+    margin: 0 1% 0 1%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .post .postWrap .postContent .postText {
+    padding-left: 10px;
+    -webkit-box-sizing: padding-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: padding-box;
+    /* Firefox, other Gecko */
+    box-sizing: padding-box;
+    /* Opera/IE 8+ */
+  }
+  .post .postWrap .postContent .postImage img {
+    max-width: 98%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post .postWrap .postInfo {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 19.42857143%;
+    margin: 0 1% 0 1%;
+    padding-top: 20px;
+    margin-bottom: 10px;
+  }
+  .post .postWrap .postInfo .with {
+    color: #666;
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postWrap .postInfo .awesome {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postWrap .postInfo p.comments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post .postWrap .postInfo .showComments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 98%;
+    margin: 0 1% 0 1%;
+  }
+  .post ol.comments {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 64.66666667%;
+    margin: 0 1% 0 1%;
+    margin-left: 1.04166667% !important;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post ol.comments:last-child {
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topright: 0;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-topleft: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post ol.comments:first-child {
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 0;
+    -moz-border-radius-topleft: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post ol.comments:only-child {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .post ol.comments li {
+    width: 100%;
+    margin: 0;
+  }
+  .post ol.comments li img {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 6.33333333%;
+    margin: 0 1% 0 1%;
+  }
+  .post ol.comments li .text {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 73%;
+    margin: 0 1% 0 1%;
+  }
+  .post ol.comments li .timestamp {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 14.66666667%;
+    margin: 0 1% 0 1%;
+  }
+  .post ol.comments li.newComment input {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 73%;
+    margin: 0 1% 0 1%;
+  }
+  .post ol.comments li.newComment button {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 14.66666667%;
+    margin: 0 1% 0 1%;
+  }
+  .post:last-child {
+    border: none;
   }
   .searchBar .formSearch .inputWrap {
     margin-left: 0;
@@ -21089,7 +21156,7 @@ body.loading #container:before {
   }
   .messagesView #main {
     padding-top: 30px;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     height: 100%;
   }
   .messagesView header {
@@ -21097,31 +21164,35 @@ body.loading #container:before {
     margin-top: -30px;
     padding: 5px;
   }
+  .messagesView header #newmessage {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    float: left;
+    width: 28.57142857%;
+    margin: 0 0 0 0;
+  }
   .messagesView #topicListWrap {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 27.57142857%;
-    margin: 0 0.5 0 0.5;
-    margin-right: 0;
-    margin-left: 1%;
+    width: 28.57142857%;
+    margin: 0 0 0 0;
     height: 100%;
   }
   .messagesView #topicListWrap #topicList {
     height: 100%;
-    padding-top: 15px;
-    padding-bottom: 11px;
   }
   .messagesView #topicListWrap #topicList #topicListScroll {
     height: 100%;
     overflow-y: scroll;
     width: 100%;
-    padding-right: 3.5%;
   }
   .messagesView #topicListWrap #topicList .topic {
-    margin-bottom: 5px;
+    margin-bottom: 0;
     padding: 0;
   }
   .messagesView #topicListWrap #topicList .topic .left {
@@ -21161,8 +21232,6 @@ body.loading #container:before {
     margin: 0 1% 0 1%;
     *zoom: 1;
     max-width: 70% !important;
-    overflow: hidden;
-    white-space: nowrap;
     float: left;
   }
   .messagesView #topicListWrap #topicList .topic .lastMessage:before,
@@ -21175,10 +21244,6 @@ body.loading #container:before {
   }
   .messagesView #topicListWrap #topicList .topic .time {
     width: 70%;
-  }
-  .messagesView #topicListWrap #topicList .topic#newmessage {
-    height: 25px;
-    margin-top: -10px;
   }
   .messagesView #topicListWrap #topicList .topic.groupChat .left {
     margin: 0 2% 0 0;
@@ -21205,10 +21270,11 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 69.42857143%;
-    margin: 0 1% 0 1%;
+    width: 71.42857143%;
+    margin: 0 0 0 0;
+    margin: 0;
     height: 100%;
-    padding: 30px 0px 80px 0px;
+    padding: 0px 0px 80px 0px;
     -webkit-box-sizing: border-box;
     /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;
@@ -21218,10 +21284,14 @@ body.loading #container:before {
   }
   .messagesView #topicWrap #messageWrap {
     height: 100%;
+    width: 100%;
+    float: left;
   }
   .messagesView #topicWrap #messageList {
     overflow-y: scroll;
     height: 100%;
+    width: 100%;
+    margin: 0 0 5px 0;
   }
   .messagesView #topicWrap #messageList .message {
     display: inline-block;
@@ -21280,10 +21350,9 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 74%;
-    margin: 0 0.5% 0 0.5%;
+    width: 73%;
+    margin: 0 1% 0 1%;
     height: 70px;
-    margin: 0 1% 0 0;
   }
   .messagesView #topicWrap #inputWrap button {
     display: inline-block;
@@ -21311,10 +21380,8 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 99%;
-    margin: 0 0.5 0 0.5;
-    margin-left: 0;
-    margin-right: 1%;
+    width: 98%;
+    margin: 0 1% 0 1%;
     margin-bottom: 5px;
   }
   .messagesView #topicWrap.newMessage #recieverInput .formSearch .inputWrap li.searchField {
@@ -21540,7 +21607,7 @@ body.loading #container:before {
   header #filter #theFilter .searchDrop {
     width: 21.2% !important;
   }
-  .posts article {
+  .post {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
@@ -21548,206 +21615,7 @@ body.loading #container:before {
     float: left;
     width: 98%;
     margin: 0 1% 0 1%;
-    margin: 10px 0 0 0;
-  }
-  .posts article .userimg {
-    border-radius: 200px;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 10.5%;
-    margin: 0 1% 0 1%;
-    margin: 10px 0px 10px 0px;
-  }
-  .posts article .postContent {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 66.75%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .posts article .postContent .postText {
-    padding-left: 10px;
-    -webkit-box-sizing: padding-box;
-    /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: padding-box;
-    /* Firefox, other Gecko */
-    box-sizing: padding-box;
-    /* Opera/IE 8+ */
-  }
-  .posts article .postContent .postImage img {
-    max-width: 98%;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .posts article .postInfo {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 16.75%;
-    margin: 0 1% 0 1%;
-    padding-top: 20px;
-    margin-bottom: 10px;
-  }
-  .posts article .postInfo .with {
-    color: #666;
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article .postInfo .awesome {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article .postInfo p.comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article .postInfo .showComments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 98%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article ol.comments {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 64.66666667%;
-    margin: 0 1% 0 1%;
-    margin-left: 1.04166667% !important;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .posts article ol.comments:last-child {
-    -webkit-border-top-right-radius: 0;
-    -webkit-border-bottom-right-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -webkit-border-top-left-radius: 0;
-    -moz-border-radius-topright: 0;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    -moz-border-radius-topleft: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 0;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .posts article ol.comments:first-child {
-    -webkit-border-top-right-radius: 5px;
-    -webkit-border-bottom-right-radius: 0;
-    -webkit-border-bottom-left-radius: 0;
-    -webkit-border-top-left-radius: 5px;
-    -moz-border-radius-topright: 5px;
-    -moz-border-radius-bottomright: 0;
-    -moz-border-radius-bottomleft: 0;
-    -moz-border-radius-topleft: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .posts article ol.comments:only-child {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-  }
-  .posts article ol.comments li {
-    width: 100%;
-    margin: 0;
-  }
-  .posts article ol.comments li img {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 6.33333333%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article ol.comments li .text {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 73%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article ol.comments li .timestamp {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 14.66666667%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article ol.comments li.newComment input {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 73%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article ol.comments li.newComment button {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 14.66666667%;
-    margin: 0 1% 0 1%;
-  }
-  .posts article:last-child {
-    border: none;
+    margin-top: 20px;
   }
   .profileView #main nav {
     display: inline-block;
@@ -21856,8 +21724,8 @@ body.loading #container:before {
     float: left;
     width: 100%;
     margin: 0 0 0 0;
-    height: auto;
-    margin-bottom: 10px;
+    height: 100%;
+    margin-bottom: 0;
     padding: 0;
   }
   .profileView #main #info article#generalInfo .userimage {
@@ -21866,7 +21734,7 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 23%;
+    width: 10.5%;
     margin: 0 1% 0 1%;
     margin-top: 1%;
     margin-bottom: 1%;
@@ -21880,9 +21748,10 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 73%;
+    width: 41.75%;
     margin: 0 1% 0 1%;
-    margin-top: -10px;
+    margin-top: 0px;
+    margin-bottom: 0;
     line-height: 10px;
   }
   .profileView #main #info article#generalInfo .actions {
@@ -21891,8 +21760,10 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 100%;
+    width: 43.75%;
     margin: 0 0 0 0;
+    height: 100%;
+    border: none;
   }
   .profileView #main #info article#generalInfo .actions .addFriend {
     display: inline-block;
@@ -21900,7 +21771,7 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 48%;
+    width: 98%;
     margin: 0 1% 0 1%;
     margin: 10px 1% 10px 1%;
     height: 40px;
@@ -21912,7 +21783,7 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 48%;
+    width: 98%;
     margin: 0 1% 0 1%;
     margin: 10px 1% 10px 1%;
   }
@@ -21979,7 +21850,7 @@ body.loading #container:before {
     /* IE7 inline-block hack */
     *zoom: 1;
     float: left;
-    width: 48%;
+    width: 98%;
     margin: 0 1% 0 1%;
     margin: 10px 1% 10px 1%;
     height: 40px;
@@ -22007,7 +21878,7 @@ body.loading #container:before {
     height: 20px;
     padding: 5px;
   }
-  .profileView #main #wall article {
+  .profileView #main #wall .post {
     display: inline-block;
     *display: inline;
     /* IE7 inline-block hack */
@@ -22015,50 +21886,7 @@ body.loading #container:before {
     float: left;
     width: 98%;
     margin: 0 1% 0 1%;
-  }
-  .profileView #main #wall article .userimg {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 10.5%;
-    margin: 0 1% 0 1%;
-    margin: 10px 0px 10px 0px;
-  }
-  .profileView #main #wall article .postContent {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 54.25%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .profileView #main #wall article .postContent .author {
-    margin-bottom: 5px;
-  }
-  .profileView #main #wall article .postContent .postText {
-    padding-left: 10px;
-  }
-  .profileView #main #wall article .postInfo {
-    display: inline-block;
-    *display: inline;
-    /* IE7 inline-block hack */
-    *zoom: 1;
-    float: left;
-    width: 29.25%;
-    margin: 0 1% 0 1%;
-    padding-top: 5px;
-    margin-top: 30px;
-    margin-bottom: 10px;
-  }
-  .profileView #main #wall article .postInfo p {
-    padding: 0;
-    margin: 0;
+    margin-top: 20px;
   }
   .profileView #main #friends {
     display: inline-block;
@@ -22117,7 +21945,6 @@ body.loading #container:before {
   .settingsView #main header {
     height: 20px;
     margin-top: -30px;
-    padding: 5px;
   }
   .settingsView #main header #links {
     float: right;
@@ -22131,7 +21958,6 @@ body.loading #container:before {
     float: left;
     width: 100%;
     margin: 10px 0 10px 0;
-    padding: 5px 0px;
   }
   .settingsView #main section header:before,
   .settingsView #main section header :after {

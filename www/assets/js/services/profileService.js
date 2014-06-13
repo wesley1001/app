@@ -1,7 +1,7 @@
 /**
 * ProfileService
 **/
-define(["crypto/keyStore", "step", "whispeerHelper", "asset/encryptedMetaData", "validation/validator", "asset/observer"], function (keyStore, step, h, EncryptedMetaData, validator, Observer) {
+define(["crypto/keyStore", "step", "whispeerHelper", "crypto/encryptedData", "validation/validator", "asset/observer"], function (keyStore, step, h, EncryptedData, validator, Observer) {
 	"use strict";
 
 	var service = function () {
@@ -9,7 +9,7 @@ define(["crypto/keyStore", "step", "whispeerHelper", "asset/encryptedMetaData", 
 		var profileService = function (data, isDecrypted) {
 			var encryptedProfile, paddedProfile = {}, decryptedProfile = {}, updatedProfile = {}, decrypted = {}, hashObject;
 
-			var metaData = new EncryptedMetaData(data.metaData, isDecrypted);
+			var metaData = new EncryptedData(data.metaData, isDecrypted);
 
 			var decrypting = false, verified = false, key;
 
@@ -277,7 +277,6 @@ define(["crypto/keyStore", "step", "whispeerHelper", "asset/encryptedMetaData", 
 					}
 				}), h.sF(function decryptedBranch(decryptedData) {
 					if (keyStore.hash.hashObjectOrValueHex(decryptedData) !== hashObject[branch]) {
-						debugger;
 						throw new Error("security breach!");
 					}
 
