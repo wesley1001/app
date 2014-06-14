@@ -1761,7 +1761,7 @@ dd {
 }
 .post .postContent {
   background: transparent;
-  word-break: break-all !important;
+  word-break: break-word !important;
 }
 .post .postContent .postText,
 .post .postContent .postImage {
@@ -1772,6 +1772,11 @@ dd {
   /* Firefox, other Gecko */
   box-sizing: border-box;
   /* Opera/IE 8+ */
+}
+.post .postContent .postText a,
+.post .postContent .postImage a {
+  word-break: break-all;
+  hyphens: auto;
 }
 .post .postContent .postImage {
   margin-top: 10px;
@@ -11746,7 +11751,7 @@ body.loading #container:before {
   }
   #topNav #navInner #mobileCounter {
     top: 15px;
-    right: 2%;
+    left: 15%;
   }
   #topNav .searchBar {
     display: inline-block;
@@ -17759,6 +17764,10 @@ body.loading #container:before {
   #nav-searchForm {
     width: 100%;
   }
+  #userpanel .userimg {
+    width: 80%;
+    margin: 0 10% 0 10%;
+  }
   #userpanel #menu #mainMenu {
     display: inline-block;
     *display: inline;
@@ -19378,6 +19387,10 @@ body.loading #container:before {
   }
   #nav-searchForm {
     width: 100%;
+  }
+  #userpanel .userimg {
+    width: 80%;
+    margin: 0 10% 0 10%;
   }
   #userpanel #menu #mainMenu {
     display: inline-block;
