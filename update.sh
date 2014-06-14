@@ -9,16 +9,15 @@ git submodule foreach 'git pull && git submodule update --init' 2> /dev/null
 cd dependencies/main/ && ./build.sh
 cd $PREVIOUS
 
-cd www
-find . | grep \.git\$ | xargs rm -rf
-cd $PREVIOUS
-
 # copy whispeer assets to www.
 cp -r ./dependencies/main/* ./www/
 
+cd www
+find . | grep "\.git" | xargs rm -rf
+cd $PREVIOUS
+
 # override config and crypto webworkers.
 cp ./overrides/config.js ./www/assets/js/config.js
-cp ./overrides/config.xml ./config.xml
 cp ./overrides/generalWorkerInclude.js ./www/assets/js/cryptoWorker/generalWorkerInclude.js
 
 # override base href.
