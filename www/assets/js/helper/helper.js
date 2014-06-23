@@ -1,9 +1,23 @@
 "use strict";
 
+var global = this;
+
 /** contains general helper functions */
 var helper = {
 	capitaliseFirstLetter: function (string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
+	},
+
+	objectifyResult: function (name, cb) {
+		return function (e, result) {
+			var data = {};
+			if (e) {
+				cb(e);
+			} else {
+				data[name] = result;
+				cb(null, data);
+			}
+		};
 	},
 
 	array: {
@@ -111,7 +125,7 @@ var helper = {
 	},
 
 	dataURItoBlob: function (dataURI) {
-		if (atob && Blob && ArrayBuffer && Uint8Array) {
+		if (global.atob && global.Blob && global.ArrayBuffer && global.Uint8Array) {
 			try {
 				// convert base64 to raw binary data held in a string
 				// doesn't handle URLEncoded DataURIs
@@ -146,6 +160,28 @@ var helper = {
 				console.log(e);
 			}
 		}
+	},
+
+	aggregateOnce: function (delayTime, callFunction) {
+		var timerStarted = false;
+
+		function doLoad() {
+			timerStarted = false;
+
+			callFunction(function (err) {
+				if (err) {
+					throw err;
+				}
+			});
+		}
+
+		return function (cb) {
+			if (!timerStarted) {
+				timerStarted = true;
+
+				window.setTimeout(doLoad, delayTime);
+			}
+		};
 	},
 
 	delayMultiple: function (delayTime, loadFunction) {

@@ -8624,6 +8624,13 @@ body.loading #container:before {
     padding: 0;
     margin: 0 !important;
     background: transparent;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
   }
   #topNav #navInner .toggle i {
     font-size: 2em;
@@ -8644,8 +8651,20 @@ body.loading #container:before {
     margin-left: 3% !important;
   }
   #topNav #navInner #mobileCounter {
-    top: 15px;
-    left: 15%;
+    padding: 1px 2px 1px 2px;
+    position: absolute;
+    font-size: 11px;
+    width: 16px;
+    height: 16px;
+    display: block;
+    top: 17px;
+    left: 50%;
+    right: 0;
+    margin-left: -10px;
+  }
+  #topNav #navInner #mobileCounter span {
+    margin-top: 0px;
+    display: inline-block;
   }
   #topNav .searchBar {
     display: inline-block;
@@ -8684,13 +8703,6 @@ body.loading #container:before {
   #topNav .searchBar .searchDrop {
     top: 50px;
     margin: 5px 0;
-  }
-  #topNav .badge {
-    padding: 1px 2px 1px 2px;
-    position: absolute;
-    font-size: 11px;
-    width: 20px;
-    height: 20px;
   }
   #searchSuggestions li img {
     display: inline-block;
