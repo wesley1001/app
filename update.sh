@@ -6,7 +6,7 @@ PREVIOUS=`pwd`
 git submodule foreach 'git pull && git submodule update --init' 2> /dev/null
 
 # update styles.
-cd dependencies/main/ && ./build.sh
+cd dependencies/main/ && npm install
 cd $PREVIOUS
 
 # copy whispeer assets to www.
