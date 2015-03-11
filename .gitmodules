@@ -1,3 +1,0 @@
-[submodule "dependencies/main"]
-	path = dependencies/main
-	url = git@github.com:whispeer/whispeer.git
