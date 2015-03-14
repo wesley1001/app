@@ -49,6 +49,10 @@ IOS/www/
 # Codekit
 *.codekit
 
+# CSS Stuff
+*.css
+*.css.map
+
 # OSX
 .DS_Store
 
