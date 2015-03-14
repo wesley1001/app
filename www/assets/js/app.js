@@ -30,15 +30,59 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 		.state('chats', {
 			url: '/',
-			templateUrl: 'templates/chats.html',
+			templateUrl: 'assets/views/pages/chats.html',
 			controller: 'ChatsCtrl'
 		})
 		.state('chat-detail', {
 			url: '/:chatId',
-			templateUrl: 'templates/chat-detail.html',
+			templateUrl: 'assets/views/pages/chat-detail.html',
 			controller: 'ChatDetailCtrl'
 		});
 
 		// if none of the above states are matched, use this as the fallback
 		$urlRouterProvider.otherwise('/');
+	})
+	.directive('savebutton', function () {
+		return {
+			transclude: true,
+			scope:	{
+				state:		"=state",
+				translation:"@translation"
+			},
+			restrict: "E",
+			templateUrl: "assets/views/directives/saveButton.html",
+			replace: true,
+			link: function (scope, iElement, iAttrs) {
+				scope.successIcon = "fa-check-circle";
+				scope.initIcon = "fa-check-circle";
+				scope.failureIcon = "fa-times-circle";
+
+				if (iAttrs.initicon) {
+					scope.initIcon = iAttrs.initicon;
+				}
+
+				if (iAttrs.successicon) {
+					scope.successIcon = iAttrs.successicon;
+				}
+
+				if (iAttrs.failureicon) {
+					scope.failureIcon = iAttrs.failureicon;
+				}
+
+				if (typeof iAttrs.noiniticon !== "undefined") {
+					delete scope.initIcon;
+				}
+			}
+		};
+	})
+	.directive('userimage', function () {
+		return {
+			transclude: false,
+			scope:	{
+				userData: 	"=user"
+			},
+			restrict: "E",
+			templateUrl: "assets/views/directives/userimage.html",
+			replace: true
+		};
 	});

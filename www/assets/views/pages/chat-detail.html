@@ -1,0 +1,42 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view cache-view="false">
+	<ion-nav-title>
+		Chat mit {{chat.partners[0].basic.shortname}} <span data-ng-if="chat.users.length > 1">und {{chat.partners.length - 1}} Anderen</span>
+	</ion-nav-title>
+	<ion-content scroll="false">
+		<ion-scroll id="messageList">
+			<ul class="u-unstyled">
+				<li class="messageView-loadingText" data-ng-class="{'messageView-loadingText--relative': activeTopic.remaining == 0}">
+					<ion-spinner id="messageView-loadingIcon" data-icon="crescent" data-ng-if="loadingMessages || true"></ion-spinner>
+					<span data-i18n="messages.remaining|count={{activeTopic.remaining}}" data-ng-if="activeTopic.remaining > 0 || true">Test</span>
+					<span data-i18n="messages.endOfStream" data-ng-if="activeTopic.remaining == 0"></span>
+				</li>
+				<li class="burst" data-ng-repeat="burst in chat.messages" data-ng-class="{me:burst[0].sender.me, other:burst[0].sender.other}"> <!-- exchange chat.messages for messageBursts() -->
+					<div class="username">{{burst[0].sender.name}}</div>
+					<div class="userimg">
+						<a href="{{burst[0].sender.basic.url}}">
+							<userimage data-userID="sender{{burst[0].sender.id}}" data-user="burst[0].sender" data-trustlevel="0">
+						</a>
+					</div>
+					<ul class="messages">
+						<li data-ng-cloak data-ng-repeat="message in burst" data-messageID="{{message.id}}" class="message">
+							<div class="messageContent">
+								<div class="messageText {{message.type}}" data-ng-class="{{message.type}}" data-syntaxify="message.text"><img data-ng-if="message.type != 'image'" data-ng-src=""></div>
+								<div class="time"><i class="fa fa-clock-o"></i> {{message.timestamp | date:'medium'}}</div><!-- use smartdate filter here as soon as possible -->
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</ion-scroll>
+		<form id="inputWrap">
+			<textarea focus-me="canSend" id="messageInput" data-advancedsend="sendMessage(activeTopic.newMessage)" type="text" data-ng-model="activeTopic.newMessage" data-ng-disabled="!canSend" data-i18n-attr="messages.sendMessage.text|placeholder"></textarea>
+			<savebutton id="sendmessage" data-ng-click="sendMessage(activeTopic.newMessage)" data-translation="messages.sendMessage.send" data-state="sendMessageState" data-noiniticon></savebutton>
+		</form>
+	</ion-pane>
+</ion-view>

@@ -1,0 +1,60 @@
+// Person
+//
+// Displays the userimage and the name of a specific person
+//
+// Markup:
+//	<div class="person">
+//		<img src="{{userData.basic.image}}" alt="{{userData.name}}">
+//		<p class="username">{{userData.name}}</p>
+//		<p class="mutualfriends" data-i18n="friends.mutualFriends|count={{userData.basic.mutualFriends.length}}"></p>
+//		<p class="action">
+//			<button class="btn btn--primary" data-i18n="magicbar.requests.accept" ng-click="acceptRequest(request)"></button>
+//			<button class="btn btn--danger" data-i18n="magicbar.requests.decline"></button>
+//		</p>
+//	</div>
+//
+// .pending						- This person has not confirmed the friendship request yet.
+// .requested					- This person sent a friendship request to you.
+//
+// Styleguide 2.7
+.person {
+	width: 100%;
+	padding: 6px 0;
+
+	display: inline-block;
+	box-sizing: border-box;
+}
+.person-userimage {
+	.column(4,12,left,1%);
+	margin: 0 1% 0 0;
+	max-width: 80px;
+}
+.person-username, .person-similar, .person-action {
+	.column(8,12,left,6);
+	margin: 0 1% 0 5%;
+}
+.person-status {
+	margin-right: 4px;
+}
+.person-username {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.person-similar {
+	.detail-text();
+	margin-top: 5px;
+}
+.person-action {
+	margin-top: 5px;
+	display: inline-block;
+}
+.person-clickable {
+	cursor: pointer;
+}
+
+@media @desktop {
+	.person i.fa {
+		font-size: 1.5em;
+	}
+}

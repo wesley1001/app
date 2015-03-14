@@ -1,0 +1,73 @@
+/* Empty. Add your own CSS if you like */
+
+.imgWrap {
+	float: left;
+	width: 64px;
+	height: 64px;
+
+	margin-left: -52px;
+	margin-right: 24px;
+
+	overflow: hidden;
+	border-radius: 100%;
+}
+
+.userimg {
+	width: 100%;
+}
+
+.userimg--group {
+	float: left;
+	width: 50%;
+	height: 50%;
+}
+
+.userimg--remaining {
+	font-size: 0.75em;
+	padding: 0 7px;
+
+	line-height: 30px;
+	background-color: #575757;
+	color: #fff;
+
+	box-sizing: border-box;
+}
+
+.userimage-wrap {
+	position: relative;
+	.untrusted {
+		width: 16px;
+		height: 16px;
+		position: absolute;
+		bottom: 5%;
+		right: 5%;
+	}
+	&[data-trustlevel="0"] {
+		.userimage-picture {
+			border: 3px solid @red;
+			box-shadow: 0px 0px 5px @red;
+		}
+	}
+	&[data-trustlevel="1"] {
+		.userimage-picture {
+			border: 3px solid @orange;
+		}
+	}
+	&[data-trustlevel="2"] {
+		.userimage-picture {
+			border: 3px solid @green;
+		}
+	}
+	&[data-trustlevel="3"] {
+		.userimage-picture {
+			border: 3px solid @green;
+			box-shadow 0px 0px 5px @primaryLightest;
+		}
+	}
+}
+.userimage-picture {
+	position: relative;
+	width: 101%;
+	height: 101%;
+	.box-fix;
+}

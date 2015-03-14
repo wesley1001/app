@@ -46,6 +46,9 @@ profile
 *.moved-aside
 IOS/www/
 
+# Codekit
+*.codekit
+
 # OSX
 .DS_Store
 
