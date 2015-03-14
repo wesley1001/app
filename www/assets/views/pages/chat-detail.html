@@ -12,8 +12,8 @@
 		<ion-scroll id="messageList">
 			<ul class="u-unstyled">
 				<li class="messageView-loadingText" data-ng-class="{'messageView-loadingText--relative': activeTopic.remaining == 0}">
-					<ion-spinner id="messageView-loadingIcon" data-icon="crescent" data-ng-if="loadingMessages || true"></ion-spinner>
-					<span data-i18n="messages.remaining|count={{activeTopic.remaining}}" data-ng-if="activeTopic.remaining > 0 || true">Test</span>
+					<ion-spinner id="messageView-loadingIcon" class="spinner-light" data-icon="crescent" data-ng-if="loadingMessages || true"></ion-spinner>
+					<span data-i18n="messages.remaining|count={{activeTopic.remaining}}" data-ng-if="activeTopic.remaining > 0 || true">10000 Nachrichten!</span>
 					<span data-i18n="messages.endOfStream" data-ng-if="activeTopic.remaining == 0"></span>
 				</li>
 				<li class="burst" data-ng-repeat="burst in chat.messages" data-ng-class="{me:burst[0].sender.me, other:burst[0].sender.other}"> <!-- exchange chat.messages for messageBursts() -->
@@ -35,8 +35,9 @@
 			</ul>
 		</ion-scroll>
 		<form id="inputWrap">
-			<textarea focus-me="canSend" id="messageInput" data-advancedsend="sendMessage(activeTopic.newMessage)" type="text" data-ng-model="activeTopic.newMessage" data-ng-disabled="!canSend" data-i18n-attr="messages.sendMessage.text|placeholder"></textarea>
-			<savebutton id="sendmessage" data-ng-click="sendMessage(activeTopic.newMessage)" data-translation="messages.sendMessage.send" data-state="sendMessageState" data-noiniticon></savebutton>
+			<textarea class="no-resize" focus-me="canSend" id="messageInput" data-advancedsend="sendMessage(activeTopic.newMessage)" type="text" data-ng-model="activeTopic.newMessage" data-i18n-attr="messages.sendMessage.text|placeholder" placeholder="Gib deine Nachricht ein!"></textarea>
+<!-- 			<savebutton id="sendmessage" class="button-outline" data-ng-click="sendMessage(activeTopic.newMessage)" data-translation="messages.sendMessage.send" data-state="sendMessageState" data-noiniticon></savebutton> -->
+			<button id="sendmessage" class="button button-outline button-balanced">Senden</button>
 		</form>
 	</ion-pane>
 </ion-view>
