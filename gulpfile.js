@@ -3,15 +3,17 @@ var gutil = require('gulp-util');
 var bower = require('bower');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
+var less = require('gulp-less');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  less: ['./www/assets/less/**/*.less']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass', 'less']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -25,8 +27,20 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
+gulp.task('less', function () {
+  return gulp.src('./www/assets/less/style.less')
+    .pipe(less())
+    .pipe(gulp.dest('./www/assets/css/'))
+    .pipe(minifyCss({
+      keepSpecialComments: 0
+    }))
+    .pipe(rename({ extname: '.min.css' }))
+    .pipe(gulp.dest('./www/assets/css/'));
+});
+
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.less, ['less']);
 });
 
 gulp.task('install', ['git-check'], function() {
