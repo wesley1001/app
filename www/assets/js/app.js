@@ -28,6 +28,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 		// Each tab has its own nav history stack:
 
+		.state('login', {
+			url: '/login',
+			templateUrl: 'assets/views/pages/login.html',
+			controller: 'LoginCtrl'
+		})
 		.state('chats', {
 			url: '/',
 			templateUrl: 'assets/views/pages/chats.html',
@@ -40,7 +45,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 		});
 
 		// if none of the above states are matched, use this as the fallback
-		$urlRouterProvider.otherwise('/');
+		$urlRouterProvider.otherwise('/login');
 	})
 	.directive('savebutton', function () {
 		return {
