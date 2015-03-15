@@ -13,7 +13,7 @@
 @remaining-user-bubble-fg: green;
 
 // user image size in message list.
-@message-image-size: 48px; //@user-image-size-small;
+@message-image-size: 36px; //@user-image-size-small;
 @message-arrow-size: 8px;
 @message-arrow-offset: @message-image-size / 2;
 @own-message-bg: #48930a;
@@ -33,18 +33,17 @@
 @message-preview-lineheight: 20px;
 @preview-lines: 3;
 
-.messagesView {
-	.time {
-		.detail-text();
-		white-space: nowrap;
-		text-align: right;
-		text-overflow: ellipsis;
-		overflow: hidden;
-	}
 
-	.me .time {
-		color: #eee;
-	}
+.time {
+	.detail-text();
+	white-space: nowrap;
+	text-align: right;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.me .time {
+	color: #eee;
 }
 
 #newmessage {
@@ -144,8 +143,7 @@
 	.burst {
 		float: left;
 		clear: both;
-		min-width: 80%;
-		max-width: 100%;
+		width: 100%;
 		word-wrap: break-word;
 		&:first-child {
 			// additional margin at the top, this will be useful when we have a
