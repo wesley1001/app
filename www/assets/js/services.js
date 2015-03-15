@@ -633,7 +633,166 @@ angular.module('starter.services', [])
 			        }
 			    ]
 			]
-	    }
+	    },
+	    {
+		    "remaining": 1,
+		    "messages": [
+		        [
+		        	{
+			            "text": "Nachricht text!!!",
+			            "timestamp": "1426363463613",
+			            "loading": true,
+			            "loaded": false,
+			            "sender": {
+			                "id": 55,
+			                "trustLevel": 2,
+			                "fingerprint": "SDGMXHPDZCPMRNRDVAQW6TXANPK5HZWCYB0DP0H1SKFPX66GFBN0",
+			                "basic": {
+			                    "url": "user/muster",
+			                    "image": "https://randomuser.me/api/portraits/thumb/men/16.jpg",
+			                    "shortname": "yannik m\u00fcller"
+			                },
+			                "signatureValid": true,
+			                "me": false,
+			                "other": true,
+			                "online": 1,
+			                "name": "yannik m\u00fcller",
+			                "names": {
+			                    "name": "yannik m\u00fcller",
+			                    "firstname": "yannik",
+			                    "lastname": "m\u00fcller",
+			                    "nickname": "muster"
+			                },
+			                "added": true,
+			                "isMyFriend": true
+			            },
+			            "id": 36762
+			        }
+		        ]
+		    ],
+		    "partners": [
+		        {
+		            "id": 55,
+		            "trustLevel": 2,
+		            "fingerprint": "SDGMXHPDZCPMRNRDVAQW6TXANPK5HZWCYB0DP0H1SKFPX66GFBN0",
+		            "basic": {
+		                "url": "user/muster",
+		                "image": "https://randomuser.me/api/portraits/thumb/men/16.jpg",
+		                "shortname": "yannik m\u00fcller"
+		            },
+		            "signatureValid": true,
+		            "me": false,
+		            "other": true,
+		            "online": 1,
+		            "name": "yannik m\u00fcller",
+		            "names": {
+		                "name": "yannik m\u00fcller",
+		                "firstname": "yannik",
+		                "lastname": "m\u00fcller",
+		                "nickname": "muster"
+		            },
+		            "added": true,
+		            "isMyFriend": true
+		        },
+		        {
+		            "id": 56,
+		            "trustLevel": 2,
+		            "fingerprint": "SDGMXHPDZCPMRNRDVAQW6TXANPK5HZWCYB0DP0H1SKFPX66GFBN0",
+		            "basic": {
+		                "url": "user/muster2",
+		                "image": "https://randomuser.me/api/portraits/thumb/men/16.jpg",
+		                "shortname": "yannik meyer"
+		            },
+		            "signatureValid": true,
+		            "me": false,
+		            "other": true,
+		            "online": 1,
+		            "name": "yannik meyer",
+		            "names": {
+		                "name": "yannik meyer",
+		                "firstname": "yannik",
+		                "lastname": "meyer",
+		                "nickname": "muster2"
+		            },
+		            "added": true,
+		            "isMyFriend": true
+		        },
+		        {
+		            "id": 57,
+		            "trustLevel": 2,
+		            "fingerprint": "SDGMXHPDZCPMRNRDVAQW6TXANPK5HZWCYB0DP0H1SKFPX66GFBN0",
+		            "basic": {
+		                "url": "user/muster3",
+		                "image": "https://randomuser.me/api/portraits/thumb/men/16.jpg",
+		                "shortname": "yannik kunder"
+		            },
+		            "signatureValid": true,
+		            "me": false,
+		            "other": true,
+		            "online": 1,
+		            "name": "yannik kunder",
+		            "names": {
+		                "name": "yannik kunder",
+		                "firstname": "yannik",
+		                "lastname": "kunder",
+		                "nickname": "muster3"
+		            },
+		            "added": true,
+		            "isMyFriend": true
+		        }
+		    ],
+		    "partnersDisplay": [
+		        {
+		            "id": 55,
+		            "trustLevel": 2,
+		            "fingerprint": "SDGMXHPDZCPMRNRDVAQW6TXANPK5HZWCYB0DP0H1SKFPX66GFBN0",
+		            "basic": {
+		                "url": "user/muster",
+		                "image": "https://randomuser.me/api/portraits/thumb/men/16.jpg",
+		                "shortname": "yannik m\u00fcller"
+		            },
+		            "signatureValid": true,
+		            "me": false,
+		            "other": true,
+		            "online": 1,
+		            "name": "yannik m\u00fcller",
+		            "names": {
+		                "name": "yannik m\u00fcller",
+		                "firstname": "yannik",
+		                "lastname": "m\u00fcller",
+		                "nickname": "muster"
+		            },
+		            "added": true,
+		            "isMyFriend": true
+		        },
+		        {
+		            "id": 57,
+		            "trustLevel": 2,
+		            "fingerprint": "SDGMXHPDZCPMRNRDVAQW6TXANPK5HZWCYB0DP0H1SKFPX66GFBN0",
+		            "basic": {
+		                "url": "user/muster3",
+		                "image": "https://randomuser.me/api/portraits/thumb/men/16.jpg",
+		                "shortname": "yannik kunder"
+		            },
+		            "signatureValid": true,
+		            "me": false,
+		            "other": true,
+		            "online": 1,
+		            "name": "yannik kunder",
+		            "names": {
+		                "name": "yannik kunder",
+		                "firstname": "yannik",
+		                "lastname": "kunder",
+		                "nickname": "muster3"
+		            },
+		            "added": true,
+		            "isMyFriend": true
+		        }
+		    ],
+		    "id": 78,
+		    "type": "groupChat",
+		    "unread": false
+		}
 	];
 	return {
 		all: function() {

@@ -34,7 +34,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 			controller: 'LoginCtrl'
 		})
 		.state('chats', {
-			url: '/',
+			url: '/chats',
 			templateUrl: 'assets/views/pages/chats.html',
 			controller: 'ChatsCtrl'
 		})
