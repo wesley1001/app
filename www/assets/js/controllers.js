@@ -1,7 +1,10 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope) {
+.controller('LoginCtrl', function($scope, $ionicHistory) {
 	$scope.loggedin = false;
+	$ionicHistory.nextViewOptions({
+	  disableBack: true
+	});
 })
 .controller('ChatsCtrl', function($scope, Chats) {
 	$scope.loggedin = true;
