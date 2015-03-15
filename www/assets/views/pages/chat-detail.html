@@ -11,7 +11,7 @@
 	<ion-content scroll="false">
 		<ion-scroll id="messageList">
 			<ul class="u-unstyled">
-				<li class="messageView-loadingText" data-ng-class="{'messageView-loadingText--relative': activeTopic.remaining == 0}">
+				<li class="messageView-loadingText" data-ng-class="{'messageView-loadingText--relative': chat.remaining == 0}">
 					<ion-spinner id="messageView-loadingIcon" class="spinner-light" data-icon="crescent" data-ng-if="loadingMessages"></ion-spinner>
 					<span data-i18n="messages.remaining|count={{activeTopic.remaining}}" data-ng-if="activeTopic.remaining > 0"></span>
 					<span data-i18n="messages.endOfStream" data-ng-if="activeTopic.remaining == 0"></span>
