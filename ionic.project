@@ -1,5 +1,13 @@
 {
   "name": "whispeerMobile",
   "app_id": "",
-  "watchPatterns": ["www/**/*", "!www/assets/lib/**/*", "!www/assets/less/**/*"]
+  "watchPatterns": [
+    "www/**/*",
+    "!www/assets/lib/**/*",
+    "!www/assets/less/**/*"
+  ],
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ]
 }
