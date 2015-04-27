@@ -21,7 +21,7 @@
 		<script src="assets/js/controllers.js"></script>
 		<script src="assets/js/services.js"></script>
 	</head>
-	<body ng-app="starter">
+	<body data-ng-app="whispeer" data-ng-controller="rootCtrl">
 		<!--
 			The nav bar that will be updated as we navigate between views.
 		-->
@@ -29,8 +29,8 @@
 			<ion-nav-back-button class="button-clear">
 				<i class="ion-chevron-left"></i> Zurück
 			</ion-nav-back-button>
-			<ion-nav-buttons side="right" data-ng-if="loggedin">
-				<button class="button button-icon icon ion-ios-compose-outline"></button>
+			<ion-nav-buttons side="right">
+				<button class="button button-icon icon ion-ios-compose-outline" data-ng-click="loadNewMessageView()" data-ng-if="!onNewMessageView"></button>
 			</ion-nav-buttons>
 		</ion-nav-bar>
 		<!--
