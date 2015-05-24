@@ -10,18 +10,12 @@
 		<link href="assets/css/ionic.app.css" rel="stylesheet">
 		<link href="assets/css/style.css" rel="stylesheet">
 
-		<!-- ionic/angularjs js -->
-		<script src="assets/lib/ionic/js/ionic.bundle.js"></script>
-
 		<!-- cordova script (this will be a 404 during development) -->
 		<script src="cordova.js"></script>
 
-		<!-- your app's js -->
-		<script src="assets/js/app.js"></script>
-		<script src="assets/js/controllers.js"></script>
-		<script src="assets/js/services.js"></script>
+		<script src="lib/requirejs/require.js" data-main="assets/js/requireConfig"></script>
 	</head>
-	<body ng-app="starter">
+	<body>
 		<!--
 			The nav bar that will be updated as we navigate between views.
 		-->
