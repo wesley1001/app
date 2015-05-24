@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('whispeer', ['ionic', 'whispeer.controllers', 'whispeer.services'])
 	.run(function($ionicPlatform) {
 		$ionicPlatform.ready(function() {
 			// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -28,19 +28,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 		// Each tab has its own nav history stack:
 
+		.state('login', {
+			url: '/login',
+			templateUrl: 'assets/views/pages/login.html',
+			controller: 'LoginCtrl'
+		})
 		.state('chats', {
-			url: '/',
+			url: '/chats',
 			templateUrl: 'assets/views/pages/chats.html',
 			controller: 'ChatsCtrl'
 		})
 		.state('chat-detail', {
-			url: '/:chatId',
+			url: '/chat/:chatId',
 			templateUrl: 'assets/views/pages/chat-detail.html',
 			controller: 'ChatDetailCtrl'
+		})
+		.state('newMessage', {
+			url: '/newMessage',
+			templateUrl: 'assets/views/pages/newMessage.html',
+			controller: 'NewMessageCtrl'
 		});
 
 		// if none of the above states are matched, use this as the fallback
-		$urlRouterProvider.otherwise('/');
+		$urlRouterProvider.otherwise('/login');
 	})
 	.directive('savebutton', function () {
 		return {

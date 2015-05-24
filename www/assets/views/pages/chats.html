@@ -1,11 +1,10 @@
 <ion-view view-title="Unterhaltungen">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/{{chat.id}}">
-        <div class="imgWrap" data-ng-if="chat.type == 'groupChat'" data-ng-class="{'imgWrap--2': chat.partners.length == 2, 'imgWrap--3': chat.partners.length == 3, 'imgWrap--4': chat.partners.length == 4, 'imgWrap--g4': chat.partners.length > 3}">
-			<img class="userimg userimg--group" data-ng-if="chat.partners.length < 5" data-ng-repeat="partner in chat.partners | limitTo: 4" data-ng-src="{{partner.basic.image}}" alt="{{partner.name}}">
-			<img class="userimg userimg--group" data-ng-if="chat.partners.length > 4" data-ng-repeat="partner in chat.partners | limitTo: 3" data-ng-src="{{partner.basic.image}}" alt="{{partner.name}}">
-			<span class="userimg userimg--group userimg--remaining" data-ng-if="chat.partners.length > 4">+{{chat.partners.length - 3}}</span>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/chat/{{chat.id}}">
+        <div class="imgWrap imgWrap--group" data-ng-if="chat.type == 'groupChat'">
+			<img class="userimg userimg--group" data-ng-repeat="partner in chat.partners | limitTo: 2" data-ng-src="{{partner.basic.image}}" alt="{{partner.name}}">
+			<span class="userimg userimg--remaining" data-ng-if="chat.partners.length > 2">+{{chat.partners.length - 3}}</span>
 		</div>
 		<div class="imgWrap" data-ng-if="chat.type == 'peerChat'">
 			<userimage class="userimg--topic" data-ng-repeat="partner in chat.partners" data-user="partner">

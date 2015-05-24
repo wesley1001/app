@@ -1,6 +1,5 @@
 define(["angular"], function (angular) {
-	angular.module('starter.services', [])
-
+	angular.module('whispeer.services', [])
 	.factory('Chats', function() {
 		// Might use a resource here that returns a JSON array
 

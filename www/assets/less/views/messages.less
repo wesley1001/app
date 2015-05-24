@@ -5,10 +5,10 @@
 @header-height: 30px;
 
 // big/small image size in topic list.
-@user-image-size: 76px;
-@user-image-size-small: 56px;
+@user-image-size: 56px;
+@user-image-size-small: 46px;
 @remaining-user-bubble-size: 28px;
-@remaining-user-bubble-border: 3px;
+@remaining-user-bubble-border: 1px;
 @remaining-user-bubble-bg: white;
 @remaining-user-bubble-fg: green;
 
@@ -81,45 +81,63 @@
 	margin-left: -52px;
 	margin-right: 24px;
 
-	overflow: hidden;
 	border-radius: 100%;
+	position: relative;
 }
+
+.userimg {
+	border: 1px solid #f2f2f2;
+	border-radius: 100%;
+	position: relative;
+}
+
 .userimg--topic {
 	width: 100%;
 }
 
+.imgWrap--g2 {
+	// group chats have smaller images, and compensate for equal
+	// height of the list element w/ some bottom padding.
+	padding-bottom: (@user-image-size - @user-image-size-small + @default-padding);
+	padding-right: (@user-image-size - @user-image-size-small + @default-padding);
+}
 .userimg--group {
-	float: left;
-	width: 50%;
-	height: 50%;
+	box-sizing: content-box;
+	width: @user-image-size-small;
+	height: @user-image-size-small;
+	z-index: 1;
 }
-
+.userimg--group ~ .userimg--group {
+	// offset the second image
+	position: absolute;
+	top: (@default-padding + @user-image-size - @user-image-size-small);
+	left: (@default-padding + @user-image-size - @user-image-size-small);
+}
 .userimg--remaining {
-	font-size: 0.75em;
-	padding: 0 7px;
+	// the span with remaining users is missing a class.
+	// trust me, it's this one :-)
+	position: absolute;
 
-	line-height: 30px;
-	background-color: #575757;
-	color: #fff;
+	box-sizing: content-box;
+	width: @remaining-user-bubble-size;
+	height: @remaining-user-bubble-size;
 
-	box-sizing: border-box;
-}
+	left: (2 * @default-padding + @user-image-size - @remaining-user-bubble-size - @remaining-user-bubble-border);
+	top: (2 * @default-padding + @user-image-size - @remaining-user-bubble-size - @remaining-user-bubble-border);
+	border: @remaining-user-bubble-border solid @remaining-user-bubble-fg;
+	border-radius: 100%;
 
-.imgWrap--2 .userimg--group {
-	width: 100%;
-	height: 100%;
-}
+	text-align: center;
+	.small-text();
+	line-height: @remaining-user-bubble-size;
 
-.imgWrap--2 .userimg--group:first-child {
-	margin-left: -50%;
-}
-.imgWrap--2 .userimg--group:last-child {
-	margin-right: -50%;
-}
+	color: @remaining-user-bubble-fg;
+	background: @remaining-user-bubble-bg;
 
-.imgWrap--3 .userimg--group:last-child {
-	width: 100%;
-	height: auto;
+	// typography, this should probably be handled elsewhere.
+	text-decoration: italic;
+
+	z-index: 2;
 }
 
 #topicWrap {
@@ -274,7 +292,7 @@
 
 .messageView-loadingText {
 	float: left;
-	position: absolute;
+	position: relative;
 	top: 0;
 	left: 0;
 	text-align: center;
@@ -287,10 +305,6 @@
 	background: rgba(0,0,0,0.8);
 	color: #fff;
 	z-index: 9;
-}
-
-.messageView-loadingText--relative {
-	position: relative;
 }
 
 #messageView-loadingIcon {
