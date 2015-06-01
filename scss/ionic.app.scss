@@ -15,6 +15,15 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+// Customization
+
+$primary: #3A8100;
+$primaryLighter: #54AB0C;
+
+$balanced: $primary;
+
+$button-balanced-border: $primaryLighter;
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
