@@ -4,7 +4,7 @@ The whispeer mobile app. Ionic on iOS and Android. Probably even Windows Phone.
 # Setup
 To get working you have to do the following:
 
-npm install -g ionic gulp
+npm install -g ionic gulp bower
 
 npm install (-> local dependencies)
 
