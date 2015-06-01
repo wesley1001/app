@@ -1,6 +1,6 @@
 {
   "name": "whispeerMobile",
-  "app_id": "",
+  "app_id": "4617d7e3",
   "watchPatterns": [
     "www/**/*",
     "!www/assets/lib/**/*",
