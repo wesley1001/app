@@ -11,12 +11,13 @@
 	<ion-content scroll="false">
 		<ion-scroll id="messageList">
 			<ul class="u-unstyled">
-				<li class="messageView-loadingText">
-					<ion-spinner id="messageView-loadingIcon" class="spinner-light" data-icon="crescent" data-ng-if="loadingMessages"></ion-spinner>
-					<span data-i18n="messages.remaining|count={{activeTopic.remaining}}" data-ng-if="activeTopic.remaining > 0"></span>
-					<span data-i18n="messages.endOfStream" data-ng-if="activeTopic.remaining == 0"></span>
+				<li class="messageView-loadingText" data-ng-if="activeTopic.remaining > 0">
+					<ion-spinner id="messageView-loadingIcon" class="spinner-light" data-icon="crescent"></ion-spinner>
+					<span data-i18n="messages.remaining|count={{activeTopic.remaining}}"></span>
 				</li>
-				<li class="burst" data-ng-repeat="burst in chat.messages" data-ng-class="{me:burst[0].sender.me, other:burst[0].sender.other}"> <!-- exchange chat.messages for messageBursts() -->
+				<p data-i18n="messages.endOfStream" data-ng-if="activeTopic.remaining == 0" id="messagesView-endOfStream"><span data-for="date">{{::messageBursts()[0].firstMessage().timestamp|date}}</span></p>
+				<li class="burst" data-ng-repeat="burst in chat.messages" data-ng-class="{me:burst.isMe(), other:burst.isOther()}"> <!-- exchange chat.messages for (bursts = messageBursts()) -->
+					<div class="burst-date" data-ng-if="::!burst.sameDay(bursts[$index - 1]) && !$first"><span class="burst-date-text">{{::burst.firstMessage().timestamp|date}}</span></div>
 					<div class="username">{{burst[0].sender.name}}</div>
 					<div class="userimg">
 						<a href="{{burst[0].sender.basic.url}}">
@@ -27,7 +28,7 @@
 						<li data-ng-cloak data-ng-repeat="message in burst" data-messageID="{{message.id}}" class="message">
 							<div class="messageContent">
 								<div class="messageText {{message.type}}" data-ng-class="{{message.type}}" data-syntaxify="message.text">{{message.text}}<img data-ng-if="message.type == 'image'" data-ng-src=""></div>
-								<div class="time"><i class="icon ion-ios-clock-outline"></i> {{message.timestamp | date:'medium'}}</div><!-- use smartdate filter here as soon as possible -->
+								<div class="time"><i class="icon ion-ios-clock-outline"></i> {{message.timestamp | date: 'shortTime' }}</div><!-- use smartdate filter here as soon as possible -->
 							</div>
 						</li>
 					</ul>
