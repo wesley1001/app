@@ -14,10 +14,12 @@
 			</div>
 			<ion-scroll>
 				<ul class="list">
-					<li class="item item-avatar" data-ng-repeat="user in users">
+					<li class="item item-avatar item-checkbox" data-ng-repeat="user in users">
 						<img src="{{user.basic.image}}">
 						<h2>{{user.name}}</h2>
-						<div class="selected" data-ng-if="user.selected">Selected!</div>
+						<label class="checkbox checkbox-balanced checkbox-pullRight">
+							<input type="checkbox" ng-model="user.selected">
+						</label>
 					</li>
 				</ul>
 			</ion-scroll>
