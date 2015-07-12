@@ -1,0 +1,48 @@
+.center {
+	text-align: center;
+}
+.padding-top-extra {
+	padding-top: 17px;
+}
+.noMargin-bottom {
+	margin-bottom: 0;
+}
+.box-fix {
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.padding-fix {
+	-webkit-box-sizing: padding-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: padding-box;    /* Firefox, other Gecko */
+	box-sizing: padding-box;         /* Opera/IE 8+ */
+}
+.normal-box {
+	-webkit-box-sizing: content-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: content-box;    /* Firefox, other Gecko */
+	box-sizing: content-box;         /* Opera/IE 8+ */
+}
+// Clear Fix
+.clear-fix {
+	&:before, &:after {
+		content: "";
+    	display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+.buttonBackground(@defaultColor, @hoverColor:darken(@defaultColor,5%), @focusColor:darken(@hoverColor,5%), @activeColor:@focusColor, @tColor:@white, @tShadow:0 -1px 0 rgba(0,0,0,.25)) {
+	background-color: @defaultColor;
+	color: @tColor !important;
+	text-shadow: @tShadow;
+	&:hover {
+		background-color: @hoverColor;
+	}
+	&:focus {
+		background-color: @focusColor;
+	}
+	&:active {
+		background-color: @activeColor;
+	}
+}
