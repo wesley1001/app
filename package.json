@@ -18,5 +18,10 @@
   "scripts": {
     "build": "bower install",
     "postinstall": "npm run build"
-  }
+  },
+  "cordovaPlugins": [],
+  "cordovaPlatforms": [
+    "ios",
+    "android"
+  ]
 }
