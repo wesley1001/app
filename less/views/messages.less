@@ -8,9 +8,9 @@
 @user-image-size: 56px;
 @user-image-size-small: 46px;
 @remaining-user-bubble-size: 28px;
-@remaining-user-bubble-border: 1px;
-@remaining-user-bubble-bg: white;
-@remaining-user-bubble-fg: green;
+@remaining-user-bubble-border: 0;
+@remaining-user-bubble-bg: rgba(58, 129, 0, 0.952941);
+@remaining-user-bubble-fg: #fff;
 
 // user image size in message list.
 @message-image-size: 36px; //@user-image-size-small;
@@ -114,8 +114,6 @@
 	left: (@default-padding + @user-image-size - @user-image-size-small);
 }
 .userimg--remaining {
-	// the span with remaining users is missing a class.
-	// trust me, it's this one :-)
 	position: absolute;
 
 	box-sizing: content-box;
@@ -136,6 +134,7 @@
 
 	// typography, this should probably be handled elsewhere.
 	text-decoration: italic;
+	font-weight: 400;
 
 	z-index: 2;
 }
