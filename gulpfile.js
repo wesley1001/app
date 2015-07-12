@@ -28,7 +28,7 @@ gulp.task('sass', function(done) {
 });
 
 gulp.task('less', function () {
-  return gulp.src('./www/assets/less/style.less')
+  return gulp.src('./less/style.less')
     .pipe(less())
     .pipe(gulp.dest('./www/assets/css/'))
     .pipe(minifyCss({
