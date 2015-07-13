@@ -50,13 +50,12 @@ small {
 	.detail-text();
 }
 
-a {
+a:not(.tab-item) {
 	color: @linkColor;
 	text-decoration: none;
-}
-
-a:hover {
-	color: @linkColorHover;
+	&:hover {
+		color: @linkColorHover;
+	}
 }
 
 img {
