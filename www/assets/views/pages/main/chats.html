@@ -13,10 +13,6 @@
 				<h2><span data-ng-repeat="partner in chat.partners">{{partner.name}}{{$last?"":", "}}</span></h2>
 				<p>{{chat.latestMessage.sender.basic.shortname}}: {{chat.latestMessage.text}}</p>
 				<i class="icon ion-chevron-right icon-accessory"></i>
-
-				<ion-option-button class="button-energized" ng-click="remove(chat)">
-					Archivieren
-				</ion-option-button>
 			</ion-item>
 		</ion-list>
 	</ion-content>

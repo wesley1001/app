@@ -3,30 +3,29 @@
 		Neue Nachricht an <span data-ng-if="Array.isArray(user)" data-ng-repeat="partner in user">{{partner.name}}{{$last?"":", "}}</span> <span data-ng-if="!Array.isArray(user)">{{user.name}}</span>
 	</ion-nav-title>
 	<ion-content scroll="false">
-			<div class="item item-input-inset">
-				<label class="item-input-wrapper">
-					<i class="icon ion-ios-search placeholder-icon"></i>
-					<input type="search" placeholder="Search">
-				</label>
-				<button class="button button-clear">
-					Cancel
-				</button>
-			</div>
-			<ion-scroll>
-				<ul class="list">
-					<li class="item item-avatar item-checkbox" data-ng-repeat="user in users">
-						<img src="{{user.basic.image}}">
-						<h2>{{user.name}}</h2>
-						<label class="checkbox checkbox-balanced checkbox-pullRight">
-							<input type="checkbox" ng-model="user.selected">
-						</label>
-					</li>
-				</ul>
-			</ion-scroll>
-			<form id="inputWrap">
-				<textarea class="no-resize" focus-me="canSend" id="messageInput" data-advancedsend="sendMessage(activeTopic.newMessage)" type="text" data-ng-model="activeTopic.newMessage" data-i18n-attr="messages.sendMessage.text|placeholder" placeholder="Gib deine Nachricht ein!"></textarea>
-			<button id="sendmessage" class="button button-outline button-balanced"><i class="ion-ios-paperplane"></i></button>
-			</form>
+		<div class="item item-input-inset">
+			<label class="item-input-wrapper">
+				<i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="search" placeholder="Search">
+			</label>
+			<button class="button button-clear">
+				Abbrechen
+			</button>
 		</div>
+		<ion-scroll>
+			<ul class="list">
+				<li class="item item-avatar item-checkbox" data-ng-repeat="user in users">
+					<img src="{{user.basic.image}}">
+					<h2>{{user.name}}</h2>
+					<label class="checkbox checkbox-balanced checkbox-pullRight">
+						<input type="checkbox" ng-model="user.selected">
+					</label>
+				</li>
+			</ul>
+		</ion-scroll>
+		<form id="inputWrap">
+			<textarea class="no-resize" focus-me="canSend" id="messageInput" data-advancedsend="sendMessage(activeTopic.newMessage)" type="text" data-ng-model="activeTopic.newMessage" data-i18n-attr="messages.sendMessage.text|placeholder" placeholder="Gib deine Nachricht ein!"></textarea>
+			<button id="sendmessage" class="button button-outline button-balanced"><i class="ion-ios-paperplane"></i></button>
+		</form>
 	</ion-content>
 </ion-view>

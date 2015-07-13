@@ -1,0 +1,21 @@
+<ion-view>
+	<ion-content scroll="false">
+		<div class="item item-input-inset">
+			<label class="item-input-wrapper">
+				<i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="search" placeholder="Search">
+			</label>
+			<button class="button button-clear">
+				Abbrechen
+			</button>
+		</div>
+		<ion-scroll>
+			<ul class="list">
+				<li class="item item-avatar" data-ng-repeat="user in users">
+					<img src="{{user.basic.image}}">
+					<h2>{{user.name}}</h2>
+				</li>
+			</ul>
+		</ion-scroll>
+	</ion-content>
+</ion-view>
