@@ -5,8 +5,8 @@
 @header-height: 30px;
 
 // big/small image size in topic list.
-@user-image-size: 56px;
-@user-image-size-small: 46px;
+@user-image-size: 40px;
+@user-image-size-small: 30px;
 @remaining-user-bubble-size: 28px;
 @remaining-user-bubble-border: 0;
 @remaining-user-bubble-bg: rgba(58, 129, 0, 0.952941);
@@ -75,8 +75,8 @@
 
 .imgWrap {
 	float: left;
-	width: 64px;
-	height: 64px;
+	width: 40px;
+	height: 40px;
 
 	margin-left: -52px;
 	margin-right: 24px;
@@ -110,8 +110,8 @@
 .userimg--group ~ .userimg--group {
 	// offset the second image
 	position: absolute;
-	top: (@default-padding + @user-image-size - @user-image-size-small);
-	left: (@default-padding + @user-image-size - @user-image-size-small);
+	top: (@default-padding + @user-image-size - @user-image-size-small - 6px);
+	left: (@default-padding + @user-image-size - @user-image-size-small - 4px);
 }
 .userimg--remaining {
 	position: absolute;
@@ -121,7 +121,7 @@
 	height: @remaining-user-bubble-size;
 
 	left: (2 * @default-padding + @user-image-size - @remaining-user-bubble-size - @remaining-user-bubble-border);
-	top: (2 * @default-padding + @user-image-size - @remaining-user-bubble-size - @remaining-user-bubble-border);
+	top: (2 * @default-padding + @user-image-size - @remaining-user-bubble-size - @remaining-user-bubble-border - 4px);
 	border: @remaining-user-bubble-border solid @remaining-user-bubble-fg;
 	border-radius: 100%;
 
