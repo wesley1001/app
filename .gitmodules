@@ -1,3 +1,6 @@
 [submodule "www/assets/js/step"]
 	path = www/assets/js/step
 	url = git@github.com:whispeer/whispeerStep.git
+[submodule "www/assets/js/helper"]
+	path = www/assets/js/helper
+	url = git@github.com:whispeer/whispeerHelper.git
