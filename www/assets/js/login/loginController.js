@@ -10,6 +10,7 @@ define([
 
 	function loginController($scope, $location, loginDataService) {
 		$scope.login = loginDataService;
+
 		$scope.$watch(function () {
 			return loginDataService.failureCode === 0;
 		}, function (val) {

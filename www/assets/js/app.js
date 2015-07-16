@@ -13,7 +13,7 @@ define([
 	// the 2nd parameter is an array of "requires"
 	// "starter.services" is found in services.js
 	// "starter.controllers" is found in controllers.js
-	return angular.module("whispeer", ["ionic", "whispeer.controllers", "whispeer.services"])
+	return angular.module("whispeer", ["ionic", "whispeer.controllers", "whispeer.services", "ssn.login"])
 		.run(function($ionicPlatform) {
 			$ionicPlatform.ready(function() {
 				// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -39,7 +39,7 @@ define([
 			.state("login", {
 				url: "/login",
 				templateUrl: "assets/views/pages/login.html",
-				controller: "LoginCtrl"
+				controller: "ssn.loginController"
 			})
 			.state("main", {
 				url: "/main",
@@ -73,39 +73,6 @@ define([
 
 			// if none of the above states are matched, use this as the fallback
 			$urlRouterProvider.otherwise("/login");
-		})
-		.directive("savebutton", function () {
-			return {
-				transclude: true,
-				scope:	{
-					state:		"=state",
-					translation:"@translation"
-				},
-				restrict: "E",
-				templateUrl: "assets/views/directives/saveButton.html",
-				replace: true,
-				link: function (scope, iElement, iAttrs) {
-					scope.successIcon = "fa-check-circle";
-					scope.initIcon = "fa-check-circle";
-					scope.failureIcon = "fa-times-circle";
-
-					if (iAttrs.initicon) {
-						scope.initIcon = iAttrs.initicon;
-					}
-
-					if (iAttrs.successicon) {
-						scope.successIcon = iAttrs.successicon;
-					}
-
-					if (iAttrs.failureicon) {
-						scope.failureIcon = iAttrs.failureicon;
-					}
-
-					if (typeof iAttrs.noiniticon !== "undefined") {
-						delete scope.initIcon;
-					}
-				}
-			};
 		})
 		.directive("userimage", function () {
 			return {

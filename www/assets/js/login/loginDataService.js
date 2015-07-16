@@ -3,12 +3,13 @@ define([
 	"asset/state",
 	"crypto/helper",
 	"login/loginModule",
+	"services/locationService",
 	"services/socketService",
 	"services/storageService"
 ], function (step, State, chelper, loginModule) {
 	"use strict";
 
-	var service = function ($rootScope, socketService, Storage) {
+	var service = function ($rootScope, locationService, socketService, Storage) {
 		var loginState = new State();
 
 		var failureCodes = {
@@ -35,8 +36,10 @@ define([
 			sessionStorage.set("password", password);
 		}
 
+		var isViewForm = locationService.isLoginPage();
+
 		if (sessionStorage.get("loggedin") === "true") {
-			//goto next screen
+			locationService.mainPage();
 		}
 
 		var res = {
