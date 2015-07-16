@@ -1,4 +1,11 @@
-define(["angular", "ionic", "controllers", "services"], function (angular) {
+define([
+	"angular",
+	"ionic",
+	"controllers",
+	"services",
+	"login/loginModule",
+	"login/loginController"
+], function (angular) {
 	// Ionic Starter App
 
 	// angular.module is a global place for creating, registering and retrieving Angular modules

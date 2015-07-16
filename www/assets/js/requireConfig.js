@@ -28,7 +28,21 @@ requirejs.config({
         uiRouter:         '../../lib/angular-ui-router/release/angular-ui-router',
         ionic:            '../../lib/ionic/js/ionic',
         ionicAngular:     '../../lib/ionic/js/ionic-angular',
-        text:             '../../lib/text'
+        text:             '../../lib/text',
+        step: "step/lib/step",
+        whispeerHelper: "helper/helper",
+        bluebird: "../../lib/bluebird/js/browser/bluebird",
+        jquery: "../../lib/jquery/jquery",
+        requirejs: "../../lib/requirejs/require",
+        socket: "../../lib/socket.io-client/socket.io",
+        socketStream: "libs/socket.io-stream",
+        qtip: "../../lib/qtip2/basic/jquery.qtip",
+        imageLib: "../../lib/blueimp-load-image/js/load-image",
+        localizationModule: "../../lib/angular-i18n-directive/src/localizationModule",
+        workerQueue: "../../lib/worker-queue.js/src/index",
+        PromiseWorker: "../../lib/require-promise-worker.js/src/index",
+        dexie: "../../lib/dexie/dist/latest/Dexie",
+        debug: "../../lib/visionmedia-debug/dist/debug"
     },
     shim: {
         angular : {exports : 'angular'},
