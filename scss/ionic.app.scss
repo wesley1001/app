@@ -29,3 +29,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/assets/lib/ionic/scss/ionic";
+
+.card-assertive {
+	box-shadow: 0 1px 3px rgba($assertive, 0.3);
+	.item {
+		border: 1px solid $assertive !important;
+	}
+}
+

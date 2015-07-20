@@ -14,8 +14,8 @@
 		<script src="lib/requirejs/require.js" data-main="assets/js/requireConfig" data-initial="bootstrapLogin"></script>
 	</head>
 	<body>
-		<ion-view view-title="Anmelden" hide-nav-bar="true" data-ng-controller="ssn.loginController">
-			<ion-content>
+		<ion-view view-title="Anmelden" data-ng-controller="ssn.loginController">
+			<ion-content class="padding">
 				<form>
 					<h1 class="center padding-top-extra noMargin-bottom" id="loginView-headline">Anmelden</h1>
 					<div class="list list-inset">
@@ -28,15 +28,12 @@
 							<input type="password" id="password" placeholder="Dein Passwort" data-ng-model="login.password">
 						</label>
 					</div>
-					<div class="errors inputSandwich inputSandwich-middle" data-ng-cloak>
-						<div class="error" data-ng-if="login.failureCode > 1" id="errorLogin">Login failed{{ i18n.login.loginFailed }}</div>
-						<div class="error" data-ng-if="login.failureCode == 0" id="errorLogin">Unknown Username{{ i18n.login.unknownName }}</div>
-						<div class="error" data-ng-if="login.failureCode == 1" id="errorLogin">Wrong Password{{ i18n.login.wrongPassword }}</div>
-					</div>
-					<div class="padding">
-						<savebutton id="loginformsubmit" data-noiniticon data-state="login.state" class="button button-block button-balanced" type="submit" data-ng-click="login.login()">
-							Anmelden
-						</savebutton>
+					<div class="card card-assertive" data-ng-cloak data-ng-if="login.failureCode >= 0">
+						<div class="item item-text-wrap assertive">
+							<span data-ng-if="login.failureCode > 1">Login failed{{ i18n.login.loginFailed }}</span>
+							<span data-ng-if="login.failureCode == 0">Unknown Username{{ i18n.login.unknownName }}</span>
+							<span data-ng-if="login.failureCode == 1">Wrong Password{{ i18n.login.wrongPassword }}</span>
+						</div>
 					</div>
 				</form>
 			</ion-content>
