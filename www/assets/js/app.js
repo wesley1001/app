@@ -2,7 +2,13 @@ define([
 	"angular",
 	"ionic",
 	"controllers",
-	"services"
+	"services",
+	"config/localizationConfig",
+	"localizationModule",
+	"services/locationService",
+	"services/socketService",
+	"services/storageService",
+	"services/sessionService"
 ], function (angular) {
 	// Ionic Starter App
 
@@ -11,7 +17,15 @@ define([
 	// the 2nd parameter is an array of "requires"
 	// "starter.services" is found in services.js
 	// "starter.controllers" is found in controllers.js
-	return angular.module("whispeer", ["ionic", "whispeer.controllers", "whispeer.services"])
+	return angular.module("whispeer", [
+		"ionic",
+		"whispeer.controllers",
+		"whispeer.services",
+		"ssn.services",
+		//"ssn.directives",
+		"ssn.locale.config",
+		"localization"
+	])
 		.run(function($ionicPlatform) {
 			$ionicPlatform.ready(function() {
 				// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

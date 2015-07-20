@@ -158,7 +158,9 @@ define(["angular"], function (angular) {
             }
         ];
     })
-    .controller("SettingsCtrl", function() {
-
-    });
+    .controller("SettingsCtrl", ["$scope", "ssn.sessionService", function($scope, sessionService) {
+        $scope.logout = function () {
+            sessionService.logout();
+        };
+    }]);
 });
