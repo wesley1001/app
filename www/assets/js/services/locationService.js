@@ -9,7 +9,7 @@ define(["services/serviceModule", "whispeerHelper"], function (serviceModule, h)
 
 		var api = {
 			setTopLocation: function (url) {
-				window.top.location = url;
+				window.location = url;
 			},
 			mainPage: function () {
 				api.setTopLocation("/main.html");
