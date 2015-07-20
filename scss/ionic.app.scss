@@ -37,3 +37,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	}
 }
 
+.spinner-button {
+	position: relative;
+	display: inline-block;
+	width: 28px;
+	height: 28px;
+	svg {
+		position: absolute;
+		top: 7px;
+		left: 0;
+	}
+}

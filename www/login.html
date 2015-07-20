@@ -35,6 +35,9 @@
 							<span data-ng-if="login.failureCode == 1">Wrong Password{{ i18n.login.wrongPassword }}</span>
 						</div>
 					</div>
+					<savebutton id="loginformsubmit" data-noiniticon data-state="login.state" class="button-block" type="submit" data-ng-click="login.login()">
+						Anmelden
+					</savebutton>
 				</form>
 			</ion-content>
 		</ion-view>

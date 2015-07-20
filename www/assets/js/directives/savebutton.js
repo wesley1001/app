@@ -11,9 +11,8 @@ define(["directives/directivesModule"], function (directivesModule) {
 			templateUrl: "assets/views/directives/saveButton.html",
 			replace: true,
 			link: function (scope, iElement, iAttrs) {
-				scope.successIcon = "fa-check-circle";
-				scope.initIcon = "fa-check-circle";
-				scope.failureIcon = "fa-times-circle";
+				scope.successIcon = "ion-checkmark-circled";
+				scope.failureIcon = "ion-close-circled";
 
 				if (iAttrs.initicon) {
 					scope.initIcon = iAttrs.initicon;
