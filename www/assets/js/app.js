@@ -2,9 +2,7 @@ define([
 	"angular",
 	"ionic",
 	"controllers",
-	"services",
-	"login/loginModule",
-	"login/loginController"
+	"services"
 ], function (angular) {
 	// Ionic Starter App
 
@@ -13,7 +11,7 @@ define([
 	// the 2nd parameter is an array of "requires"
 	// "starter.services" is found in services.js
 	// "starter.controllers" is found in controllers.js
-	return angular.module("whispeer", ["ionic", "whispeer.controllers", "whispeer.services", "ssn.login"])
+	return angular.module("whispeer", ["ionic", "whispeer.controllers", "whispeer.services"])
 		.run(function($ionicPlatform) {
 			$ionicPlatform.ready(function() {
 				// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -36,11 +34,6 @@ define([
 
 			// Each tab has its own nav history stack:
 
-			.state("login", {
-				url: "/login",
-				templateUrl: "assets/views/pages/login.html",
-				controller: "ssn.loginController"
-			})
 			.state("main", {
 				url: "/main",
 				templateUrl: "assets/views/pages/main.html"
@@ -72,7 +65,7 @@ define([
 			});
 
 			// if none of the above states are matched, use this as the fallback
-			$urlRouterProvider.otherwise("/login");
+			$urlRouterProvider.otherwise("/main/chats");
 		})
 		.directive("userimage", function () {
 			return {

@@ -8,20 +8,25 @@ define(["services/serviceModule", "whispeerHelper"], function (serviceModule, h)
 		var blockedReturnUrls = ["/b2c", "/recovery"];
 
 		var api = {
+			setTopLocation: function (url) {
+				window.top.location = url;
+			},
 			mainPage: function () {
-				$location.path("/main");
+				api.setTopLocation("/main.html");
 			},
 			landingPage: function () {
-				$location.path("/login");
+				api.setTopLocation("/login.html");
 			},
 			isLoginPage: function () {
-				return true;
+				return window.top.location.pathname.indexOf("/login.html") !== -1;
+			},
+			loginPage: function () {
+				api.setTopLocation("/login.html");
 			},
 			isBlockedReturnUrl: function (url) {
 				return false;
 			},
 			setReturnUrl: function (url) {
-
 			},
 			loadInitialURL: function () {
 				$location.path("/main");

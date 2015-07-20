@@ -55,8 +55,12 @@ requirejs.config({
     priority: [
         'angular',
         'ionic'
-    ],
-    deps: [
-        'bootstrap'
     ]
 });
+
+var initialElement = document.querySelectorAll("script[data-initial]");
+
+if (initialElement.length === 1) {
+    var initialModule = initialElement[0].getAttribute("data-initial");
+    requirejs([initialModule]);
+}

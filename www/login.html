@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<title>whispeer</title>
+    	<!-- compiled css output -->
+		<link href="assets/css/ionic.app.css" rel="stylesheet">
+		<link href="assets/css/style.css" rel="stylesheet">
+
+		<!-- cordova script (this will be a 404 during development) -->
+		<script src="cordova.js"></script>
+
+		<script src="lib/requirejs/require.js" data-main="assets/js/requireConfig" data-initial="bootstrapLogin"></script>
+	</head>
+	<body>
+		<!--
+			The nav bar that will be updated as we navigate between views.
+		-->
+		<ion-nav-bar class="bar-balanced">
+			<ion-nav-back-button class="button-clear">
+				<i class="ion-chevron-left"></i> Zurück
+			</ion-nav-back-button>
+		</ion-nav-bar>
+		<!--
+			The views will be rendered in the <ion-nav-view> directive below
+			Templates are in the /templates folder (but you could also
+			have templates inline in this html file if you'd like).
+		-->
+		<ion-view view-title="Anmelden" hide-nav-bar="true" data-ng-controller="ssn.loginController">
+			<ion-content>
+				<form>
+					<h1 class="center padding-top-extra noMargin-bottom" id="loginView-headline">Anmelden</h1>
+					<div class="list list-inset">
+						<label class="item item-input item-stacked-label">
+							<span class="input-label">Benutzername</span>
+							<input type="text" id="mail" placeholder="john" data-ng-model="login.identifier">
+						</label>
+						<label class="item item-input item-stacked-label">
+							<span class="input-label">Passwort</span>
+							<input type="password" id="password" placeholder="Dein Passwort" data-ng-model="login.password">
+						</label>
+					</div>
+					<div class="errors inputSandwich inputSandwich-middle" data-ng-cloak>
+						<div class="error" data-ng-if="login.failureCode > 1" id="errorLogin">Login failed{{ i18n.login.loginFailed }}</div>
+						<div class="error" data-ng-if="login.failureCode == 0" id="errorLogin">Unknown Username{{ i18n.login.unknownName }}</div>
+						<div class="error" data-ng-if="login.failureCode == 1" id="errorLogin">Wrong Password{{ i18n.login.wrongPassword }}</div>
+					</div>
+					<div class="padding">
+						<savebutton id="loginformsubmit" data-noiniticon data-state="login.state" class="button button-block button-balanced" type="submit" data-ng-click="login.login()">
+							Anmelden
+						</savebutton>
+					</div>
+				</form>
+			</ion-content>
+		</ion-view>
+
+	</body>
+</html>
