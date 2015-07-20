@@ -2,7 +2,6 @@
 
 define([
 	"angular",
-	"login/loginModule",
 	"login/loginController",
 	"ionicAngular"
 ], function (angular) {
