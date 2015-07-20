@@ -12,16 +12,16 @@ define(["services/serviceModule", "whispeerHelper"], function (serviceModule, h)
 				window.location = url;
 			},
 			mainPage: function () {
-				api.setTopLocation("/main.html");
+				api.setTopLocation("main.html");
 			},
 			landingPage: function () {
-				api.setTopLocation("/login.html");
+				api.setTopLocation("login.html");
 			},
 			isLoginPage: function () {
-				return window.top.location.pathname.indexOf("/login.html") !== -1;
+				return window.top.location.pathname.indexOf("login.html") !== -1;
 			},
 			loginPage: function () {
-				api.setTopLocation("/login.html");
+				api.setTopLocation("login.html");
 			},
 			isBlockedReturnUrl: function (url) {
 				return false;
