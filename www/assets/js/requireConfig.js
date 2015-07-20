@@ -32,7 +32,7 @@ requirejs.config({
         step: "step/lib/step",
         whispeerHelper: "helper/helper",
         bluebird: "../../lib/bluebird/js/browser/bluebird",
-        jquery: "../../lib/jquery/jquery",
+        jquery: "../../lib/jquery/dist/jquery",
         requirejs: "../../lib/requirejs/require",
         socket: "../../lib/socket.io-client/socket.io",
         socketStream: "libs/socket.io-stream",
