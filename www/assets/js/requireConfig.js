@@ -28,6 +28,7 @@ var base = "/";
 if (window.location.href.indexOf("file:///") === 0) {
     base = window.location.href.replace("file://", "");
     base = base.replace(/\#\!(.*)/g, "");
+    base = base.replace(/[^\/]*$/g, "");
 }
 
 var baseElement = document.createElement("base");
