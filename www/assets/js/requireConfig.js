@@ -22,8 +22,14 @@
 
 var startup = new Date().getTime();
 
+var baseUrl = "assets/js";
+
+if (window.location.href.indexOf("file://") > -1) {
+    baseUrl = window.location.href.replace("main.html", "") + baseUrl;
+}
+
 requirejs.config({
-    baseUrl: "/assets/js",
+    baseUrl: baseUrl,
     paths: {
         angular:          '../../lib/angular/angular',
         angularAnimate:   '../../lib/angular-animate/angular-animate',
