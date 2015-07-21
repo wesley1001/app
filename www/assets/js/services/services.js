@@ -8,7 +8,7 @@ define([
 	"services/sessionHelper",
 	"services/profileService",
 	"services/storageService",
-	//"services/friendsService",
+	"services/friendsService",
 	"services/initService",
 	"services/settingsService",
 	"services/migrationService",
