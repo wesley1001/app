@@ -13,7 +13,7 @@ define([
 	"services/settingsService",
 	"services/migrationService",
 	"services/errorService",
-	//"services/blobService",
+	"services/blobService",
 	"services/trustService",
 	"services/cacheService",
 	//"services/imageUploadService",
