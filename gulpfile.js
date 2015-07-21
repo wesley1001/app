@@ -10,7 +10,7 @@ var sh = require('shelljs');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  less: ['./www/assets/less/**/*.less']
+  less: ['./less/**/*.less']
 };
 
 gulp.task('default', ['sass', 'less']);
