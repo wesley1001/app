@@ -23,10 +23,16 @@
 var startup = new Date().getTime();
 
 var baseUrl = "assets/js";
+var base = "/";
 
-if (window.location.href.indexOf("file://") > -1) {
-    baseUrl = window.location.href.replace("main.html", "") + baseUrl;
+if (window.location.href.indexOf("file:///") === 0) {
+    base = window.location.href.replace("file://", "");
+    base = base.replace(/\#\!(.*)/g, "");
 }
+
+var baseElement = document.createElement("base");
+baseElement.setAttribute("href", base);
+document.getElementsByTagName("head")[0].appendChild(baseElement);
 
 requirejs.config({
     baseUrl: baseUrl,
