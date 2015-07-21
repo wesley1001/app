@@ -61,7 +61,7 @@ requirejs.config({
         debug: "../../lib/visionmedia-debug/dist/debug"
     },
     shim: {
-        angular : {exports : 'angular'},
+        angular : {exports : 'angular', deps: ['jquery']},
         angularAnimate : {deps: ['angular']},
         angularSanitize : {deps: ['angular']},
         uiRouter : {deps: ['angular']},
