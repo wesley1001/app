@@ -20,7 +20,23 @@
 	}
 })(this.console = this.console || {}); // Using `this` for web workers.
 
+var startup = new Date().getTime();
+
+var baseUrl = "assets/js";
+var base = "/";
+
+if (window.location.href.indexOf("file:///") === 0) {
+    base = window.location.href.replace("file://", "");
+    base = base.replace(/\#\!(.*)/g, "");
+    base = base.replace(/[^\/]*$/g, "");
+}
+
+var baseElement = document.createElement("base");
+baseElement.setAttribute("href", base);
+document.getElementsByTagName("head")[0].appendChild(baseElement);
+
 requirejs.config({
+    baseUrl: baseUrl,
     paths: {
         angular:          '../../lib/angular/angular',
         angularAnimate:   '../../lib/angular-animate/angular-animate',
@@ -32,7 +48,7 @@ requirejs.config({
         step: "step/lib/step",
         whispeerHelper: "helper/helper",
         bluebird: "../../lib/bluebird/js/browser/bluebird",
-        jquery: "../../lib/jquery/jquery",
+        jquery: "../../lib/jquery/dist/jquery",
         requirejs: "../../lib/requirejs/require",
         socket: "../../lib/socket.io-client/socket.io",
         socketStream: "libs/socket.io-stream",
