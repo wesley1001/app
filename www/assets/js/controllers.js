@@ -64,6 +64,19 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
 
         $scope.scrollLock = false;
 
+        $scope.markRead = function () {
+            $scope.activeTopic.obj.markRead(errorService.criticalError);
+        };
+
+        $scope.loadMoreMessages = function () {
+            $scope.scrollLock = true;
+            $scope.loadingMessages = true;
+            $scope.activeTopic.obj.loadMoreMessages(function () {
+                $scope.loadingMessages = false;
+                $scope.scrollLock = false;
+            });
+        };
+
         $scope.$on("$destroy", function () {
             messageService.setActiveTopic(0);
         });
@@ -91,6 +104,39 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
                     }
                 });
             }));
+        };
+
+        $scope.loadActiveTopic($stateParams.chatId);
+
+        var sendMessageState = new State();
+        $scope.sendMessageState = sendMessageState.data;
+
+        $scope.sendMessage = function () {
+            sendMessageState.pending();
+
+            var images = [];
+            var text = $scope.activeTopic.newMessage;
+
+            if (text === "" && images.length === 0) {
+                sendMessageState.failed();
+                return;
+            }
+
+            $scope.canSend = false;
+
+            step(function () {
+                messageService.sendMessage($scope.activeTopic.id, text, images, this);
+            }, h.sF(function () {
+                $scope.activeTopic.newMessage = "";
+                $scope.markRead(errorService.criticalError);
+                $timeout(function () {
+                    sendMessageState.reset();
+                }, 2000);
+                this.ne();
+            }), function (e) {
+                $scope.canSend = true;
+                this(e);
+            }, errorService.failOnError(sendMessageState));
         };
 
         var burstMessageCount = 0, bursts = [], burstTopic;
@@ -200,8 +246,6 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
 
             return bursts;
         };
-
-        $scope.loadActiveTopic($stateParams.chatId);
     }])
     .controller('NewMessageCtrl', function($scope) {
         $scope.users = [
