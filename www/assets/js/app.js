@@ -8,7 +8,8 @@ define([
 	"services/services",
 	"messages/messagesLoader",
 	"user/userLoader",
-	"models/models"
+	"models/models",
+	"config/interceptorsConfig"
 ], function (angular) {
 	// Ionic Starter App
 
@@ -26,10 +27,11 @@ define([
 		"ssn.user",
 		"ssn.models",
 		//"ssn.directives",
+		"ssn.interceptors.config",
 		"ssn.locale.config",
 		"localization"
 	])
-		.run(["$ionicPlatform", "ssn.messageService", "ssn.sessionService", function($ionicPlatform) {
+		.run(["$ionicPlatform", "ssn.messageService", "ssn.sessionService", "ssn.trustService", function($ionicPlatform) {
 			$ionicPlatform.ready(function() {
 				// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 				// for form inputs)

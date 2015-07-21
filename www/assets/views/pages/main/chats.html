@@ -14,7 +14,7 @@
 					<userimage class="userimg--topic" data-ng-repeat="partner in chat.partners" data-user="partner">
 				</div>
 				<h2><span data-ng-repeat="partner in chat.partners">{{partner.name}}{{$last?"":", "}}</span></h2>
-				<p>{{chat.latestMessage.sender.basic.shortname}}: {{chat.latestMessage.text}}</p>
+				<p>{{chat.latestMessage.data.sender.basic.shortname}}: {{chat.latestMessage.data.text}}</p>
 				<i class="icon ion-chevron-right icon-accessory"></i>
 			</ion-item>
 		</ion-list>

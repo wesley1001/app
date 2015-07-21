@@ -20,7 +20,10 @@
 	}
 })(this.console = this.console || {}); // Using `this` for web workers.
 
+var startup = new Date().getTime();
+
 requirejs.config({
+    baseUrl: "/assets/js",
     paths: {
         angular:          '../../lib/angular/angular',
         angularAnimate:   '../../lib/angular-animate/angular-animate',

@@ -1,7 +1,13 @@
 
-define(["angular"], function (angular) {
+define(["angular", "asset/state"], function (angular, State) {
     angular.module('whispeer.controllers', [])
-    .controller('rootCtrl', function($scope, $location) {
+    .controller('rootCtrl', function($scope, $location, $rootScope) {
+        $scope.loading = true;
+
+        $rootScope.$on("ssn.ownLoaded", function () {
+            $scope.loading = false;
+        });
+
         $scope.loadNewMessageView = function () {
             $location.path('newMessage');
         };
@@ -12,10 +18,42 @@ define(["angular"], function (angular) {
           disableBack: true
         });
     })
-    .controller('ChatsCtrl', function($scope, Chats) {
-        $scope.login = false;
-        $scope.chats = Chats.all();
-    })
+    .controller('ChatsCtrl', ["$scope", "ssn.messageService", "ssn.errorService", function($scope, messageService, errorService) {
+        $scope.loggedin = true;
+
+        $scope.remove = function(chat) {
+            Chats.remove(chat);
+        };
+
+        $scope.chats = messageService.data.latestTopics.data;
+
+        var topicsLoadingState = new State();
+        $scope.topicsLoadingState = topicsLoadingState.data;
+
+        function loadTopics() {
+            if (topicsLoadingState.isPending()) {
+                return;
+            }
+
+            topicsLoadingState.pending();
+            step(function () {
+                messageService.loadMoreLatest(this);    
+            }, errorService.failOnError(topicsLoadingState));
+        }
+
+        if ($scope.chats.length < 10) {
+            loadTopics();
+        }
+
+        $scope.loadMoreTopics = function () {
+            loadTopics();
+        };
+
+        messageService.loadMoreLatest(function () {
+            $scope.chats = messageService.data.latestTopics.data;
+        });
+
+    }])
     .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
         $scope.login = false;
         $scope.hideTabs = true;
