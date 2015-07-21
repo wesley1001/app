@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<title>whispeer</title>
+    	<!-- compiled css output -->
+		<link href="assets/css/ionic.app.css" rel="stylesheet">
+		<link href="assets/css/style.css" rel="stylesheet">
+
+		<!-- cordova script (this will be a 404 during development) -->
+		<script src="cordova.js"></script>
+
+		<script src="lib/requirejs/require.js" data-main="assets/js/requireConfig" data-initial="bootstrapLogin"></script>
+	</head>
+	<body>
+		<ion-view view-title="Anmelden" data-ng-controller="ssn.loginController">
+			<ion-content class="padding">
+				<form>
+					<h1 class="center padding-top-extra noMargin-bottom" id="loginView-headline">Anmelden</h1>
+					<div class="list list-inset">
+						<label class="item item-input item-stacked-label">
+							<span class="input-label">Benutzername</span>
+							<input type="text" id="mail" placeholder="john" data-ng-model="login.identifier">
+						</label>
+						<label class="item item-input item-stacked-label">
+							<span class="input-label">Passwort</span>
+							<input type="password" id="password" placeholder="Dein Passwort" data-ng-model="login.password">
+						</label>
+					</div>
+					<div class="card card-assertive" data-ng-cloak data-ng-if="login.failureCode >= 0">
+						<div class="item item-text-wrap assertive">
+							<span data-ng-if="login.failureCode > 1">Login failed{{ i18n.login.loginFailed }}</span>
+							<span data-ng-if="login.failureCode == 0">Unknown Username{{ i18n.login.unknownName }}</span>
+							<span data-ng-if="login.failureCode == 1">Wrong Password{{ i18n.login.wrongPassword }}</span>
+						</div>
+					</div>
+					<savebutton id="loginformsubmit" data-noiniticon data-state="login.state" class="button-block" type="submit" data-ng-click="login.login()">
+						Anmelden
+					</savebutton>
+				</form>
+			</ion-content>
+		</ion-view>
+
+	</body>
+</html>

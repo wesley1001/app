@@ -1,4 +1,15 @@
-define(["angular", "ionic", "controllers", "services"], function (angular) {
+define([
+	"angular",
+	"ionic",
+	"controllers",
+	"services",
+	"config/localizationConfig",
+	"localizationModule",
+	"services/locationService",
+	"services/socketService",
+	"services/storageService",
+	"services/sessionService"
+], function (angular) {
 	// Ionic Starter App
 
 	// angular.module is a global place for creating, registering and retrieving Angular modules
@@ -6,7 +17,15 @@ define(["angular", "ionic", "controllers", "services"], function (angular) {
 	// the 2nd parameter is an array of "requires"
 	// "starter.services" is found in services.js
 	// "starter.controllers" is found in controllers.js
-	return angular.module("whispeer", ["ionic", "whispeer.controllers", "whispeer.services"])
+	return angular.module("whispeer", [
+		"ionic",
+		"whispeer.controllers",
+		"whispeer.services",
+		"ssn.services",
+		//"ssn.directives",
+		"ssn.locale.config",
+		"localization"
+	])
 		.run(function($ionicPlatform) {
 			$ionicPlatform.ready(function() {
 				// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -29,11 +48,6 @@ define(["angular", "ionic", "controllers", "services"], function (angular) {
 
 			// Each tab has its own nav history stack:
 
-			.state("login", {
-				url: "/login",
-				templateUrl: "assets/views/pages/login.html",
-				controller: "LoginCtrl"
-			})
 			.state("main", {
 				url: "/main",
 				templateUrl: "assets/views/pages/main.html"
@@ -65,40 +79,7 @@ define(["angular", "ionic", "controllers", "services"], function (angular) {
 			});
 
 			// if none of the above states are matched, use this as the fallback
-			$urlRouterProvider.otherwise("/login");
-		})
-		.directive("savebutton", function () {
-			return {
-				transclude: true,
-				scope:	{
-					state:		"=state",
-					translation:"@translation"
-				},
-				restrict: "E",
-				templateUrl: "assets/views/directives/saveButton.html",
-				replace: true,
-				link: function (scope, iElement, iAttrs) {
-					scope.successIcon = "fa-check-circle";
-					scope.initIcon = "fa-check-circle";
-					scope.failureIcon = "fa-times-circle";
-
-					if (iAttrs.initicon) {
-						scope.initIcon = iAttrs.initicon;
-					}
-
-					if (iAttrs.successicon) {
-						scope.successIcon = iAttrs.successicon;
-					}
-
-					if (iAttrs.failureicon) {
-						scope.failureIcon = iAttrs.failureicon;
-					}
-
-					if (typeof iAttrs.noiniticon !== "undefined") {
-						delete scope.initIcon;
-					}
-				}
-			};
+			$urlRouterProvider.otherwise("/main/chats");
 		})
 		.directive("userimage", function () {
 			return {

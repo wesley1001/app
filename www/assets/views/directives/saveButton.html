@@ -1,10 +1,7 @@
-<button data-ng-class="{'button-balanced': state.success || state.init, 'button-light button-saveButton--operation': state.pending, 'button-assertive': state.failed}" class="button">
-	<i data-ng-if="state.success && successIcon" class="fa fa-fw {{successIcon}}"></i>
-	<i data-ng-if="state.init && initIcon" class="fa fa-fw {{initIcon}}"></i>
-	<i data-ng-if="state.failed && failureIcon" class="fa fa-fw {{failureIcon}}"></i>
-	<i data-ng-if="state.pending" class="saveButton-spinner fa fa-fw fa-spinner fa-spin"></i>
-	<span data-ng-if="state.success" data-i18n="{{translation}}.success">Success</span>
-	<span data-ng-if="state.init" data-i18n="{{translation}}.init">Init</span>
-	<span data-ng-if="state.failed" data-i18n="{{translation}}.fail">Fail</span>
-	<span data-ng-if="state.pending" data-i18n="{{translation}}.pending">Pending</span>
+<button data-ng-class="{'button-balanced': state.success || state.init, 'button-dark': state.pending, 'button-assertive': state.failed}" class="button">
+	<i data-ng-if="state.success && successIcon" class="icon {{successIcon}}"></i>
+	<i data-ng-if="state.init && initIcon" class="icon {{initIcon}}"></i>
+	<i data-ng-if="state.failed && failureIcon" class="icon {{failureIcon}}"></i>
+	<ion-spinner class="spinner-light spinner-button" icon="crescent" data-ng-if="state.operation"></ion-spinner>
+	<span ng-transclude></span>
 </button>

@@ -1,18 +1,27 @@
 <ion-view view-title="Anmelden" hide-nav-bar="true">
 	<ion-content>
-		<h1 class="center padding-top-extra noMargin-bottom" id="loginView-headline">Anmelden</h1>
-		<div class="list list-inset">
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Benutzername</span>
-				<input type="text" placeholder="john">
-			</label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Passwort</span>
-				<input type="password" placeholder="Dein Passwort">
-			</label>
-		</div>
-		<div class="padding">
-			<a ui-sref="main" class="button button-block button-balanced">Anmelden</a>
-		</div>
+		<form>
+			<h1 class="center padding-top-extra noMargin-bottom" id="loginView-headline">Anmelden</h1>
+			<div class="list list-inset">
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Benutzername</span>
+					<input type="text" id="mail" placeholder="john" data-ng-model="login.identifier">
+				</label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Passwort</span>
+					<input type="password" id="password" placeholder="Dein Passwort" data-ng-model="login.password">
+				</label>
+			</div>
+			<div class="errors inputSandwich inputSandwich-middle" data-ng-cloak>
+				<div class="error" data-ng-if="login.failureCode > 1" id="errorLogin">Login failed{{ i18n.login.loginFailed }}</div>
+				<div class="error" data-ng-if="login.failureCode == 0" id="errorLogin">Unknown Username{{ i18n.login.unknownName }}</div>
+				<div class="error" data-ng-if="login.failureCode == 1" id="errorLogin">Wrong Password{{ i18n.login.wrongPassword }}</div>
+			</div>
+			<div class="padding">
+				<savebutton id="loginformsubmit" data-noiniticon data-state="login.state" class="button button-block button-balanced" type="submit" data-ng-click="login.login()">
+					Anmelden
+				</savebutton>
+			</div>
+		</form>
 	</ion-content>
 </ion-view>
