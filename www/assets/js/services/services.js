@@ -8,7 +8,7 @@ define([
 	"services/sessionHelper",
 	"services/profileService",
 	"services/storageService",
-	"services/friendsService",
+	//"services/friendsService",
 	"services/initService",
 	"services/settingsService",
 	"services/migrationService",
@@ -16,6 +16,6 @@ define([
 	"services/blobService",
 	"services/trustService",
 	"services/cacheService",
-	"services/imageUploadService",
+	//"services/imageUploadService",
 	"services/locationService"
 ], function () {});
