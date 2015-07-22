@@ -13,7 +13,7 @@
 			<ul class="u-unstyled">
 				<li class="messageView-loadingText" data-ng-if="activeTopic.remaining > 0">
 					<ion-spinner id="messageView-loadingIcon" class="spinner-light" data-icon="crescent"></ion-spinner>
-					<span data-i18n="messages.remaining|count={{activeTopic.remaining}}"></span>
+					<span data-i18n="messages.remaining"></span>
 				</li>
 				<p data-i18n="messages.endOfStream" data-ng-if="activeTopic.remaining == 0" id="messagesView-endOfStream"><span data-for="date">{{::messageBursts()[0].firstMessage().timestamp|date}}</span></p>
 				<li class="burst" data-ng-repeat="burst in (bursts = messageBursts())" data-ng-class="{me:burst.isMe(), other:burst.isOther()}">
