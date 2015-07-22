@@ -359,7 +359,8 @@
 }
 
 #inputWrap { // this is the form
-	display: block;
+	display: flex;
+	flex-wrap: nowrap;
 	position: absolute;
 	width: 100%;
 	height: @form-height + 2 * @form-margin;
@@ -372,13 +373,20 @@
 		font-size: 16px;
 		height: 100%;
 		border-radius: 0px;
-		.column(5,6,left,0);
+		width: 100%;
+		flex-shrink: 1;
 	}
 	#sendmessage {
-		.column(1,6,left,1%);
 		margin: @form-margin 1% 0 0;
 		height: 50px;
 		line-height: 50px;
-		font-size: 2em;
+		flex-shrink: 0;
+		.icon {
+			display: inline-block;
+			vertical-align: baseline;
+		}
+	}
+	#sendmessage {
+		width: 70px;
 	}
 }

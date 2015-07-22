@@ -11,6 +11,8 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
         $scope.loadNewMessageView = function () {
             $location.path('newMessage');
         };
+
+        $scope.platform = ionic.Platform.platform();
     })
     .controller('LoginCtrl', function($scope, $ionicHistory) {
         $scope.login = true;
@@ -37,7 +39,7 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
 
             topicsLoadingState.pending();
             step(function () {
-                messageService.loadMoreLatest(this);    
+                messageService.loadMoreLatest(this);
             }, errorService.failOnError(topicsLoadingState));
         }
 
