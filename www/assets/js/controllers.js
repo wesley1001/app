@@ -108,6 +108,7 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
             topic.loadInitialMessages(this);
         }), h.sF(function () {
             $scope.topicLoaded = true;
+            $ionicScrollDelegate.scrollBottom();
 
             if (topic.data.messages.length > 0) {
                 topic.markRead(errorService.criticalError);
