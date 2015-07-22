@@ -83,7 +83,11 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
         };
 
         function stabilizeScroll() {
-            $ionicScrollDelegate.scrollBottom();
+            var view = $ionicScrollDelegate.getScrollView();
+
+            if (view.getScrollMax().top - $ionicScrollDelegate.getScrollPosition().top < 10) {
+                $ionicScrollDelegate.scrollBottom();
+            }
         }
 
         topicLoadingState.pending();
