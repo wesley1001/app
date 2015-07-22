@@ -1,7 +1,21 @@
-.platform-android .has-tabs {
+.has-tabs {
 	position: absolute;
-	height: 100%;
 	width: 100%;
+}
+.platform-android .has-tabs {
 	top: 48px;
 	bottom: 0;
+}
+.platform-ios .bar {
+	height: 64px;
+	.title, .buttons {
+		margin-top: 20px;
+	}
+}
+.platform-ios .has-header {
+	top: 64px;
+}
+.platform-ios .has-tabs {
+	top: 0;
+	bottom: 48px;
 }
