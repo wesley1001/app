@@ -138,58 +138,40 @@ define([
 				}), cb);
 			};
 
-			var messagesBuffer = [];
-			var delayMessageAdding = false;
+			function addMessagesToList(messages) {
+				messages.forEach(function (message) {
+					messagesByID[messages.getID()] = message;
+				});
 
-			function addMessageToList(m) {
-				messagesByID[m.getID()] = m;
-
-				//add to message list
-				messagesBuffer.push(m);
-				
-				if (!delayMessageAdding) {
-					theTopic.runMessageAdding();
-				}
-			}
-
-			this.delayMessageAdding = function () {
-				delayMessageAdding = true;
-			};
-
-			this.runMessageAdding = function () {
-				delayMessageAdding = false;
-
-				messages.join(messagesBuffer);
-				dataMessages.join(messagesBuffer.map(function (e) {
+				messages.join(messages);
+				dataMessages.join(messages.map(function (e) {
 					return e.data;
 				}));
 
-				messagesBuffer = [];
+				theTopic.data.latestMessage = messages[messages.length - 1];				
+			}
 
-				theTopic.data.latestMessage = messages[messages.length - 1];
+			this.addMessages = function (messages, addUnread) {
+				messages.forEach(function (message) {
+					var id = message.getID();
+					data.newestTime = Math.max(message.getTime(), data.newestTime);
+
+					message.verifyParent(theTopic);
+
+					if (addUnread && !theTopic.messageUnread(id) && !message.isOwn()) {
+						setUnread(unreadMessages.concat([id]));
+					}
+
+					message.unread = theTopic.messageUnread(id);
+				});
+
+				addMessagesToList(messages);
+
+				topicArray.resort();
 			};
 
-			this.addMessage = function addMessageF(m, addUnread, cb) {
-				step(function () {
-					data.newestTime = Math.max(m.getTime(), data.newestTime);
-					topicArray.resort();
-
-					m.verifyParent(theTopic);
-					m.loadFullData(this);
-				}, h.sF(function () {
-					addMessageToList(m);
-
-					if (addUnread) {
-						if (!theTopic.messageUnread(m.getID()) && !m.isOwn()) {
-							setUnread(unreadMessages.concat([m.getID()]));
-						}
-					}
-					m.unread = theTopic.messageUnread(m.getID());
-
-					if (cb) {
-						this.ne();
-					}
-				}), cb);
+			this.addMessage = function addMessageF(message, addUnread) {
+				this.addMessages([message], addUnread);	
 			};
 
 			this.verify = function verify(cb) {
@@ -268,22 +250,22 @@ define([
 						this.last.ne();
 					}
 				}, h.sF(function (data) {
-					theTopic.delayMessageAdding();
 					console.log("Message server took: " + (new Date().getTime() - loadMore));
 
 					remaining = data.remaining;
 
 					if (data.messages) {
-						var i;
-						for (i = 0; i < data.messages.length; i += 1) {
-							makeMessage(data.messages[i], false, this.parallel());
-						}
+						data.messages.forEach(function (messageData) {
+							makeMessage(messageData, this.parallel());
+						}, this);
 					}
 
 					this.parallel()();
-				}), h.sF(function () {
+				}), h.sF(function (messages) {
+					theTopic.addMessages(messages, false);
+
 					theTopic.data.remaining = remaining;
-					theTopic.runMessageAdding();
+
 					console.log("Message loading took: " + (new Date().getTime() - loadMore));
 					this.ne();
 				}), cb);
@@ -468,10 +450,9 @@ define([
 			return t;
 		}
 
-		function makeMessage(data, addUnread, cb) {
-			var m = new Message(data);
-
-			var id = m.getID();
+		function makeMessage(data, cb) {
+			var messageToAdd = new Message(data), theTopic;
+			var id = messageToAdd.getID();
 
 			cb = cb || h.nop;
 
@@ -480,24 +461,28 @@ define([
 				return messages[id];
 			}
 
-			messages[id] = m;
+			messages[id] = messageToAdd;
 
 			step(function () {
-				Topic.get(m.getTopicID(), this);
-			}, h.sF(function (theTopic) {
-				theTopic.addMessage(m, addUnread, this);
-			}), cb);
+				Topic.get(messageToAdd.getTopicID(), this);
+			}, h.sF(function (_theTopic) {
+				theTopic = _theTopic;
 
-			return m;
+				messageToAdd.verifyParent(theTopic);
+				messageToAdd.loadFullData(this);
+			}), h.sF(function () {
+				this.ne(messageToAdd, theTopic);
+			}), cb);
 		}
 
 		function addSocketMessage(messageData) {
 			if (messageData) {
-				var message = makeMessage(messageData, true, function () {
-					$timeout(function () {
-						messageService.notify(message, "message");
-					});
-				});
+				step(function () {
+					makeMessage(messageData, this);
+				}, h.sF(function (messageToAdd, theTopic) {
+					theTopic.addMessage(messageToAdd, true);
+					messageService.notify(messageToAdd, "message");
+				}), errorService.criticalError);
 			}
 		}
 
