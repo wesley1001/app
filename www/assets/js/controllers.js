@@ -54,59 +54,65 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
         });
 
     }])
-    .controller('ChatDetailCtrl', ["$scope", "$stateParams", "$timeout", "ssn.messageService", "ssn.errorService", function($scope, $stateParams, $timeout, messageService, errorService) {
+    .controller('ChatDetailCtrl', [
+        "$scope",
+        "$stateParams",
+        "$timeout",
+        "$ionicScrollDelegate",
+        "ssn.messageService",
+        "ssn.errorService",
+    function($scope, $stateParams, $timeout, $ionicScrollDelegate, messageService, errorService) {
         var MINUTE = 60 * 1000;
 
-        $scope.topicid = 0;
+        var topicLoadingState = new State();
+        $scope.topicLoadingState = topicLoadingState.data;
+
+        var topicID = h.parseDecimal($stateParams.chatId);
 
         $scope.canSend = false;
-        $scope.topicLoaded = false;
-
-        $scope.scrollLock = false;
 
         $scope.markRead = function () {
             $scope.activeTopic.obj.markRead(errorService.criticalError);
         };
 
         $scope.loadMoreMessages = function () {
-            $scope.scrollLock = true;
             $scope.loadingMessages = true;
             $scope.activeTopic.obj.loadMoreMessages(function () {
                 $scope.loadingMessages = false;
-                $scope.scrollLock = false;
             });
         };
 
-        $scope.$on("$destroy", function () {
-            messageService.setActiveTopic(0);
-        });
+        function stabilizeScroll() {
+            var view = $ionicScrollDelegate.getScrollView();
 
-        $scope.loadActiveTopic = function (id) {
-            var theTopic;
-            step(function () {
-                id = parseInt(id, 10);
+            if (view.getScrollMax().top - $ionicScrollDelegate.getScrollPosition().top < 10) {
+                $ionicScrollDelegate.scrollBottom();
+            }
+        }
 
-                messageService.setActiveTopic(id);
-                messageService.getTopic(id, this);
-            }, h.sF(function (topic) {
-                theTopic = topic;
-                $scope.canSend = true;
-                $scope.newMessage = false;
-                theTopic.loadInitialMessages(this);
-            }), h.sF(function () {
-                $timeout(function () {
-                    $scope.activeTopic = theTopic.data;
+        topicLoadingState.pending();
 
-                    $scope.topicLoaded = true;
+        var topic;
+        step(function () {
+            messageService.getTopic(topicID, this);
+        }, h.sF(function (_topic) {
+            topic = _topic;
 
-                    if (theTopic.data.messages.length > 0) {
-                        theTopic.markRead(errorService.criticalError);
-                    }
-                });
-            }));
-        };
+            topic.listen(stabilizeScroll, "addMessages");
+            $scope.activeTopic = topic.data;
 
-        $scope.loadActiveTopic($stateParams.chatId);
+            $scope.canSend = true;
+            $scope.newMessage = false;
+            topic.loadInitialMessages(this);
+        }), h.sF(function () {
+            $scope.topicLoaded = true;
+
+            if (topic.data.messages.length > 0) {
+                topic.markRead(errorService.criticalError);
+            }
+
+            this.ne();
+        }), errorService.failOnError(topicLoadingState));
 
         var sendMessageState = new State();
         $scope.sendMessageState = sendMessageState.data;
