@@ -37,8 +37,8 @@
 		</ion-scroll>
 		<form id="inputWrap">
 			<textarea class="no-resize" focus-me="canSend" id="messageInput" data-advancedsend="sendMessage(activeTopic.newMessage)" type="text" data-ng-model="activeTopic.newMessage" data-i18n-attr="messages.sendMessage.text|placeholder" placeholder="Gib deine Nachricht ein!"></textarea>
-<!-- 			<savebutton id="sendmessage" class="button-outline" data-ng-click="sendMessage(activeTopic.newMessage)" data-translation="messages.sendMessage.send" data-state="sendMessageState" data-noiniticon></savebutton> -->
-			<button id="sendmessage" class="button button-outline button-balanced"><i class="ion-ios-paperplane"></i></button>
+ 			<!--<savebutton id="sendmessage" class="button-outline" data-ng-click="sendMessage(activeTopic.newMessage)" data-translation="messages.sendMessage.send" data-state="sendMessageState" data-noiniticon></savebutton>-->
+			<button id="sendmessage" data-ng-click="sendMessage(activeTopic.newMessage)" class="button button-outline button-balanced"><i class="ion-ios-paperplane"></i></button>
 		</form>
 	</ion-pane>
 </ion-view>
