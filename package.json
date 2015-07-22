@@ -19,7 +19,9 @@
     "build": "bower install",
     "postinstall": "npm run build"
   },
-  "cordovaPlugins": [],
+  "cordovaPlugins": [
+    "org.apache.cordova.vibration"
+  ],
   "cordovaPlatforms": [
     "ios",
     "android"
