@@ -138,13 +138,13 @@ define([
 				}), cb);
 			};
 
-			function addMessagesToList(messages) {
-				messages.forEach(function (message) {
+			function addMessagesToList(messagesToAdd) {
+				messagesToAdd.forEach(function (message) {
 					messagesByID[message.getID()] = message;
 				});
 
-				messages.join(messages);
-				dataMessages.join(messages.map(function (e) {
+				messages.join(messagesToAdd);
+				dataMessages.join(messagesToAdd.map(function (e) {
 					return e.data;
 				}));
 
@@ -166,6 +166,8 @@ define([
 				});
 
 				addMessagesToList(messages);
+
+				theTopic.notify(messages, "addMessages");
 
 				topicArray.resort();
 			};
@@ -254,13 +256,13 @@ define([
 
 					remaining = data.remaining;
 
-					if (data.messages) {
+					if (data.messages && data.messages.length > 0) {
 						data.messages.forEach(function (messageData) {
 							makeMessage(messageData, this.parallel());
 						}, this);
+					} else {
+						this.ne([]);
 					}
-
-					this.parallel()();
 				}), h.sF(function (messages) {
 					theTopic.addMessages(messages, false);
 
@@ -284,6 +286,8 @@ define([
 					this.ne();
 				}), cb);
 			};
+
+			Observer.call(theTopic);
 		};
 
 		Topic.get = function (topicid, cb) {
@@ -460,8 +464,9 @@ define([
 			cb = cb || h.nop;
 
 			if (messages[id]) {
-				$timeout(cb);
-				return messages[id];
+				$timeout(function () {
+					cb(null, messages[id]);
+				});
 			}
 
 			messages[id] = messageToAdd;
@@ -474,15 +479,20 @@ define([
 				messageToAdd.verifyParent(theTopic);
 				messageToAdd.loadFullData(this);
 			}), h.sF(function () {
-				this.ne(messageToAdd, theTopic);
+				this.ne(messageToAdd);
 			}), cb);
 		}
 
 		function addSocketMessage(messageData) {
 			if (messageData) {
+				var messageToAdd;
+
 				step(function () {
 					makeMessage(messageData, this);
-				}, h.sF(function (messageToAdd, theTopic) {
+				}, h.sF(function (_messageToAdd) {
+					messageToAdd = _messageToAdd;
+					Topic.get(messageToAdd.getTopicID(), this);
+				}), h.sF(function (theTopic) {
 					theTopic.addMessage(messageToAdd, true);
 					messageService.notify(messageToAdd, "message");
 				}), errorService.criticalError);

@@ -20,6 +20,7 @@
 	}
 })(this.console = this.console || {}); // Using `this` for web workers.
 
+var globalErrors = [];
 var startup = new Date().getTime();
 
 var baseUrl = "assets/js";

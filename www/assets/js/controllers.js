@@ -94,7 +94,7 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
         }, h.sF(function (_topic) {
             topic = _topic;
 
-            topic.onMessageAdd(stabilizeScroll);
+            topic.listen(stabilizeScroll, "addMessages");
             $scope.activeTopic = topic.data;
 
             $scope.canSend = true;
