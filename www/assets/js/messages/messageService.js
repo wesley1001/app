@@ -140,7 +140,7 @@ define([
 
 			function addMessagesToList(messages) {
 				messages.forEach(function (message) {
-					messagesByID[messages.getID()] = message;
+					messagesByID[message.getID()] = message;
 				});
 
 				messages.join(messages);
@@ -275,11 +275,14 @@ define([
 			this.loadNewest = function loadNewestF(cb) {
 				step(function () {
 					if (data.newest) {
-						makeMessage(data.newest, false, this);
+						makeMessage(data.newest, this);
 					} else {
-						this.ne();
+						this.last.ne();
 					}
-				}, cb);
+				}, h.sF(function (message) {
+					theTopic.addMessage(message, false);
+					this.ne();
+				}), cb);
 			};
 		};
 
