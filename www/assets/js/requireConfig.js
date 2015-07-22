@@ -57,7 +57,7 @@ requirejs.config({
         localizationModule: "../../lib/angular-i18n-directive/src/localizationModule",
         workerQueue: "../../lib/worker-queue.js/src/index",
         PromiseWorker: "../../lib/require-promise-worker.js/src/index",
-        dexie: "../../lib/dexie/dist/latest/Dexie",
+        Dexie: "../../lib/dexie/dist/latest/Dexie",
         debug: "../../lib/visionmedia-debug/dist/debug"
     },
     shim: {

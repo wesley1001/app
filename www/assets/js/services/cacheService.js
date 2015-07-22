@@ -1,4 +1,4 @@
-define(["whispeerHelper", "dexie", "bluebird", "services/serviceModule"], function (h, Dexie, Promise, serviceModule) {
+define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], function (h, Dexie, Promise, serviceModule) {
 	"use strict";
 
 	var db, errorService;
