@@ -31,7 +31,15 @@ define([
 		"ssn.locale.config",
 		"localization"
 	])
-		.run(["$ionicPlatform", "ssn.messageService", "ssn.sessionService", "ssn.trustService", function($ionicPlatform) {
+		.run(["$ionicPlatform", "ssn.messageService", "ssn.sessionService", "ssn.trustService", function($ionicPlatform, messageService) {
+			function vibrate(message) {
+				if (!message.isOwn()) {
+					navigator.vibrate(700);
+				}
+			}
+
+			messageService.listen(vibrate, "message");
+
 			$ionicPlatform.ready(function() {
 				// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 				// for form inputs)
