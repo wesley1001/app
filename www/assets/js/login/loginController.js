@@ -15,14 +15,14 @@ define([
 			return loginDataService.failureCode === 0;
 		}, function (val) {
 			if (val) {
-				document.getElementById("mail").focus();
+				document.getElementById("username").focus();
 			}
 		});
 
 		if (loginDataService.identifier) {
 			document.getElementById("password").focus();
 		} else {
-			document.getElementById("mail").focus();
+			document.getElementById("username").focus();
 		}
 
 		$scope.$watch(function () {

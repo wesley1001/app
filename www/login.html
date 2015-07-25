@@ -21,11 +21,11 @@
 					<div class="list list-inset">
 						<label class="item item-input item-stacked-label">
 							<span class="input-label">Benutzername</span>
-							<input type="text" id="mail" placeholder="john" data-ng-model="login.identifier">
+							<input type="text" id="username" name="username" placeholder="john" data-ng-model="login.identifier" autocapitalize="off" spellcheck="false" autocorrect="off">
 						</label>
 						<label class="item item-input item-stacked-label">
 							<span class="input-label">Passwort</span>
-							<input type="password" id="password" placeholder="Dein Passwort" data-ng-model="login.password">
+							<input type="password" id="password" name="password" placeholder="Dein Passwort" data-ng-model="login.password">
 						</label>
 					</div>
 					<div class="card card-assertive" data-ng-cloak data-ng-if="login.failureCode >= 0">
