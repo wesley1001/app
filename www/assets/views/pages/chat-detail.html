@@ -8,33 +8,33 @@
 	<ion-nav-title>
 		Chat mit {{activeTopic.partners[0].basic.shortname}} <span data-ng-if="activeTopic.partners.length > 1">und {{activeTopic.partners.length - 1}} Anderen</span>
 	</ion-nav-title>
-	<ion-content scroll="false">
-		<ion-scroll id="messageList">
-			<ul class="u-unstyled">
-				<li class="messageView-loadingText" data-ng-if="activeTopic.remaining > 0">
-					<ion-spinner id="messageView-loadingIcon" class="spinner-light" data-icon="crescent"></ion-spinner>
-					<span data-i18n="messages.remaining"></span>
-				</li>
-				<p data-i18n="messages.endOfStream" data-ng-if="activeTopic.remaining == 0" id="messagesView-endOfStream"><span data-for="date">{{::messageBursts()[0].firstMessage().timestamp|date}}</span></p>
-				<li class="burst" data-ng-repeat="burst in (bursts = messageBursts())" data-ng-class="{me:burst.isMe(), other:burst.isOther()}">
-					<div class="burst-date" data-ng-if="::!burst.sameDay(bursts[$index - 1]) && !$first"><span class="burst-date-text">{{::burst.firstMessage().timestamp|date}}</span></div>
-					<div class="username">{{burst.sender().name}}</div>
-					<div class="userimg">
-						<a href="{{burst.sender().basic.url}}">
-							<userimage data-userID="sender{{burst.sender().id}}" data-user="burst.sender()" data-trustlevel="0">
-						</a>
-					</div>
-					<ul class="messages">
-						<li data-ng-cloak data-ng-repeat="message in burst.messages" data-messageID="{{message.id}}" class="message">
-							<div class="messageContent">
-								<div class="messageText {{message.type}}" data-ng-class="{{message.type}}" data-syntaxify="message.text">{{message.text}}<img data-ng-if="message.type == 'image'" data-ng-src=""></div>
-								<div class="time"><i class="icon ion-ios-clock-outline"></i> {{message.timestamp | date: 'shortTime' }}</div><!-- use smartdate filter here as soon as possible -->
-							</div>
-						</li>
-					</ul>
-				</li>
-			</ul>
-		</ion-scroll>
+	<ion-content id="messageList" class="content-stable delegate-handle">
+		<ul class="u-unstyled">
+			<li class="messageView-loadingText" data-ng-if="activeTopic.remaining > 0">
+				<ion-spinner id="messageView-loadingIcon" class="spinner-light" data-icon="crescent"></ion-spinner>
+				<span data-i18n="messages.remaining"></span>
+			</li>
+			<p data-i18n="messages.endOfStream" data-ng-if="activeTopic.remaining == 0" id="messagesView-endOfStream"><span data-for="date">{{::messageBursts()[0].firstMessage().timestamp|date}}</span></p>
+			<li class="burst" data-ng-repeat="burst in (bursts = messageBursts())" data-ng-class="{me:burst.isMe(), other:burst.isOther()}">
+				<div class="burst-date" data-ng-if="::!burst.sameDay(bursts[$index - 1]) && !$first"><span class="burst-date-text">{{::burst.firstMessage().timestamp|date}}</span></div>
+				<div class="username">{{burst.sender().name}}</div>
+				<div class="userimg">
+					<a href="{{burst.sender().basic.url}}">
+						<userimage data-userID="sender{{burst.sender().id}}" data-user="burst.sender()" data-trustlevel="0">
+					</a>
+				</div>
+				<ul class="messages">
+					<li data-ng-cloak data-ng-repeat="message in burst.messages" data-messageID="{{message.id}}" class="message">
+						<div class="messageContent">
+							<div class="messageText {{message.type}}" data-ng-class="{{message.type}}" data-syntaxify="message.text">{{message.text}}<img data-ng-if="message.type == 'image'" data-ng-src=""></div>
+							<div class="time"><i class="icon ion-ios-clock-outline"></i> {{message.timestamp | date: 'shortTime' }}</div><!-- use smartdate filter here as soon as possible -->
+						</div>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</ion-content>
+	<ion-footer-bar keyboard-attach id="chat-detai-footer">
 		<form id="inputWrap">
 			<textarea class="no-resize" focus-me="canSend" id="messageInput" data-advancedsend="sendMessage(activeTopic.newMessage)" type="text" data-ng-model="activeTopic.newMessage" data-i18n-attr="messages.sendMessage.text|placeholder" placeholder="Gib deine Nachricht ein!"></textarea>
  			<!--<savebutton id="sendmessage" class="button-outline" data-ng-click="sendMessage(activeTopic.newMessage)" data-translation="messages.sendMessage.send" data-state="sendMessageState" data-noiniticon></savebutton>-->
@@ -42,5 +42,5 @@
 				<span data-ng-if="platform != 'android'">Senden</span>
 				<i class="icon ion-android-send" data-ng-if="platform == 'android'"></i></button>
 		</form>
-	</ion-pane>
+	</ion-footer-bar>
 </ion-view>

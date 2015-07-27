@@ -1,7 +1,7 @@
 
 // Some adjustable heights:
-@form-height: 50px;
-@form-margin: 5px;
+@form-height: 44px;
+@form-margin: 0;
 @header-height: 30px;
 
 // big/small image size in topic list.
@@ -171,6 +171,7 @@
 
 #messageList {
 
+/*
 	// this is for well-behaving w/ the form at the bottom.
 	box-sizing: border-box;
 	//border-bottom: (@form-height + @header-height + 2 * @form-margin) solid transparent;
@@ -181,6 +182,7 @@
 	bottom: @form-height + 2 * @form-margin;
 	margin: 0;
 	padding: 0;
+*/
 
 	.burst {
 		float: left;
@@ -370,7 +372,7 @@
 	box-sizing: border-box;
 
 	textarea {
-		padding: 10px;
+		padding: 5px;
 		font-size: 16px;
 		height: 100%;
 		border-radius: 0px;
@@ -379,8 +381,8 @@
 	}
 	#sendmessage {
 		margin: @form-margin 1% 0 0;
-		height: 50px;
-		line-height: 50px;
+		height: 40px;
+		line-height: 40px;
 		flex-shrink: 0;
 		.icon {
 			display: inline-block;
@@ -390,4 +392,8 @@
 	#sendmessage {
 		width: 70px;
 	}
+}
+
+#chat-detai-footer {
+	padding: 0;
 }
