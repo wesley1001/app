@@ -8,7 +8,7 @@
 	<ion-nav-title>
 		Chat mit {{activeTopic.partners[0].basic.shortname}} <span data-ng-if="activeTopic.partners.length > 1">und {{activeTopic.partners.length - 1}} Anderen</span>
 	</ion-nav-title>
-	<ion-content id="messageList" class="content-stable">
+	<ion-content id="messageList" class="content-stable delegate-handle">
 		<ul class="u-unstyled">
 			<li class="messageView-loadingText" data-ng-if="activeTopic.remaining > 0">
 				<ion-spinner id="messageView-loadingIcon" class="spinner-light" data-icon="crescent"></ion-spinner>

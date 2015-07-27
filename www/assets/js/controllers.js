@@ -64,6 +64,16 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
         "ssn.messageService",
         "ssn.errorService",
     function($scope, $stateParams, $timeout, $ionicScrollDelegate, messageService, errorService) {
+
+	    window.addEventListener("native.keyboardshow", function() {
+		   $ionicScrollDelegate.scrollBottom();
+		   $ionicScrollDelegate.resize();
+	    });
+
+	    window.addEventListener("native.keyboardhide", function() {
+		   $ionicScrollDelegate.resize();
+	    });
+
         var MINUTE = 60 * 1000;
 
         var topicLoadingState = new State();
