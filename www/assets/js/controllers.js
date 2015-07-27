@@ -67,7 +67,6 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
 
 	    window.addEventListener("native.keyboardshow", function() {
 		   $ionicScrollDelegate.scrollBottom();
-		   $ionicScrollDelegate.resize();
 	    });
 
 	    window.addEventListener("native.keyboardhide", function() {
