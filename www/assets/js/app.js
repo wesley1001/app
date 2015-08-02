@@ -1,6 +1,11 @@
+"use strict";
+
 define([
 	"angular",
+	"whispeerHelper",
+	"step",
 	"ionic",
+	"ngCordova",
 	"controllers",
 	"services",
 	"config/localizationConfig",
@@ -9,8 +14,9 @@ define([
 	"messages/messagesLoader",
 	"user/userLoader",
 	"models/models",
-	"config/interceptorsConfig"
-], function (angular) {
+	"config/interceptorsConfig",
+	"optional!cordova"
+], function (angular, h, step) {
 	// Ionic Starter App
 
 	// angular.module is a global place for creating, registering and retrieving Angular modules
@@ -29,7 +35,8 @@ define([
 		//"ssn.directives",
 		"ssn.interceptors.config",
 		"ssn.locale.config",
-		"localization"
+		"localization",
+		"ngCordova"
 	])
 		.run(["$ionicPlatform", "ssn.messageService", "ssn.sessionService", "ssn.trustService", function($ionicPlatform, messageService) {
 			function vibrate(message) {
@@ -51,6 +58,62 @@ define([
 					// org.apache.cordova.statusbar required
 					StatusBar.styleDefault();
 				}
+			});
+		}])
+		.run([
+			"$ionicPlatform", "$cordovaPush", "$rootScope", "$window", "ssn.socketService", "ssn.errorService",
+			function ($ionicPlatform, $cordovaPush, $rootScope, $window, socketService, errorService) {
+			if (!$window.plugins || !$window.plugins.pushNotification) {
+				console.warn("No push notifications available");
+				return;
+			}
+
+			$rootScope.$on("$cordovaPush:notificationReceived", function(event, notification) {
+				switch(notification.event) {
+					case "registered":
+						if (notification.regid.length > 0 ) {
+							step(function () {
+								if (socketService.isConnected()) {
+									this();
+								} else {
+									socketService.once("connect", this.ne);
+								}
+							}, h.sF(function () {
+								socketService.emit("pushNotification.subscribe", {
+									token: notification.regid,
+									type: "android"
+								}, this);
+							}), h.sF(function (result) {
+								alert(result);
+							}), errorService.criticalError);
+						}
+						break;
+
+					case "message":
+						// this is the actual push notification. its format depends on the data model from the push server
+						alert("message = " + notification.message + " msgCount = " + notification.msgcnt);
+						break;
+
+					case "error":
+						alert("GCM error = " + notification.msg);
+						break;
+
+					default:
+						alert("An unknown GCM event has occurred");
+						break;
+				}
+			});
+
+			$ionicPlatform.ready(function() {
+				var androidConfig = {
+					"senderID": "649891747084",
+				};
+
+				$cordovaPush.register(androidConfig).then(function(result) {
+					alert(result);
+				}, function(err) {
+					console.error(err);
+				});
 			});
 		}])
 		.config(function($stateProvider, $urlRouterProvider) {
