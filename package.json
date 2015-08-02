@@ -21,8 +21,9 @@
     "postinstall": "npm run build"
   },
   "cordovaPlugins": [
-    "org.apache.cordova.vibration",
-    "com.ionic.keyboard"
+    "cordova-plugin-vibration",
+    "cordova-plugin-push-notification",
+    "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
     "ios",
