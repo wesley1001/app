@@ -6,6 +6,7 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
 
         $rootScope.$on("ssn.ownLoaded", function () {
             $scope.loading = false;
+            $scope.$apply();
         });
 
         $scope.loadNewMessageView = function () {
