@@ -214,7 +214,7 @@ define (["whispeerHelper", "step", "asset/observer", "asset/securedDataWithMetaD
 			return false;
 		},
 		getUpdatedVersion: function (cb) {
-			database.sign(ownKey, cb);
+			database.sign(ownKey, cb, false);
 		}
 	};
 
