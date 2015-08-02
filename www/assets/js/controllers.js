@@ -1,12 +1,12 @@
 
 define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h) {
     angular.module('whispeer.controllers', [])
-    .controller('rootCtrl', function($scope, $location, $rootScope) {
+    .controller('rootCtrl', function($scope, $location, $rootScope, $timeout) {
         $scope.loading = true;
 
         $rootScope.$on("ssn.ownLoaded", function () {
             $scope.loading = false;
-            $scope.$apply();
+            $timeout(function () {});
         });
 
         $scope.loadNewMessageView = function () {
