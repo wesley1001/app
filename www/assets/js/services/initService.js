@@ -1,96 +1,140 @@
-define(["step", "whispeerHelper", "services/serviceModule"], function (step, h, serviceModule) {
+define(["step", "whispeerHelper", "services/serviceModule", "bluebird"], function (step, h, serviceModule, Bluebird) {
 	"use strict";
 
-	var service = function ($timeout, $rootScope, errorService, socketService, sessionService, migrationService) {
-		var callbacks = [], priorizedCallbacks = [];
+	var service = function ($timeout, $rootScope, errorService, socketService, sessionService, migrationService, CacheService) {
+		var newCallbacks = [];
 
-		function createData() {
-			var toGet = {};
-
-			function createDataFromCallback(cur) {
-				var data = cur.data;
-
-				if (typeof data === "function") {
-					data = data();
+		function awaitConnection() {
+			return new Bluebird(function (resolve) {
+				if (socketService.isConnected()) {
+					resolve();
+				} else {
+					socketService.once("connect", resolve);
 				}
+			});
+		}
 
-				h.deepSetCreate(toGet, cur.domain, data);
+		function getCache(initRequest) {
+			return new CacheService(initRequest.domain).get(initRequest.id || sessionService.getUserID()).then(function (cache) {
+				initRequest.cache = cache;
+
+				return initRequest;
+			}).catch(function () {
+				return initRequest;
+			});
+		}
+
+		function setCache(initResponse, transformedData) {
+			if (!transformedData) {
+				return Promise.resolve(initResponse);
 			}
 
-			priorizedCallbacks.forEach(createDataFromCallback);
-			callbacks.forEach(createDataFromCallback);
+			return new CacheService(initResponse.domain)
+				.store(initResponse.id || sessionService.getUserID(), transformedData)
+				.then(function () {
+					return initResponse;
+				})
+				.catch(function () {
+					return initResponse;
+				});
+		}
 
-			return toGet;
+		function getServerData(initRequests) {
+			return Bluebird.resolve(initRequests).map(function (request) {
+				var requestObject = {
+					responseKey: "content"
+				};
+
+				var id = request.id;
+
+				if (typeof id === "function") {
+					id = id();
+				}
+
+				if (typeof id !== "undefined") {
+					requestObject.id = id;
+				}
+
+				if (request.cache && request.cache.data && request.cache.data._signature) {
+					requestObject.cacheSignature = request.cache.data._signature;
+				}
+
+				return socketService.emit(request.domain, requestObject).then(function (response) {
+					request.data = response;
+
+					return request;
+				});
+			});
+		}
+
+		function runCallbacksPriorized(initResponses, shouldBePriorized) {
+			return Bluebird.resolve(initResponses.filter(function (response) {
+				return (shouldBePriorized ? response.options.priorized : !response.options.priorized);
+			})).map(function (response) {
+				var callback = Bluebird.promisify(response.callback);
+
+				if (response.options.cache) {
+					return callback(response.data.content, response.cache).then(function (transformedData) {
+						return setCache(response, transformedData);
+					});
+				}
+
+				return callback(response.data.content);
+			});
+		}
+
+		function runCallbacks(initResponses) {
+			return runCallbacksPriorized(initResponses, true).then(function () {
+				return runCallbacksPriorized(initResponses, false);
+			});
 		}
 
 		function loadData() {
-			var serverData;
-			step(function () {
-				if (socketService.isConnected()) {
-					this();
+			awaitConnection().then(function () {
+				console.time("cacheInitGet");
+				return newCallbacks;
+			}).map(function (initRequest) {
+				if (initRequest.options.cache) {
+					return getCache(initRequest);
 				} else {
-					socketService.once("connect", this.ne);
+					return initRequest;
 				}
-			}, h.sF(function () {
-				socketService.emit("data", createData(), this);
-			}), h.sF(function (result) {
-				if (!result.logedin) {
-					return;
-				}
-
+			}).then(function (initRequests) {
+				console.timeEnd("cacheInitGet");
+				console.time("serverInitGet");
+				return getServerData(initRequests);
+			}).then(function (initResponses) {
+				console.timeEnd("serverInitGet");
 				console.time("init");
-				serverData = result;
-				priorizedCallbacks.forEach(function (cur) {
-					try {
-						cur.cb(h.deepGet(serverData, cur.domain), this.parallel());
-					} catch (e) {
-						errorService.criticalError(e);
-					}
-				}, this);
-
-				this.parallel()();
-			}), h.sF(function () {
-				callbacks.forEach(function (cur) {
-					try {
-						cur.cb(h.deepGet(serverData, cur.domain), this.parallel());
-					} catch (e) {
-						errorService.criticalError(e);
-					}
-				}, this);
-
-				this.parallel()();
-			}), h.sF(function () {
+				return runCallbacks(initResponses);
+			}).then(function () {
 				console.timeEnd("init");
 				migrationService();
 				$rootScope.$broadcast("ssn.ownLoaded");
-			}), errorService.criticalError);
+			}).catch(errorService.criticalError);
 		}
 
 		$rootScope.$on("ssn.login", function () {
-			$timeout(function () {
-				loadData();
-			});
+			loadData();
 		});
 
 		return {
-			register: function (domain, data, cb, priorized) {
-				domain = domain.split(".");
-				var callbackData = {
+			/** get via api, also check cache in before!
+			* @param domain: domain to get from
+			* @param priorized: is this callback priorized?
+			*/
+			get: function (domain, id, cb, options) {
+				newCallbacks.push({
 					domain: domain,
-					data: data,
-					cb: cb
-				};
-
-				if (priorized) {
-					priorizedCallbacks.push(callbackData);
-				} else {
-					callbacks.push(callbackData);
-				}
+					id: id,
+					callback: cb,
+					options: options || {}
+				});
 			}
 		};
 	};
 
-	service.$inject = ["$timeout", "$rootScope", "ssn.errorService", "ssn.socketService", "ssn.sessionService", "ssn.migrationService"];
+	service.$inject = ["$timeout", "$rootScope", "ssn.errorService", "ssn.socketService", "ssn.sessionService", "ssn.migrationService", "ssn.cacheService"];
 
 	serviceModule.factory("ssn.initService", service);
 });
