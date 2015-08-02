@@ -68,9 +68,9 @@ define(["step", "whispeerHelper", "services/serviceModule", "bluebird"], functio
 		}
 
 		function runCallbacksPriorized(initResponses, shouldBePriorized) {
-			return Bluebird.all(initResponses.filter(function (response) {
-				return (shouldBePriorized ? response.options.priorized : !response.priorized);
-			}).map(function (response) {
+			return Bluebird.resolve(initResponses.filter(function (response) {
+				return (shouldBePriorized ? response.options.priorized : !response.options.priorized);
+			})).map(function (response) {
 				var callback = Bluebird.promisify(response.callback);
 
 				if (response.options.cache) {
@@ -80,7 +80,7 @@ define(["step", "whispeerHelper", "services/serviceModule", "bluebird"], functio
 				}
 
 				return callback(response.data.content);
-			}));
+			});
 		}
 
 		function runCallbacks(initResponses) {
