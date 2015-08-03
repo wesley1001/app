@@ -15,7 +15,7 @@
 				<button class="button button-block">
 					<ion-spinner id="messageView-loadingIcon" class="spinner-button" data-icon="crescent" data-ng-if="loading"></ion-spinner>
 					<span data-i18n="messages.remaining" data-ng-if="loading"></span>
-					<span data-ng-if="!loading" class="balanced">Weitere Nachrichten laden</span>
+					<span data-i18n="messages.loadMore" data-ng-if="!loading" class="balanced"></span>
 				</button>
 			</li>
 			<li class="burst" data-ng-repeat="burst in (bursts = messageBursts())" data-ng-class="{me:burst.isMe(), other:burst.isOther()}">

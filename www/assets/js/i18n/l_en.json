@@ -362,7 +362,8 @@
 	},
 	"messages": {
 		"endOfStream": "Conversation started on {date}",
-		"remaining": "Loading messages.",
+		"remaining": "Loading messages",
+		"loadMore": "Load older messages",
 		"title": "Messages",
 		"chat" :"Chat with",
 		"newMessage": "New message",
