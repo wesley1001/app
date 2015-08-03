@@ -402,9 +402,11 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
             }
         ];
     })
-    .controller("SettingsCtrl", ["$scope", "ssn.sessionService", function($scope, sessionService) {
+    .controller("SettingsCtrl", ["$scope", "ssn.sessionService", "$cordovaPush", function($scope, sessionService, $cordovaPush) {
         $scope.logout = function () {
-            sessionService.logout();
+            $cordovaPush.unregister().then(function () {
+                sessionService.logout();
+            });
         };
     }]);
 });
