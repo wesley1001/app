@@ -65,6 +65,7 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
         "ssn.messageService",
         "ssn.errorService",
     function($scope, $stateParams, $timeout, $ionicScrollDelegate, messageService, errorService) {
+        $scope.loadingMessages = true;
 
 	    window.addEventListener("native.keyboardshow", function() {
 		   $ionicScrollDelegate.scrollBottom();
@@ -94,11 +95,49 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
             });
         };
 
-        function stabilizeScroll() {
-            var view = $ionicScrollDelegate.getScrollView();
+        var scroller = $ionicScrollDelegate.$getByHandle("messageScroll");
 
-            if (view.getScrollMax().top - $ionicScrollDelegate.getScrollPosition().top < 10) {
-                $ionicScrollDelegate.scrollBottom();
+        function getScrollerInstance() {
+            return scroller._instances.filter(function (i) {
+                return i.$$delegateHandle === scroller.handle;
+            })[0];
+        }
+
+        function getScrollElement() {
+            return getScrollerInstance().$element;
+        }
+
+        function getFirstListElement() {
+            return getScrollElement().find("li.message").first();
+        }
+
+        var oldHeight = 0, firstElement;
+
+        $timeout(function () {
+            getScrollElement().on("scroll-resize", function () {
+                if (!firstElement) {
+                    firstElement = getFirstListElement();
+                }
+
+                var newHeight = scroller.getScrollView().getScrollMax().top;
+
+                if (oldHeight !== newHeight && firstElement.data("messageid") !== getFirstListElement().data("messageid")) {
+                    scroller.scrollBy(0, newHeight - oldHeight);
+
+                    firstElement = getFirstListElement();
+                }
+
+                oldHeight = newHeight;
+            });
+        });
+
+        function stabilizeScroll() {
+            var view = scroller.getScrollView();
+
+            if (view.getScrollMax().top - scroller.getScrollPosition().top < 10) {
+                scroller.scrollBottom();
+            } else {
+                scroller.resize();
             }
         }
 
@@ -118,7 +157,7 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
             topic.loadInitialMessages(this);
         }), h.sF(function () {
             $scope.topicLoaded = true;
-            $ionicScrollDelegate.scrollBottom();
+            $scope.loadingMessages = false;
 
             if (topic.data.messages.length > 0) {
                 topic.markRead(errorService.criticalError);

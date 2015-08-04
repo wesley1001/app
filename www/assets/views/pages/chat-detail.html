@@ -8,7 +8,7 @@
 	<ion-nav-title>
 		Chat mit {{activeTopic.partners[0].basic.shortname}} <span data-ng-if="activeTopic.partners.length > 1">und {{activeTopic.partners.length - 1}} Anderen</span>
 	</ion-nav-title>
-	<ion-content id="messageList" class="content-stable delegate-handle">
+	<ion-content id="messageList" class="content-stable delegate-handle" delegate-handle="messageScroll">
 		<ul class="u-unstyled">
 			<li data-i18n="messages.endOfStream" data-ng-if="activeTopic.remaining == 0" id="messagesView-endOfStream"><span data-for="date">{{::messageBursts()[0].firstMessage().timestamp|date}}</span></li>
 			<li class="padding" data-ng-if="activeTopic.remaining > 0">
