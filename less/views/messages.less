@@ -246,11 +246,8 @@
 		// so we need to add min size to prevent constant UI movement.
 		min-height: @message-image-size - 2 * @default-padding;
 		min-width: @message-image-size - 2 * @extended-padding;
-		margin-left: @message-image-size + 2 * @extended-padding;
-		margin-right: @message-image-size + 2 * @extended-padding;
 		padding: @default-padding @extended-padding;
-		margin-bottom: @extended-padding;
-		margin-top: 0;
+		margin: 0 @extended-padding @extended-padding;
 		border-radius: @extended-padding;
 		background: @foreign-message-bg;
 		border: 1px solid @foreign-message-bg2;
@@ -285,12 +282,12 @@
 	.messages:after {
 		border-right-color: @foreign-message-bg;
 	}
-	.messages:before {
-		border-right-color: @foreign-message-bg2;
-	}
 
 	// messages from others
 	.other {
+		.messages {
+			margin-right: @message-image-size + @extended-padding;
+		}
 		.messages:after {
 			border-right-color: @foreign-message-bg;
 		}
@@ -299,7 +296,7 @@
 		}
 	}
 
-	// customizations for messages by me
+	// customizations for messages by myself
 	.me {
 		&.burst {
 			float: right;
@@ -312,6 +309,7 @@
 			text-align: right;
 		}
 		.messages {
+			margin-left: @message-image-size + @extended-padding;
 			background-color: @own-message-bg;
 			color: @own-message-fg;
 		}
