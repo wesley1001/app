@@ -7,6 +7,11 @@
 <ion-view cache-view="false">
 	<ion-nav-title>
 		Chat mit {{activeTopic.partners[0].basic.shortname}} <span data-ng-if="activeTopic.partners.length > 1">und {{activeTopic.partners.length - 1}} Anderen</span>
+		<div class="userimg">
+			<a href="{{burst.sender().basic.url}}">
+				<userimage data-userID="sender{{burst.sender().id}}" data-user="activeTopic.partners[0]" data-trustlevel="0">
+			</a>
+		</div>
 	</ion-nav-title>
 	<ion-content id="messageList" class="content-stable delegate-handle">
 		<ul class="u-unstyled">
