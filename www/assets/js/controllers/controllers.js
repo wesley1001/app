@@ -5,5 +5,6 @@ define([
 	"controllers/rootController",
 	"controllers/showTopicController",
 	"controllers/listTopicsController",
-	"controllers/friendsController"
+	"controllers/friendsController",
+	"controllers/settingsController"
 ], function () {});

@@ -81,7 +81,7 @@ define([
 			.state("main.settings", {
 				url: "/settings",
 				templateUrl: "assets/views/pages/main/settings.html",
-				controller: "SettingsCtrl"
+				controller: "ssn.settingsController"
 			})
 			.state("chat-detail", {
 				url: "/chat/:chatId",
