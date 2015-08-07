@@ -1,72 +1,49 @@
-define(["step", "whispeerHelper", "controllers/controllerModule"], function (step, h, controllerModule) {
+define(["step", "whispeerHelper", "controllers/controllerModule", "asset/state"], function (step, h, controllerModule, State) {
 	"use strict";
-	controllerModule.controller("ssn.newTopicController", ["$scope", function($scope) {
-			$scope.users = [
-			{
-				"id": 55,
-				"trustLevel": 2,
-				"fingerprint": "SDGMXHPDZCPMRNRDVAQW6TXANPK5HZWCYB0DP0H1SKFPX66GFBN0",
-				"basic": {
-					"url": "user/muster",
-					"image": "https://randomuser.me/api/portraits/thumb/men/16.jpg",
-					"shortname": "yannik m\u00fcller"
-				},
-				"signatureValid": true,
-				"me": false,
-				"other": true,
-				"online": 1,
-				"selected": true,
-				"name": "yannik m\u00fcller",
-				"names": {
-					"name": "yannik m\u00fcller",
-					"firstname": "yannik",
-					"lastname": "m\u00fcller",
-					"nickname": "muster"
-				},
-				"added": true,
-				"isMyFriend": true
-			},
-			{
-				"id": 57,
-				"trustLevel": 2,
-				"fingerprint": "SDGMXHPDZCPMRNRDVAQW6TXANPK5HZWCYB0DP0H1SKFPX66GFBN0",
-				"basic": {
-					"url": "user/muster3",
-					"image": "https://randomuser.me/api/portraits/thumb/men/16.jpg",
-					"shortname": "yannik kunder"
-				},
-				"signatureValid": true,
-				"me": false,
-				"other": true,
-				"online": 1,
-				"name": "yannik kunder",
-				"names": {
-					"name": "yannik kunder",
-					"firstname": "yannik",
-					"lastname": "kunder",
-					"nickname": "muster3"
-				},
-				"added": true,
-				"isMyFriend": true
-			},
-			{
-				"id": 4,
-				"trustLevel": -1,
-				"fingerprint": "S10Y1GDN3SZZ16TG9DMRSQPHGNT7PN6QE733TD33RG1SB0AYJXJ0",
-				"basic": {
-					"url": "user/Nilos",
-					"image": "https://randomuser.me/api/portraits/men/4.jpg",
-					"shortname": "Nils"
-				},
-				"signatureValid": true,
-				"me": true,
-				"other": false,
-				"online": -1,
-				"name": "Nils Kenneweg",
-				"added": false,
-				"isMyFriend": false
+	controllerModule.controller("ssn.newTopicController", [
+		"$scope", "$state", "ssn.friendsService", "ssn.userService", "ssn.messageService", "ssn.errorService",
+		function($scope, $state, friendsService, userService, messageService, errorService) {
+		$scope.users = [];
+
+		step(function () {
+			var friends = friendsService.getFriends();
+			userService.getMultipleFormatted(friends, this);
+		}, h.sF(function (result) {
+			$scope.users = result;
+		}));
+
+		var sendMessageState = new State();
+		$scope.sendMessageState = sendMessageState.data;
+
+		$scope.create = {
+			text: "",
+			selectedUsers: {},
+			send: function (text) {
+				var receiver = $scope.users.filter(function (u) {
+					return $scope.create.selectedUsers[u.id];
+				}).map(function (u) {
+					return u.id;
+				});
+
+				sendMessageState.pending();
+
+				if (text === "" || receiver.length === 0) {
+					sendMessageState.failed();
+					return;
+				}
+
+				step(function () {
+					messageService.sendNewTopic(receiver, text, [], this);
+				}, h.sF(function (id) {
+					$scope.create.text = "";
+					$scope.create.selectedUsers = {};
+					$scope.goToShow(id);
+				}), errorService.failOnError(sendMessageState));
 			}
-			];
-			$scope.user = [$scope.users[0], $scope.users[1]];
-		}]);
+		};
+
+		$scope.goToShow = function (topicID) {
+			$state.go("chat-detail", { chatId: topicID });
+		};
+	}]);
 });
