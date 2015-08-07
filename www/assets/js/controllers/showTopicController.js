@@ -97,6 +97,13 @@ define(["step", "whispeerHelper", "asset/state", "controllers/controllerModule"]
 
 				$scope.canSend = true;
 				$scope.newMessage = false;
+
+				if (topic.hasInitialLoaded()) {
+					this.ne();
+				} else {
+					$timeout(this.ne, 1000);
+				}
+			}), h.sF(function () {
 				topic.loadInitialMessages(this);
 			}), h.sF(function () {
 				$scope.topicLoaded = true;
