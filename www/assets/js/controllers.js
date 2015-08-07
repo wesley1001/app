@@ -67,14 +67,6 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
     function($scope, $stateParams, $timeout, $ionicScrollDelegate, messageService, errorService) {
         $scope.loadingMessages = true;
 
-	    window.addEventListener("native.keyboardshow", function() {
-		   $ionicScrollDelegate.scrollBottom();
-	    });
-
-	    window.addEventListener("native.keyboardhide", function() {
-		   $ionicScrollDelegate.resize();
-	    });
-
         var MINUTE = 60 * 1000;
 
         var topicLoadingState = new State();
@@ -95,8 +87,6 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
             });
         };
 
-        var scroller = $ionicScrollDelegate.$getByHandle("messageScroll");
-
         function getScrollerInstance() {
             return scroller._instances.filter(function (i) {
                 return i.$$delegateHandle === scroller.handle;
@@ -112,6 +102,16 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
         }
 
         var oldHeight = 0, firstElement;
+
+        var scroller = $ionicScrollDelegate.$getByHandle("messageScroll");
+
+        window.addEventListener("native.keyboardshow", function() {
+           scroller.scrollBottom();
+        });
+
+        window.addEventListener("native.keyboardhide", function() {
+           scroller.resize();
+        });
 
         $timeout(function () {
             getScrollElement().on("scroll-resize", function () {
@@ -162,6 +162,10 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
             if (topic.data.messages.length > 0) {
                 topic.markRead(errorService.criticalError);
             }
+
+            $timeout(function () {
+                scroller.scrollBottom();
+            });
 
             this.ne();
         }), errorService.failOnError(topicLoadingState));
