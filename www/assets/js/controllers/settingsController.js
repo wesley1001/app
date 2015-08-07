@@ -89,6 +89,10 @@ define(["whispeerHelper", "step", "asset/state", "libs/qr", "controllers/control
 				userService.getown().changePassword($scope.pwState.password, this);
 			}, errorService.failOnError(savePasswordState));
 		};
+
+		$scope.logout = function () {
+			sessionService.logout();
+		};
 	}
 
 	settingsController.$inject = ["$scope", "$timeout", "ssn.errorService", "ssn.sessionHelper", "ssn.settingsService", "ssn.userService", "localize"];
