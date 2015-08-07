@@ -111,6 +111,7 @@ define (["whispeerHelper", "step", "asset/observer", "asset/securedDataWithMetaD
 		},
 		updateDatabase: function (data, cb) {
 			if (!loaded || data._signature === database.metaAttr("_signature")) {
+				cb();
 				return;
 			}
 
@@ -214,7 +215,7 @@ define (["whispeerHelper", "step", "asset/observer", "asset/securedDataWithMetaD
 			return false;
 		},
 		getUpdatedVersion: function (cb) {
-			database.sign(ownKey, cb);
+			database.sign(ownKey, cb, false);
 		}
 	};
 
