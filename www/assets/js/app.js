@@ -10,7 +10,7 @@ define([
 	"user/userLoader",
 	"models/models",
 	"config/interceptorsConfig",
-	"controllers/friendsController"
+	"controllers/controllers"
 ], function (angular) {
 	// Ionic Starter App
 
@@ -86,7 +86,7 @@ define([
 			.state("chat-detail", {
 				url: "/chat/:chatId",
 				templateUrl: "assets/views/pages/chat-detail.html",
-				controller: "ChatDetailCtrl"
+				controller: "ssn.showTopicController"
 			})
 			.state("newMessage", {
 				url: "/newMessage",
