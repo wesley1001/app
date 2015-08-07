@@ -1,7 +1,6 @@
 define([
 	"angular",
 	"ionic",
-	"services",
 	"config/localizationConfig",
 	"localizationModule",
 	"services/services",
@@ -20,7 +19,6 @@ define([
 	// "starter.controllers" is found in controllers.js
 	return angular.module("whispeer", [
 		"ionic",
-		"whispeer.services",
 		"ssn.controllers",
 		"ssn.services",
 		"ssn.messages",
