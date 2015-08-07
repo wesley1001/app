@@ -5,7 +5,7 @@
 define(["whispeerHelper", "step", "asset/state", "libs/qr", "controllers/controllerModule"], function (h, step, State, qr, controllerModule) {
 	"use strict";
 
-	function settingsController($scope, $timeout, errorService, sessionHelper, settingsService, userService, localize) {
+	function settingsController($scope, $timeout, $cordovaPush, errorService, sessionService, settingsService, userService, localize) {
 		var saveNameState = new State();
 		$scope.saveNameState = saveNameState.data;
 
@@ -91,11 +91,13 @@ define(["whispeerHelper", "step", "asset/state", "libs/qr", "controllers/control
 		};
 
 		$scope.logout = function () {
-			sessionService.logout();
+			$cordovaPush.unregister().then(function () {
+				sessionService.logout();
+			});
 		};
 	}
 
-	settingsController.$inject = ["$scope", "$timeout", "ssn.errorService", "ssn.sessionHelper", "ssn.settingsService", "ssn.userService", "localize"];
+	settingsController.$inject = ["$scope", "$timeout", "$cordovaPush", "ssn.errorService", "ssn.sessionService", "ssn.settingsService", "ssn.userService", "localize"];
 
 	controllerModule.controller("ssn.settingsController", settingsController);
 });
