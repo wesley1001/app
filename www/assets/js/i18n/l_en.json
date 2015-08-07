@@ -222,7 +222,7 @@
 			"december": "December"
 		},
 		"time": {
-			"justNow": 		"just now",
+			"justNow":		"just now",
 			"oneMinuteAgo":	"one minute ago",
 			"minutesAgo":	"{minutes} minutes ago",
 			"oneHourAgo":	"one hour and {minutes} minutes ago",
