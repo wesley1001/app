@@ -8,13 +8,16 @@
 	<ion-nav-title>
 		Chat mit {{activeTopic.partners[0].basic.shortname}} <span data-ng-if="activeTopic.partners.length > 1">und {{activeTopic.partners.length - 1}} Anderen</span>
 	</ion-nav-title>
-	<ion-content id="messageList" class="content-stable delegate-handle">
+	<ion-content id="messageList" class="content-stable delegate-handle" delegate-handle="messageScroll">
 		<ul class="u-unstyled">
-			<li class="messageView-loadingText" data-ng-if="activeTopic.remaining > 0">
-				<ion-spinner id="messageView-loadingIcon" class="spinner-light" data-icon="crescent"></ion-spinner>
-				<span data-i18n="messages.remaining"></span>
+			<li data-i18n="messages.endOfStream" data-ng-if="activeTopic.remaining == 0" id="messagesView-endOfStream"><span data-for="date">{{::messageBursts()[0].firstMessage().timestamp|date}}</span></li>
+			<li class="padding" data-ng-if="activeTopic.remaining > 0">
+				<button class="button button-block" data-ng-click="loadMoreMessages()">
+					<ion-spinner id="messageView-loadingIcon" class="spinner-button" data-icon="crescent" data-ng-if="loadingMessages"></ion-spinner>
+					<span data-i18n="messages.remaining" data-ng-if="loadingMessages"></span>
+					<span data-i18n="messages.loadMore" data-ng-if="!loadingMessages" class="balanced"></span>
+				</button>
 			</li>
-			<p data-i18n="messages.endOfStream" data-ng-if="activeTopic.remaining == 0" id="messagesView-endOfStream"><span data-for="date">{{::messageBursts()[0].firstMessage().timestamp|date}}</span></p>
 			<li class="burst" data-ng-repeat="burst in (bursts = messageBursts())" data-ng-class="{me:burst.isMe(), other:burst.isOther()}">
 				<div class="burst-date" data-ng-if="::!burst.sameDay(bursts[$index - 1]) && !$first"><span class="burst-date-text">{{::burst.firstMessage().timestamp|date}}</span></div>
 				<div class="username">{{burst.sender().name}}</div>
