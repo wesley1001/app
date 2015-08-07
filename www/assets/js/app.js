@@ -4,8 +4,6 @@ define([
 	"angular",
 	"ionic",
 	"ngCordova",
-	"controllers",
-	"services",
 
 	"config/localizationConfig",
 	"localizationModule",
