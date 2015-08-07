@@ -1,7 +1,6 @@
 define([
 	"angular",
 	"ionic",
-	"controllers",
 	"services",
 	"config/localizationConfig",
 	"localizationModule",
@@ -21,7 +20,6 @@ define([
 	// "starter.controllers" is found in controllers.js
 	return angular.module("whispeer", [
 		"ionic",
-		"whispeer.controllers",
 		"whispeer.services",
 		"ssn.controllers",
 		"ssn.services",
@@ -91,7 +89,7 @@ define([
 			.state("newMessage", {
 				url: "/newMessage",
 				templateUrl: "assets/views/pages/newMessage.html",
-				controller: "NewMessageCtrl"
+				controller: "ssn.newTopicController"
 			});
 
 			// if none of the above states are matched, use this as the fallback
