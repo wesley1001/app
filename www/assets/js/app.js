@@ -8,8 +8,10 @@ define([
 	"user/userLoader",
 	"models/models",
 	"config/interceptorsConfig",
-	"controllers/controllers"
+	"controllers/controllers",
+	"directives/userimage"
 ], function (angular) {
+	"use strict";
 	// Ionic Starter App
 
 	// angular.module is a global place for creating, registering and retrieving Angular modules
@@ -24,7 +26,7 @@ define([
 		"ssn.messages",
 		"ssn.user",
 		"ssn.models",
-		//"ssn.directives",
+		"ssn.directives",
 		"ssn.interceptors.config",
 		"ssn.locale.config",
 		"localization"
@@ -92,16 +94,5 @@ define([
 
 			// if none of the above states are matched, use this as the fallback
 			$urlRouterProvider.otherwise("/main/chats");
-		})
-		.directive("userimage", function () {
-			return {
-				transclude: false,
-				scope:	{
-					userData: 	"=user"
-				},
-				restrict: "E",
-				templateUrl: "assets/views/directives/userimage.html",
-				replace: true
-			};
 		});
 });
