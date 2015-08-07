@@ -10,4 +10,6 @@ npm install (-> local dependencies)
 
 ionic serve (-> development mode)
 
+ionic resources (-> build icons/resources)
+
 ionic build PLATFORM (-> build for desired platform, e.g. iOS or Android)

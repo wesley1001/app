@@ -229,6 +229,10 @@ define([
 				}), cb);
 			};
 
+			this.hasInitialLoaded = function () {
+				return !loadInitial;
+			};
+
 			this.loadInitialMessages = function loadInitialMessages(cb) {
 				if (loadInitial) {
 					theTopic.loadMoreMessages(cb, 19);
