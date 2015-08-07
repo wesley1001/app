@@ -69,10 +69,5 @@ define(["angular"], function (angular) {
             }
         ];
         $scope.user = [$scope.users[0], $scope.users[1]];
-    })
-    .controller("SettingsCtrl", ["$scope", "ssn.sessionService", function($scope, sessionService) {
-        $scope.logout = function () {
-            sessionService.logout();
-        };
-    }]);
+    });
 });
