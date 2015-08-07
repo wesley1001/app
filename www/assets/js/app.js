@@ -9,7 +9,8 @@ define([
 	"messages/messagesLoader",
 	"user/userLoader",
 	"models/models",
-	"config/interceptorsConfig"
+	"config/interceptorsConfig",
+	"controllers/friendsController"
 ], function (angular) {
 	// Ionic Starter App
 
@@ -22,6 +23,7 @@ define([
 		"ionic",
 		"whispeer.controllers",
 		"whispeer.services",
+		"ssn.controllers",
 		"ssn.services",
 		"ssn.messages",
 		"ssn.user",
@@ -74,7 +76,7 @@ define([
 			.state("main.friends", {
 				url: "/friends",
 				templateUrl: "assets/views/pages/main/friends.html",
-				controller: "FriendsCtrl"
+				controller: "ssn.friendsController"
 			})
 			.state("main.settings", {
 				url: "/settings",

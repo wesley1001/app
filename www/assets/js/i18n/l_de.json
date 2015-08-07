@@ -360,7 +360,8 @@
 	},
 	"messages": {
 		"endOfStream": "Konversation gestartet am {date}",
-		"remaining": "Nachrichten werden geladen.",
+		"remaining": "Nachrichten werden geladen",
+		"loadMore": "Weitere Nachrichten laden"
 		"title": "Nachrichten",
 		"chat" :"Chat mit",
 		"newMessage": "Neue Nachricht",
