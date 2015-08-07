@@ -71,7 +71,7 @@ define([
 			.state("main.chats", {
 				url: "/chats",
 				templateUrl: "assets/views/pages/main/chats.html",
-				controller: "ChatsCtrl"
+				controller: "ssn.listTopicsController"
 			})
 			.state("main.friends", {
 				url: "/friends",
