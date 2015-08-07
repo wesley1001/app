@@ -24,6 +24,11 @@ Android/bin/
 Android/gen/
 Android/assets/
 
+resources/android/splash/
+resources/android/icons/
+resources/ios/splash/
+resources/ios/icons/
+
 # generated files
 bin/
 gen/
