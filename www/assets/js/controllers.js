@@ -1,5 +1,5 @@
 
-define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h) {
+define(["angular"], function (angular) {
     angular.module('whispeer.controllers', [])
     .controller('rootCtrl', function($scope, $location, $rootScope, $timeout) {
         $scope.loading = true;
@@ -14,12 +14,6 @@ define(["angular", "asset/state", "whispeerHelper"], function (angular, State, h
         };
 
         $scope.platform = ionic.Platform.platform();
-    })
-    .controller('LoginCtrl', function($scope, $ionicHistory) {
-        $scope.login = true;
-        $ionicHistory.nextViewOptions({
-          disableBack: true
-        });
     })
     .controller('NewMessageCtrl', function($scope) {
         $scope.users = [
