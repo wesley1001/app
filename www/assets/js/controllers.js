@@ -1,20 +1,6 @@
 
 define(["angular"], function (angular) {
     angular.module('whispeer.controllers', [])
-    .controller('rootCtrl', function($scope, $location, $rootScope, $timeout) {
-        $scope.loading = true;
-
-        $rootScope.$on("ssn.ownLoaded", function () {
-            $scope.loading = false;
-            $timeout(function () {});
-        });
-
-        $scope.loadNewMessageView = function () {
-            $location.path('newMessage');
-        };
-
-        $scope.platform = ionic.Platform.platform();
-    })
     .controller('NewMessageCtrl', function($scope) {
         $scope.users = [
             {
