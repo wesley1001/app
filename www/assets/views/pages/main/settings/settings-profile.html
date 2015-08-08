@@ -1,0 +1,44 @@
+<ion-view>
+	<ion-nav-title>Profil bearbeiten</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button class="button button-clear" data-ng-click="resetEdit()" data-ng-if="editing">Abbrechen</button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+		<button class="button button-clear" data-ng-click="saveAll()" data-ng-if="editing">Fertig</button>
+	</ion-nav-buttons>
+	<ion-content>
+		<img data-ng-src="{{myself.basic.image}}" id="settings-userimage">
+		<div class="list">
+			<div class="item item-divider">
+				<h2>Name</h2>
+			</div>
+			<label class="item item-input item-stacked-label">
+				<input type="text" placeholder="Vorname" data-ng-model="user.firstName" data-ng-focus="startEdit()">
+			</label>
+			<label class="item item-input item-stacked-label">
+				<input type="text" placeholder="Nachname" data-ng-model="user.lastName" data-ng-focus="startEdit()">
+			</label>
+		</div>
+		<div class="list">
+			<div class="item item-divider">
+				<h2>E-Mail</h2>
+			</div>
+			<label class="item item-input item-stacked-label">
+				<input type="text" placeholder="max@mail.com" data-ng-model="user.mail" data-ng-focus="startEdit()">
+			</label>
+		</div>
+<!--
+		<div class="list">
+			<div class="item item-divider">
+				<h2>Passwort ändern</h2>
+			</div>
+			<label class="item item-input">
+				<input type="password" placeholder="Passwort">
+			</label>
+			<label class="item item-input">
+				<input type="password" placeholder="Passwort wiederholen">
+			</label>
+		</div>
+-->
+	</ion-content>
+</ion-view>

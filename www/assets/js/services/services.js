@@ -17,5 +17,7 @@ define([
 	"services/trustService",
 	"services/cacheService",
 	//"services/imageUploadService",
+	"services/filterService",
+	"services/circleService",
 	"services/locationService"
 ], function () {});
