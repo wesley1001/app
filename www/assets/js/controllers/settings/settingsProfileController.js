@@ -1,5 +1,5 @@
 /**
-* friendsController
+* settingsProfileController
 **/
 
 define(["whispeerHelper", "step", "asset/state", "controllers/controllerModule"], function (h, step, State, controllerModule) {
