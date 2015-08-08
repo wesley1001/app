@@ -5,7 +5,7 @@
 define(["whispeerHelper", "step", "asset/state", "controllers/controllerModule"], function (h, step, State, controllerModule) {
 	"use strict";
 
-	function settingsController($scope, $timeout, errorService, sessionHelper, settingsService, userService, localize) {
+	function settingsController($scope, $timeout, $ionicNavBarDelegate, errorService, sessionHelper, settingsService, userService, localize) {
 		var saveNameState = new State();
 		$scope.saveNameState = saveNameState.data;
 
@@ -22,6 +22,13 @@ define(["whispeerHelper", "step", "asset/state", "controllers/controllerModule"]
 			validateOnCallback: true,
 			hideOnInteraction: true
 		};
+
+		$scope.editing = false;
+
+		$scope.toggleEdit = function() {
+			$scope.editing = !$scope.editing;
+			$ionicNavBarDelegate.showBackButton(!$scope.editing);
+		}
 
 		step(function () {
 			userService.getown().loadBasicData(this);
@@ -80,9 +87,16 @@ define(["whispeerHelper", "step", "asset/state", "controllers/controllerModule"]
 				userService.getown().changePassword($scope.pwState.password, this);
 			}, errorService.failOnError(savePasswordState));
 		};
+
+		$scope.saveAll = function () {
+			$scope.saveName();
+			$scope.saveMail();
+			$scope.toggleEdit();
+			//$scope.savePassword();
+		};
 	}
 
-	settingsController.$inject = ["$scope", "$timeout", "ssn.errorService", "ssn.sessionHelper", "ssn.settingsService", "ssn.userService", "localize"];
+	settingsController.$inject = ["$scope", "$timeout", "$ionicNavBarDelegate", "ssn.errorService", "ssn.sessionHelper", "ssn.settingsService", "ssn.userService", "localize"];
 
 	controllerModule.controller("ssn.settingsProfileController", settingsController);
 });

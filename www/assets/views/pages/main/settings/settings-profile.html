@@ -1,6 +1,13 @@
 <ion-view>
 	<ion-nav-title>Profil bearbeiten</ion-nav-title>
+	<ion-nav-buttons side="primary">
+		<button class="button button-clear" data-ng-click="toggleEdit()" data-ng-if="editing">Abbrechen</button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="secondary">
+		<button class="button button-clear" data-ng-click="saveAll()" data-ng-if="editing">Fertig</button>
+	</ion-nav-buttons>
 	<ion-content>
+		<button data-ng-click="toggleEdit()" class="button">Edit!</button>
 		<img data-ng-src="{{myself.basic.image}}" id="settings-userimage">
 		<div class="list">
 			<div class="item item-divider">
