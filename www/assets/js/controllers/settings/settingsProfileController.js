@@ -2,7 +2,7 @@
 * friendsController
 **/
 
-define(["whispeerHelper", "step", "asset/state", "libs/qr", "controllers/controllerModule"], function (h, step, State, qr, controllerModule) {
+define(["whispeerHelper", "step", "asset/state", "controllers/controllerModule"], function (h, step, State, controllerModule) {
 	"use strict";
 
 	function settingsController($scope, $timeout, errorService, sessionHelper, settingsService, userService, localize) {
@@ -40,15 +40,6 @@ define(["whispeerHelper", "step", "asset/state", "libs/qr", "controllers/control
 			$scope.firstName = names.firstname;
 			$scope.lastName = names.lastname;
 			$scope.nickName = names.nickname;
-			var fp = userService.getown().data.fingerprint;
-			$scope.fingerprint = [fp.substr(0,13), fp.substr(13,13), fp.substr(26,13), fp.substr(39,13)];
-
-			qr.image({
-				image: document.getElementById("fingerPrintQR"),
-				value: fp,
-				size: 7,
-				level: "L"
-			});
 		}), errorService.criticalError);
 
 		$scope.mail = userService.getown().getMail();
@@ -89,13 +80,9 @@ define(["whispeerHelper", "step", "asset/state", "libs/qr", "controllers/control
 				userService.getown().changePassword($scope.pwState.password, this);
 			}, errorService.failOnError(savePasswordState));
 		};
-
-		$scope.logout = function () {
-			sessionService.logout();
-		};
 	}
 
 	settingsController.$inject = ["$scope", "$timeout", "ssn.errorService", "ssn.sessionHelper", "ssn.settingsService", "ssn.userService", "localize"];
 
-	controllerModule.controller("ssn.settingsController", settingsController);
+	controllerModule.controller("ssn.settingsProfileController", settingsController);
 });

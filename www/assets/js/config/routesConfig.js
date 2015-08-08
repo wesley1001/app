@@ -27,7 +27,22 @@ define(["angular"], function (angular) {
 		.state("main.settings", {
 			url: "/settings",
 			templateUrl: "assets/views/pages/main/settings.html",
-			controller: "ssn.settingsController"
+			controller: "ssn.settingsRedirectController"
+		})
+		.state("main.settings.main", {
+			url: "",
+			templateUrl: "assets/views/pages/main/settings/settings-main.html",
+			controller: "ssn.settingsMainController"
+		})
+		.state("main.settings.id", {
+			url: "/settings/id",
+			templateUrl: "assets/views/pages/main/settings/settings-id.html",
+			controller: "ssn.settingsIDController"
+		})
+		.state("main.settings.profile", {
+			url: "/settings/profile",
+			templateUrl: "assets/views/pages/main/settings/settings-profile.html",
+			controller: "ssn.settingsProfileController"
 		})
 		.state("chat-detail", {
 			url: "/chat/:chatId",
