@@ -54,7 +54,7 @@ define(["whispeerHelper", "step", "asset/state", "controllers/controllerModule"]
 
 		$scope.startEdit = function() {
 			$scope.editing = true;
-		}
+		};
 
 		$scope.resetEdit = function() {
 			$scope.editing = false;
@@ -86,7 +86,7 @@ define(["whispeerHelper", "step", "asset/state", "controllers/controllerModule"]
 			saveMailState.pending();
 
 			step(function () {
-				userService.getown().setMail($scope.mail, this);
+				userService.getown().setMail($scope.user.mail, this);
 			}, errorService.failOnError(saveMailState));
 		};
 
@@ -106,7 +106,7 @@ define(["whispeerHelper", "step", "asset/state", "controllers/controllerModule"]
 		$scope.saveAll = function () {
 			$scope.saveName();
 			$scope.saveMail();
-			$scope.toggleEdit();
+			$scope.editing = false;
 			//$scope.savePassword();
 		};
 	}
