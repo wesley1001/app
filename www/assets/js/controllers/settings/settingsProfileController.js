@@ -15,6 +15,8 @@ define(["whispeerHelper", "step", "asset/state", "controllers/controllerModule"]
 		var savePasswordState = new State();
 		$scope.savePasswordState = savePasswordState.data;
 
+		$scope.user = {};
+
 		$scope.languages = ["de", "en"];
 
 		$scope.pwState = { password: "" };
@@ -23,33 +25,46 @@ define(["whispeerHelper", "step", "asset/state", "controllers/controllerModule"]
 			hideOnInteraction: true
 		};
 
+		var loadSettingsData = function() {
+			step(function () {
+				userService.getown().loadBasicData(this);
+			}, h.sF(function () {
+				var uiLanguage = settingsService.getBranch("uiLanguage");
+
+				$scope.sendShortCut = "enter";
+
+				$scope.uiLanguage = localize.getLanguage();
+
+				if (uiLanguage && uiLanguage.data) {
+					$scope.uiLanguage = uiLanguage.data;
+				}
+
+				var names = userService.getown().data.names || {};
+				$scope.user.firstName = names.firstname;
+				$scope.user.lastName = names.lastname;
+				$scope.user.nickName = names.nickname;
+			}), errorService.criticalError);
+		};
+
+		loadSettingsData();
+
+		$scope.user.mail = userService.getown().getMail();
+
 		$scope.editing = false;
 
-		$scope.toggleEdit = function() {
-			$scope.editing = !$scope.editing;
-			$ionicNavBarDelegate.showBackButton(!$scope.editing);
+		$scope.startEdit = function() {
+			$scope.editing = true;
 		}
 
-		step(function () {
-			userService.getown().loadBasicData(this);
-		}, h.sF(function () {
-			var uiLanguage = settingsService.getBranch("uiLanguage");
+		$scope.resetEdit = function() {
+			$scope.editing = false;
+			loadSettingsData();
+			$scope.user.mail = userService.getown().getMail();
+		};
 
-			$scope.sendShortCut = "enter";
-
-			$scope.uiLanguage = localize.getLanguage();
-
-			if (uiLanguage && uiLanguage.data) {
-				$scope.uiLanguage = uiLanguage.data;
-			}
-
-			var names = userService.getown().data.names || {};
-			$scope.firstName = names.firstname;
-			$scope.lastName = names.lastname;
-			$scope.nickName = names.nickname;
-		}), errorService.criticalError);
-
-		$scope.mail = userService.getown().getMail();
+		$scope.$watch("editing", function() {
+			$ionicNavBarDelegate.showBackButton(!$scope.editing);
+		});
 
 		$scope.saveName = function () {
 			saveNameState.pending();
@@ -57,8 +72,8 @@ define(["whispeerHelper", "step", "asset/state", "controllers/controllerModule"]
 			var me = userService.getown();
 			step(function () {
 				me.setProfileAttribute("basic", {
-					firstname: $scope.firstName,
-					lastname: $scope.lastName
+					firstname: $scope.user.firstName,
+					lastname: $scope.user.lastName
 				}, this.parallel());
 			}, h.sF(function () {
 				me.uploadChangedProfile(this);
