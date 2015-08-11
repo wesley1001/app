@@ -25,7 +25,10 @@
 		</ion-scroll>
 		<form id="inputWrap">
 			<textarea class="no-resize" focus-me="canSend" id="messageInput" type="text" data-ng-model="create.text" data-i18n-attr="messages.sendMessage.text|placeholder" placeholder="Gib deine Nachricht ein!"></textarea>
-			<button id="sendmessage" class="button button-outline button-balanced" data-ng-click="create.send(create.text)"><i class="ion-ios-paperplane"></i></button>
+			<button id="sendmessage" data-ng-click="create.send(create.text)" class="button button-clear button-balanced">
+				<span data-ng-if="platform != 'android'">Senden</span>
+				<i class="icon ion-android-send" data-ng-if="platform == 'android'"></i>
+			</button>
 		</form>
 	</ion-content>
 </ion-view>
