@@ -12,7 +12,7 @@
 		</div>
 		<ion-scroll id="friends-scroll">
 			<ul class="list">
-				<li class="item item-avatar" data-ng-repeat="user in friends">
+				<li class="item item-avatar" data-ng-repeat="user in friends | orderBy: 'name'">
 					<img data-ng-src="{{user.basic.image}}">
 					<h2>{{user.name}}</h2>
 				</li>
