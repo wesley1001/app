@@ -8,7 +8,7 @@
 				<i class="icon ion-ios-search placeholder-icon"></i>
 				<input type="search" placeholder="Search" data-ng-model="searchFriendsInput">
 			</label>
-			<button class="button button-clear" data-ng-show="searchFriendsInput.length > 0">
+			<button class="button button-clear" data-ng-click="searchFriendsInput = ''" data-ng-show="searchFriendsInput.length > 0">
 				Abbrechen
 			</button>
 		</div>
