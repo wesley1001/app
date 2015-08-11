@@ -4,7 +4,7 @@
 		<div class="item item-input-inset" id="friends-search">
 			<label class="item-input-wrapper">
 				<i class="icon ion-ios-search placeholder-icon"></i>
-				<input type="search" placeholder="Search">
+				<input type="search" placeholder="Search" data-ng-model="searchFriendsInput">
 			</label>
 			<button class="button button-clear">
 				Abbrechen
@@ -12,7 +12,7 @@
 		</div>
 		<ion-scroll id="friends-scroll">
 			<ul class="list">
-				<li class="item item-avatar" data-ng-repeat="user in friends | orderBy: 'name'">
+				<li class="item item-avatar" data-ng-repeat="user in friends | orderBy: 'name' | filter: {name: searchFriendsInput}">
 					<img data-ng-src="{{user.basic.image}}">
 					<h2>{{user.name}}</h2>
 				</li>
