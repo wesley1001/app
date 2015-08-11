@@ -5,6 +5,8 @@ define(["step", "whispeerHelper", "controllers/controllerModule", "asset/state"]
 		function($scope, $state, friendsService, userService, messageService, errorService) {
 		$scope.users = [];
 
+		$scope.searchFriendsInput = "";
+
 		step(function () {
 			var friends = friendsService.getFriends();
 			userService.getMultipleFormatted(friends, this);
