@@ -10,7 +10,8 @@ define([
 	"config/interceptorsConfig",
 	"config/routesConfig",
 	"controllers/controllers",
-	"directives/userimage"
+	"directives/userimage",
+	"directives/syntaxify"
 ], function (angular) {
 	"use strict";
 	// Ionic Starter App
