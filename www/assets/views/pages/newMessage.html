@@ -14,7 +14,7 @@
 		</div>
 		<ion-scroll>
 			<ul class="list">
-				<li class="item item-avatar item-checkbox" data-ng-repeat="user in users">
+				<li class="item item-avatar item-checkbox" data-ng-repeat="user in users | orderBy: 'name'">
 					<img data-ng-src="{{user.basic.image}}">
 					<h2>{{user.name}}</h2>
 					<label class="checkbox checkbox-balanced checkbox-pullRight">
