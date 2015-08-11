@@ -6,7 +6,7 @@
 		<div class="item item-input-inset">
 			<label class="item-input-wrapper">
 				<i class="icon ion-ios-search placeholder-icon"></i>
-				<input type="search" placeholder="Search">
+				<input type="search" placeholder="Search" data-ng-model="searchFriendsInput">
 			</label>
 			<button class="button button-clear">
 				Abbrechen
@@ -14,7 +14,7 @@
 		</div>
 		<ion-scroll>
 			<ul class="list">
-				<li class="item item-avatar item-checkbox" data-ng-repeat="user in users | orderBy: 'name'">
+				<li class="item item-avatar item-checkbox" data-ng-repeat="user in users | orderBy: 'name' | filter: {name: searchFriendsInput}">
 					<img data-ng-src="{{user.basic.image}}">
 					<h2>{{user.name}}</h2>
 					<label class="checkbox checkbox-balanced checkbox-pullRight">
