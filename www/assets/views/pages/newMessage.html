@@ -12,7 +12,7 @@
 				Abbrechen
 			</button>
 		</div>
-		<ion-scroll>
+		<ion-scroll id="newMessage-scroll">
 			<ul class="list">
 				<li class="item item-avatar item-checkbox" data-ng-repeat="user in users | orderBy: 'name' | filter: {name: searchFriendsInput}">
 					<img data-ng-src="{{user.basic.image}}">
