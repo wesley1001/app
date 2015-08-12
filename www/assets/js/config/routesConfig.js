@@ -53,6 +53,11 @@ define(["angular"], function (angular) {
 			url: "/newMessage",
 			templateUrl: "assets/views/pages/newMessage.html",
 			controller: "ssn.newTopicController"
+		})
+		.state("newMessageUser", {
+			url: "/newMessage/:userId",
+			templateUrl: "assets/views/pages/chat-detail-user.html",
+			controller: "ssn.newTopicWithFriendController"
 		});
 
 		// if none of the above states are matched, use this as the fallback
