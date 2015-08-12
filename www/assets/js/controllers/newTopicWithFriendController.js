@@ -1,8 +1,8 @@
 define(["step", "whispeerHelper", "controllers/controllerModule", "asset/state"], function (step, h, controllerModule, State) {
 	"use strict";
 	controllerModule.controller("ssn.newTopicWithFriendController", [
-		"$scope", "$state", "$stateParams", "ssn.userService", "ssn.messageService", "ssn.errorService",
-		function($scope, $state, $stateParams, userService, messageService, errorService) {
+		"$scope", "$state", "$stateParams", "$ionicHistory", "ssn.userService", "ssn.messageService", "ssn.errorService",
+		function($scope, $state, $stateParams, $ionicHistory, userService, messageService, errorService) {
 
 		$scope.now = new Date();
 
@@ -11,7 +11,8 @@ define(["step", "whispeerHelper", "controllers/controllerModule", "asset/state"]
 			messageService.getUserTopic(userID, this);
 		}, h.sF(function (topicID) {
 			if (topicID) {
-				$state.go("chat-detail", {chatId: topicID});
+				$ionicHistory.currentView($ionicHistory.backView());
+				$state.go("chat-detail", {chatId: topicID}, { location: "replace" });
 				return;
 			}
 			userService.get(userID, this);
