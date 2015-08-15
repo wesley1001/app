@@ -62,6 +62,7 @@ define([
 
 				unreadMessages = newUnread.map(h.parseDecimal);
 				theTopic.data.unread = (unreadMessages.length > 0);
+				theTopic.data.unreadCount = unreadMessages.length;
 
 				messages.forEach(function (message) {
 					message.unread = unreadMessages.indexOf(message.getID()) > -1;
