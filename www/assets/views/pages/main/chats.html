@@ -8,7 +8,7 @@
 			<ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" ui-sref="chat-detail({ chatId: chat.id })">
 				<div class="imgWrap imgWrap--group" data-ng-if="chat.type == 'groupChat'">
 					<img class="userimg userimg--group" data-ng-repeat="partner in chat.partners | limitTo: 2" data-ng-src="{{partner.basic.image}}" alt="{{partner.name}}">
-					<span class="userimg userimg--remaining" data-ng-if="chat.partners.length > 2">+{{chat.partners.length - 3}}</span>
+					<span class="userimg userimg--remaining" data-ng-if="chat.partners.length > 2">+{{chat.partners.length - 2}}</span>
 				</div>
 				<div class="imgWrap" data-ng-if="chat.type == 'peerChat'">
 					<userimage class="userimg--topic" data-ng-repeat="partner in chat.partners" data-user="partner">
