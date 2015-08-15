@@ -10,6 +10,8 @@ define(["step", "whispeerHelper", "asset/state", "controllers/controllerModule"]
 		function($scope, $stateParams, $timeout, $ionicScrollDelegate, messageService, errorService) {
 			$scope.loadingMessages = true;
 
+			$scope.topics = messageService.data;
+
 			var MINUTE = 60 * 1000;
 
 			var topicLoadingState = new State();
