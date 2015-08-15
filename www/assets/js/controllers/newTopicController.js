@@ -4,7 +4,7 @@ define(["step", "whispeerHelper", "controllers/controllerModule", "asset/state"]
 		"$scope", "$state", "ssn.friendsService", "ssn.userService", "ssn.messageService", "ssn.errorService",
 		function($scope, $state, friendsService, userService, messageService, errorService) {
 		$scope.users = [];
-
+		$scope.friendsLoading = true;
 		$scope.searchFriendsInput = "";
 
 		step(function () {
@@ -12,6 +12,7 @@ define(["step", "whispeerHelper", "controllers/controllerModule", "asset/state"]
 			userService.getMultipleFormatted(friends, this);
 		}, h.sF(function (result) {
 			$scope.users = result;
+			$scope.friendsLoading = false;
 		}));
 
 		var sendMessageState = new State();

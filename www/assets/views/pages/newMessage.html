@@ -3,7 +3,7 @@
 		Neue Nachricht
 	</ion-nav-title>
 	<ion-content scroll="false">
-		<div class="item item-input-inset friends-search">
+		<div class="item item-input-inset friends-search" data-ng-if="!friendsLoading && users.length > 1">
 			<label class="item-input-wrapper">
 				<i class="icon ion-ios-search placeholder-icon"></i>
 				<input type="search" placeholder="Search" data-ng-model="searchFriendsInput">
@@ -13,6 +13,7 @@
 			</button>
 		</div>
 		<ion-scroll id="newMessage-scroll">
+			<div class="center padding" data-ng-if="friendsLoading"><ion-spinner></ion-spinner></div>
 			<ul class="list">
 				<li class="item item-avatar item-checkbox" data-ng-repeat="user in users | orderBy: 'name' | filter: {name: searchFriendsInput}">
 					<img data-ng-src="{{user.basic.image}}">
