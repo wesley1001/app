@@ -62,6 +62,7 @@ define([
 
 				unreadMessages = newUnread.map(h.parseDecimal);
 				theTopic.data.unread = (unreadMessages.length > 0);
+				theTopic.data.unreadCount = unreadMessages.length;
 
 				messages.forEach(function (message) {
 					message.unread = unreadMessages.indexOf(message.getID()) > -1;
@@ -148,7 +149,7 @@ define([
 					return e.data;
 				}));
 
-				theTopic.data.latestMessage = messages[messages.length - 1];				
+				theTopic.data.latestMessage = messages[messages.length - 1];
 			}
 
 			this.addMessages = function (messages, addUnread) {
@@ -173,7 +174,7 @@ define([
 			};
 
 			this.addMessage = function addMessageF(message, addUnread) {
-				this.addMessages([message], addUnread);	
+				this.addMessages([message], addUnread);
 			};
 
 			this.verify = function verify(cb) {
