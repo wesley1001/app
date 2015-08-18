@@ -5,8 +5,8 @@ define(["runners/runnerModule"], function (runnerModule) {
 	"use strict";
 
 	runnerModule.run([
-		"$ionicPlatform", "$cordovaPush", "$rootScope", "$window", "ssn.socketService", "ssn.errorService",
-		function ($ionicPlatform, $cordovaPush, $rootScope, $window, socketService, errorService) {
+		"$ionicPlatform", "$cordovaPush", "$rootScope", "$window", "$http", "ssn.socketService", "ssn.errorService",
+		function ($ionicPlatform, $cordovaPush, $rootScope, $window, $http, socketService, errorService) {
 		if (!$window.plugins || !$window.plugins.pushNotification) {
 			console.warn("No push notifications available");
 			return;
@@ -38,16 +38,49 @@ define(["runners/runnerModule"], function (runnerModule) {
 					alert("An unknown GCM event has occurred");
 					break;
 			}
+
+			if (notification.alert) {
+				navigator.notification.alert(notification.alert);
+			}
+			if (notification.sound) {
+				var snd = new Media(event.sound);
+				snd.play();
+			}
+
+			if (notification.badge) {
+				$cordovaPush.setBadgeNumber(notification.badge).then(function(result) {}).catch(err) {
+					alert("APN error: " + err);
+				});
+			}
 		});
 
 		$ionicPlatform.ready(function() {
-			var androidConfig = {
-				"senderID": "649891747084",
-			};
+			if(ionic.Platform.isIOS()) {
+				var config = {
+					"badge": true,
+					"sound": true,
+					"alert": true,
+				};
+			}
 
-			$cordovaPush.register(androidConfig).catch(function(err) {
+			if(ionic.Platform.isAndroid())  {
+				var config = {
+					"senderID": "649891747084",
+				};
+			}
+
+			$cordovaPush.register(config).then(function(deviceToken){
+				if (ionic.Platform.isIOS()) {
+					console.log("deviceToken: " + deviceToken);
+					$http.post("http://192.168.178.69:7777/subscribe", {user: "5", type: "ios", token: deviceToken}); // TODO: put real userid
+				}
+			}).catch(function(err) {
 				alert("Push registration failed");
 				console.error(err);
+			});
+
+			$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+
 			});
 		});
 	}]);
