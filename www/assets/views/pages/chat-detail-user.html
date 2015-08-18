@@ -1,0 +1,33 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view cache-view="false" overflow-scroll="true">
+	<ion-nav-bar class="bar-balanced bar-chat-detail">
+		<ion-nav-title>
+			Chat mit {{::user.basic.shortname}}
+			<div class="userimg">
+				<userimage data-userID="user.id" data-user="user" data-trustlevel="0">
+			</div>
+		</ion-nav-title>
+		<ion-nav-back-button class="button-clear">
+			<i class="ion-chevron-left"></i> Zurück
+		</ion-nav-back-button>
+	</ion-nav-bar>
+	<ion-content id="messageList" class="content-stable delegate-handle" delegate-handle="messageScroll">
+		<ul class="u-unstyled">
+			<li data-i18n="messages.endOfStream" id="messagesView-endOfStream"><span data-for="date">{{::now|date}}</span></li>
+		</ul>
+	</ion-content>
+	<ion-footer-bar keyboard-attach id="chat-detail-footer">
+		<form id="inputWrap">
+			<textarea class="no-resize" focus-me="canSend" id="messageInput" type="text" data-ng-model="create.text" data-i18n-attr="messages.sendMessage.text|placeholder" placeholder="Gib deine Nachricht ein!"></textarea>
+			<button id="sendmessage" data-ng-click="create.send(create.text)" class="button button-clear button-balanced">
+				<span data-ng-if="platform != 'android'">Senden</span>
+				<i class="icon ion-android-send" data-ng-if="platform == 'android'"></i>
+			</button>
+		</form>
+	</ion-footer-bar>
+</ion-view>

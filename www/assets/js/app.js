@@ -17,6 +17,7 @@ define([
 	"config/routesConfig",
 	"controllers/controllers",
 	"directives/userimage",
+	"directives/syntaxify",
 	"optional!cordova"
 ], function (angular) {
 	"use strict";

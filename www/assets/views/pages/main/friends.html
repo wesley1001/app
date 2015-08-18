@@ -1,18 +1,18 @@
 <ion-view hide-back-button="true">
 	<ion-nav-title>Freunde</ion-nav-title>
 	<ion-content scroll="false">
-		<div class="item item-input-inset">
+		<div class="item item-input-inset friends-search">
 			<label class="item-input-wrapper">
 				<i class="icon ion-ios-search placeholder-icon"></i>
-				<input type="search" placeholder="Search">
+				<input type="search" placeholder="Search" data-ng-model="searchFriendsInput">
 			</label>
-			<button class="button button-clear">
+			<button class="button button-clear" data-ng-click="searchFriendsInput = ''" data-ng-show="searchFriendsInput.length > 0">
 				Abbrechen
 			</button>
 		</div>
-		<ion-scroll>
+		<ion-scroll id="friends-scroll">
 			<ul class="list">
-				<li class="item item-avatar" data-ng-repeat="user in friends">
+				<li class="item item-avatar" data-ng-repeat="user in friends | orderBy: 'name' | filter: {name: searchFriendsInput}" ui-sref="newMessageUser({userId: user.id})">
 					<img data-ng-src="{{user.basic.image}}">
 					<h2>{{user.name}}</h2>
 				</li>

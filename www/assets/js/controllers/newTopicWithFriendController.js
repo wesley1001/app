@@ -1,18 +1,25 @@
 define(["step", "whispeerHelper", "controllers/controllerModule", "asset/state"], function (step, h, controllerModule, State) {
 	"use strict";
-	controllerModule.controller("ssn.newTopicController", [
-		"$scope", "$state", "ssn.friendsService", "ssn.userService", "ssn.messageService", "ssn.errorService",
-		function($scope, $state, friendsService, userService, messageService, errorService) {
-		$scope.users = [];
+	controllerModule.controller("ssn.newTopicWithFriendController", [
+		"$scope", "$state", "$stateParams", "$ionicHistory", "ssn.userService", "ssn.messageService", "ssn.errorService",
+		function($scope, $state, $stateParams, $ionicHistory, userService, messageService, errorService) {
 
-		$scope.searchFriendsInput = "";
+		$scope.now = new Date();
 
+		var userID = h.parseDecimal($stateParams.userId);
 		step(function () {
-			var friends = friendsService.getFriends();
-			userService.getMultipleFormatted(friends, this);
-		}, h.sF(function (result) {
-			$scope.users = result;
-		}));
+			messageService.getUserTopic(userID, this);
+		}, h.sF(function (topicID) {
+			if (topicID) {
+				$ionicHistory.currentView($ionicHistory.backView());
+				$state.go("chat-detail", {chatId: topicID}, { location: "replace" });
+				return;
+			}
+			userService.get(userID, this);
+		}), h.sF(function (user) {
+			$scope.user = user.data;
+			user.loadBasicData(this);
+		}), errorService.criticalError);
 
 		var sendMessageState = new State();
 		$scope.sendMessageState = sendMessageState.data;
@@ -21,11 +28,7 @@ define(["step", "whispeerHelper", "controllers/controllerModule", "asset/state"]
 			text: "",
 			selectedUsers: {},
 			send: function (text) {
-				var receiver = $scope.users.filter(function (u) {
-					return $scope.create.selectedUsers[u.id];
-				}).map(function (u) {
-					return u.id;
-				});
+				var receiver = [$scope.user.id];
 
 				sendMessageState.pending();
 

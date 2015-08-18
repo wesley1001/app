@@ -3,18 +3,18 @@
 		Neue Nachricht
 	</ion-nav-title>
 	<ion-content scroll="false">
-		<div class="item item-input-inset">
+		<div class="item item-input-inset friends-search">
 			<label class="item-input-wrapper">
 				<i class="icon ion-ios-search placeholder-icon"></i>
-				<input type="search" placeholder="Search">
+				<input type="search" placeholder="Search" data-ng-model="searchFriendsInput">
 			</label>
-			<button class="button button-clear">
+			<button class="button button-clear" data-ng-click="searchFriendsInput = ''" data-ng-show="searchFriendsInput.length > 0">
 				Abbrechen
 			</button>
 		</div>
-		<ion-scroll>
+		<ion-scroll id="newMessage-scroll">
 			<ul class="list">
-				<li class="item item-avatar item-checkbox" data-ng-repeat="user in users">
+				<li class="item item-avatar item-checkbox" data-ng-repeat="user in users | orderBy: 'name' | filter: {name: searchFriendsInput}">
 					<img data-ng-src="{{user.basic.image}}">
 					<h2>{{user.name}}</h2>
 					<label class="checkbox checkbox-balanced checkbox-pullRight">
@@ -25,7 +25,10 @@
 		</ion-scroll>
 		<form id="inputWrap">
 			<textarea class="no-resize" focus-me="canSend" id="messageInput" type="text" data-ng-model="create.text" data-i18n-attr="messages.sendMessage.text|placeholder" placeholder="Gib deine Nachricht ein!"></textarea>
-			<button id="sendmessage" class="button button-outline button-balanced" data-ng-click="create.send(create.text)"><i class="ion-ios-paperplane"></i></button>
+			<button id="sendmessage" data-ng-click="create.send(create.text)" class="button button-clear button-balanced">
+				<span data-ng-if="platform != 'android'">Senden</span>
+				<i class="icon ion-android-send" data-ng-if="platform == 'android'"></i>
+			</button>
 		</form>
 	</ion-content>
 </ion-view>

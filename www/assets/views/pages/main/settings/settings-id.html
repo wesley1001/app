@@ -1,0 +1,9 @@
+<ion-view>
+	<ion-nav-title>Meine ID</ion-nav-title>
+	<ion-content class="padding settings-id">
+		<p><img class="settingsView-qrCode" id="fingerPrintQR" /></p>
+		<p>
+			<span data-ng-repeat="part in fingerprint">{{part}}{{$last ? '' : ' - '}}</span>
+		</p>
+	</ion-content>
+</ion-view>

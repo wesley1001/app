@@ -27,7 +27,22 @@ define(["angular"], function (angular) {
 		.state("main.settings", {
 			url: "/settings",
 			templateUrl: "assets/views/pages/main/settings.html",
-			controller: "ssn.settingsController"
+			controller: "ssn.settingsRedirectController"
+		})
+		.state("main.settings.main", {
+			url: "",
+			templateUrl: "assets/views/pages/main/settings/settings-main.html",
+			controller: "ssn.settingsMainController"
+		})
+		.state("main.settings.id", {
+			url: "/settings/id",
+			templateUrl: "assets/views/pages/main/settings/settings-id.html",
+			controller: "ssn.settingsIDController"
+		})
+		.state("main.settings.profile", {
+			url: "/settings/profile",
+			templateUrl: "assets/views/pages/main/settings/settings-profile.html",
+			controller: "ssn.settingsProfileController"
 		})
 		.state("chat-detail", {
 			url: "/chat/:chatId",
@@ -38,6 +53,11 @@ define(["angular"], function (angular) {
 			url: "/newMessage",
 			templateUrl: "assets/views/pages/newMessage.html",
 			controller: "ssn.newTopicController"
+		})
+		.state("newMessageUser", {
+			url: "/newMessage/:userId",
+			templateUrl: "assets/views/pages/chat-detail-user.html",
+			controller: "ssn.newTopicWithFriendController"
 		});
 
 		// if none of the above states are matched, use this as the fallback
