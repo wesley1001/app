@@ -42,13 +42,14 @@ define(["runners/runnerModule"], function (runnerModule) {
 			if (notification.alert) {
 				navigator.notification.alert(notification.alert);
 			}
+
 			if (notification.sound) {
 				var snd = new Media(event.sound);
 				snd.play();
 			}
 
 			if (notification.badge) {
-				$cordovaPush.setBadgeNumber(notification.badge).then(function(result) {}).catch(err) {
+				$cordovaPush.setBadgeNumber(notification.badge).then(function(result) {}).catch(function(err) {
 					alert("APN error: " + err);
 				});
 			}
