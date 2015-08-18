@@ -72,7 +72,7 @@ define(["runners/runnerModule"], function (runnerModule) {
 
 			$cordovaPush.register(config).then(function(deviceToken){
 				if (ionic.Platform.isIOS()) {
-					$http.post("http://192.168.178.69:7777/subscribe", {type: "ios", token: deviceToken});
+					$http.post("http://192.168.178.69:7777/subscribe", {user: "1", type: "ios", token: deviceToken});
 				}
 			}).catch(function(err) {
 				alert("Push registration failed");
