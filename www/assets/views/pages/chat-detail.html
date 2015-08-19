@@ -22,7 +22,7 @@
 			<li class="padding center" data-ng-if="activeTopic.remaining > 0">
 				<ion-spinner class="spinner-button" data-ng-if="loadingMessages"></ion-spinner>
 				<button class="button button-block" data-ng-click="loadMoreMessages()" data-ng-if="!loadingMessages">
-					<span data-i18n="messages.loadMore" class="balanced"></span>
+					<span data-i18n="messages.loadMore"></span>
 				</button>
 			</li>
 			<li class="burst" data-ng-repeat="burst in (bursts = messageBursts())" data-ng-class="::{me:burst.isMe(), other:burst.isOther()}">
