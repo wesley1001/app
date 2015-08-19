@@ -35,8 +35,19 @@
 
 .bar-chat-detail {
 	.title {
+		position: relative;
+		margin: 15px auto auto !important;
+		width: 100%;
+		flex-shrink: 1;
+		left: 0 !important;
 		right: 0 !important;
 		padding-right: 2.2941176471em;
+	}
+	.back-button {
+		position: relative;
+		margin: 15px auto auto;
+		width: 70px;
+		flex-shrink: 0;
 	}
 	.nav-bar-title {
 		display: inline-block;
@@ -44,6 +55,7 @@
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
+		text-align: center;
 	}
 
 	.userimg {
