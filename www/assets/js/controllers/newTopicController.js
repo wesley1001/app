@@ -1,17 +1,19 @@
 define(["step", "whispeerHelper", "controllers/controllerModule", "asset/state"], function (step, h, controllerModule, State) {
 	"use strict";
 	controllerModule.controller("ssn.newTopicController", [
-		"$scope", "$state", "ssn.friendsService", "ssn.userService", "ssn.messageService", "ssn.errorService",
-		function($scope, $state, friendsService, userService, messageService, errorService) {
+		"$scope", "$state", "$ionicScrollDelegate", "ssn.friendsService", "ssn.userService", "ssn.messageService", "ssn.errorService",
+		function($scope, $state, $ionicScrollDelegate, friendsService, userService, messageService, errorService) {
 		$scope.users = [];
-
+		$scope.usersLoading = true
 		$scope.searchFriendsInput = "";
 
 		step(function () {
 			var friends = friendsService.getFriends();
 			userService.getMultipleFormatted(friends, this);
 		}, h.sF(function (result) {
+			$scope.usersLoading = false;
 			$scope.users = result;
+			$ionicScrollDelegate.scrollTo(0,55);
 		}));
 
 		var sendMessageState = new State();
