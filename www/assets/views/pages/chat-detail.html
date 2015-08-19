@@ -19,11 +19,10 @@
 	<ion-content id="messageList" class="content-stable delegate-handle" delegate-handle="messageScroll">
 		<ul class="u-unstyled">
 			<li data-i18n="messages.endOfStream" data-ng-if="activeTopic.remaining == 0" id="messagesView-endOfStream"><span data-for="date">{{::messageBursts()[0].firstMessage().timestamp|date}}</span></li>
-			<li class="padding" data-ng-if="activeTopic.remaining > 0">
-				<button class="button button-block" data-ng-click="loadMoreMessages()">
-					<ion-spinner id="messageView-loadingIcon" class="spinner-button" data-icon="crescent" data-ng-if="loadingMessages"></ion-spinner>
-					<span data-i18n="messages.remaining" data-ng-if="loadingMessages"></span>
-					<span data-i18n="messages.loadMore" data-ng-if="!loadingMessages" class="balanced"></span>
+			<li class="padding center" data-ng-if="activeTopic.remaining > 0">
+				<ion-spinner class="spinner-button" data-ng-if="loadingMessages"></ion-spinner>
+				<button class="button button-block" data-ng-click="loadMoreMessages()" data-ng-if="!loadingMessages">
+					<span data-i18n="messages.loadMore" class="balanced"></span>
 				</button>
 			</li>
 			<li class="burst" data-ng-repeat="burst in (bursts = messageBursts())" data-ng-class="::{me:burst.isMe(), other:burst.isOther()}">
