@@ -14,11 +14,13 @@
 				</button>
 			</div>
 			<ul class="list">
-				<li class="item item-avatar item-checkbox" data-ng-repeat="user in users | orderBy: 'name' | filter: {name: searchFriendsInput}">
-					<img data-ng-src="{{user.basic.image}}">
-					<h2>{{user.name}}</h2>
-					<label class="checkbox checkbox-balanced checkbox-pullRight">
-						<input type="checkbox" ng-model="create.selectedUsers[user.id]">
+				<li class="item item-avatar item-checkbox newMessageToFriend" data-ng-repeat="user in users | orderBy: 'name' | filter: {name: searchFriendsInput}">
+					<label class="checkbox checkbox-balanced newMessageToFriend-label">
+						<div class="item-avatar newMessageToFriend-content">
+							<img data-ng-src="{{user.basic.image}}">
+							<h2 class="newMessageToFriend-content-username">{{user.name}}</h2>
+						</div>
+						<input class="checkbox-pullRight" type="checkbox" ng-model="create.selectedUsers[user.id]">
 					</label>
 				</li>
 			</ul>
