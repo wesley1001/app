@@ -3,16 +3,16 @@
 		Neue Nachricht
 	</ion-nav-title>
 	<ion-content scroll="false">
-		<div class="item item-input-inset friends-search">
-			<label class="item-input-wrapper">
-				<i class="icon ion-ios-search placeholder-icon"></i>
-				<input type="search" placeholder="Search" data-ng-model="searchFriendsInput">
-			</label>
-			<button class="button button-clear" data-ng-click="searchFriendsInput = ''" data-ng-show="searchFriendsInput.length > 0">
-				Abbrechen
-			</button>
-		</div>
 		<ion-scroll id="newMessage-scroll">
+			<div class="item item-input-inset friends-search">
+				<label class="item-input-wrapper">
+					<i class="icon ion-ios-search placeholder-icon"></i>
+					<input type="search" placeholder="Search" data-ng-model="searchFriendsInput">
+				</label>
+				<button class="button button-clear" data-ng-click="searchFriendsInput = ''" data-ng-show="searchFriendsInput.length > 0">
+					Abbrechen
+				</button>
+			</div>
 			<ul class="list">
 				<li class="item item-avatar item-checkbox" data-ng-repeat="user in users | orderBy: 'name' | filter: {name: searchFriendsInput}">
 					<img data-ng-src="{{user.basic.image}}">
