@@ -11,7 +11,8 @@ define([
 	"config/routesConfig",
 	"controllers/controllers",
 	"directives/userimage",
-	"directives/syntaxify"
+	"directives/syntaxify",
+	"directives/smartDate"
 ], function (angular) {
 	"use strict";
 	// Ionic Starter App
