@@ -11,7 +11,7 @@
 					<span class="userimg userimg--remaining" data-ng-if="chat.partners.length > 2">+{{chat.partners.length - 2}}</span>
 				</div>
 				<div class="imgWrap imgWrap--peer" data-ng-if="chat.type == 'peerChat'">
-					<userimage class="userimg--topic" data-ng-repeat="partner in chat.partners" data-user="partner">
+					<userimage class="userimg--topic" data-user="chat.partners[0]">
 				</div>
 				<h2 class="username" data-ng-if="::chat.type === 'peerChat'">{{chat.partners[0].name}}</h2>
 				<h2 class="username" data-ng-if="::chat.type === 'groupChat'"><span data-ng-repeat="partner in chat.partners">{{partner.basic.shortname}}{{$last?"":", "}}</span></h2>
