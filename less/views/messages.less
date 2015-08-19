@@ -41,7 +41,6 @@
 		flex-shrink: 1;
 		left: 0 !important;
 		right: 0 !important;
-		padding-right: 2.2941176471em;
 	}
 	.back-button {
 		position: relative;
@@ -54,25 +53,41 @@
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		text-align: center;
 	}
 
 	.userimg {
 		position: absolute;
 		top: 50%;
-		right: 0;
 		margin-top: -1em;
 		width: 2em;
 		height: 2em;
 	}
 }
 
-.platform-android .bar-chat-detail .title {
-	margin-top: -5px !important;
+.platform-android .bar-chat-detail{
+	.title {
+		margin-top: -5px !important;
+		padding-left: 2.2941176471em;
+	}
+	.userimg {
+		left: 0;
+		margin-top: -0.8em;
+		width: 1.6em;
+		height: 1.6em;
+	}
 }
 
-.platform-ios .bar-chat-detail .title {
-	margin-top: 15px !important;
+.platform-ios .bar-chat-detail {
+	.nav-bar-title {
+		text-align: center;
+	}
+	.title {
+		margin-top: 15px !important;
+		padding-right: 2.2941176471em;
+	}
+	.userimg {
+		right: 0;
+	}
 }
 
 .topic-unreadCount {
