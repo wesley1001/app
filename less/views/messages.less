@@ -36,7 +36,7 @@
 .bar-chat-detail {
 	.title {
 		position: relative;
-		margin: 15px auto auto !important;
+		margin: auto !important;
 		width: 100%;
 		flex-shrink: 1;
 		left: 0 !important;
@@ -45,8 +45,7 @@
 	}
 	.back-button {
 		position: relative;
-		margin: 15px auto auto;
-		width: 70px;
+		margin: auto;
 		flex-shrink: 0;
 	}
 	.nav-bar-title {
@@ -66,6 +65,14 @@
 		width: 2em;
 		height: 2em;
 	}
+}
+
+.platform-android .bar-chat-detail .title {
+	margin-top: -5px !important;
+}
+
+.platform-ios .bar-chat-detail .title {
+	margin-top: 15px !important;
 }
 
 .topic-unreadCount {
