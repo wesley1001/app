@@ -13,7 +13,8 @@
 				<div class="imgWrap" data-ng-if="chat.type == 'peerChat'">
 					<userimage class="userimg--topic" data-ng-repeat="partner in chat.partners" data-user="partner">
 				</div>
-				<h2 class="username"><span data-ng-repeat="partner in chat.partners">{{partner.name}}{{$last?"":", "}}</span></h2>
+				<h2 class="username" data-ng-if="::chat.type === 'peerChat'">{{chat.partners[0].name}}</h2>
+				<h2 class="username" data-ng-if="::chat.type === 'groupChat'"><span data-ng-repeat="partner in chat.partners">{{partner.basic.shortname}}{{$last?"":", "}}</span></h2>
 				<small class="topic-time" data-smart-date="chat.latestMessage.data.timestamp"></small>
 				<p>{{chat.latestMessage.data.sender.basic.shortname}}: {{chat.latestMessage.data.text}}</p>
 				<p data-ng-if="chat.unread" class="topic-unreadCount"><span class="topic-unreadCount-text">{{chat.unreadCount}}</span></p>
