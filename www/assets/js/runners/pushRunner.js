@@ -7,86 +7,43 @@ define(["runners/runnerModule"], function (runnerModule) {
 	runnerModule.run([
 		"$ionicPlatform", "$cordovaPush", "$rootScope", "$window", "$http", "ssn.socketService", "ssn.errorService",
 		function ($ionicPlatform, $cordovaPush, $rootScope, $window, $http, socketService, errorService) {
-		if (!$window.plugins || !$window.plugins.pushNotification) {
-			console.warn("No push notifications available");
+		if (!window.PushNotification) {
+			console.warn("no push notifications");
 			return;
 		}
+		var push = window.PushNotification.init({
+			"android": {
+				"senderID": "649891747084"
+			},
+			"ios": {},
+			"windows": {}
+		});
 
-		$rootScope.$on("$cordovaPush:notificationReceived", function(event, notification) {
-			switch(notification.event) {
-				case "registered":
-					if (notification.regid.length > 0 ) {
-						socketService.awaitConnection().then(function () {
-							return socketService.emit("pushNotification.subscribe", {
-								token: notification.regid,
-								type: "android"
-							}, this);
-						}).catch(errorService.criticalError);
-					}
-					break;
+		push.on("registration", function(data) {
+			var type = "";
 
-				case "message":
-					// this is the actual push notification. its format depends on the data model from the push server
-					console.log("message = " + notification);
-					break;
-
-				case "error":
-					alert("GCM error = " + notification.msg);
-					break;
-
-				default:
-					alert("An unknown GCM event has occurred");
-					break;
+			if (window.ionic.Platform.isAndroid()) {
+				type = "android";
+			} else if (window.ionic.Platform.isIOS()) {
+				type = "ios";
 			}
 
-			if (notification.alert) {
-				navigator.notification.alert(notification.alert);
-			}
+			socketService.awaitConnection().then(function () {
+				return socketService.emit("pushNotification.subscribe", {
+					token: data.registrationId,
+					type: type
+				}, this);
+			}).catch(errorService.criticalError);
+			console.log(data.registrationId);
+		});
 
-			if (notification.sound) {
-				var snd = new Media(event.sound);
-				snd.play();
-			}
-
-			if (notification.badge) {
-				$cordovaPush.setBadgeNumber(notification.badge).then(function(result) {}).catch(function(err) {
-					alert("APN error: " + err);
-				});
+		push.on("notification", function(data) {
+			if (data.additionalData && data.additionalData) {
+				console.log(data.additionalData);
+				debugger;
 			}
 		});
 
-		$ionicPlatform.ready(function() {
-			if(ionic.Platform.isIOS()) {
-				var config = {
-					"badge": true,
-					"sound": true,
-					"alert": true,
-				};
-			}
-
-			if(ionic.Platform.isAndroid())  {
-				var config = {
-					"senderID": "649891747084",
-				};
-			}
-
-			$cordovaPush.register(config).then(function(deviceToken){
-				if (ionic.Platform.isIOS()) {
-					socketService.awaitConnection().then(function () {
-						return socketService.emit("pushNotification.subscribe", {
-							type: "ios",
-							token: deviceToken
-						}, this);
-					}).catch(errorService.criticalError);
-				}
-			}).catch(function(err) {
-				alert("Push registration failed");
-				console.error(err);
-			});
-
-			$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-
-			});
-		});
+		push.on("error", errorService.criticalError);
 	}]);
 });
