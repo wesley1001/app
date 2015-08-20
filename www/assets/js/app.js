@@ -50,7 +50,7 @@ define([
 		.run(["$ionicPlatform", "ssn.messageService", "ssn.sessionService", "ssn.trustService", function($ionicPlatform, messageService) {
 			function vibrate(message) {
 				if (!message.isOwn()) {
-					navigator.vibrate(700);
+					navigator.vibrate(300);
 				}
 			}
 

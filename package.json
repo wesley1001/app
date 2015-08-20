@@ -22,8 +22,8 @@
   },
   "cordovaPlugins": [
     "cordova-plugin-vibration",
-    "cordova-plugin-push-notification",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "phonegap-plugin-push"
   ],
   "cordovaPlatforms": [
     "ios",
