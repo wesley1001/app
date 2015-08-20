@@ -5,13 +5,13 @@ define(["runners/runnerModule"], function (runnerModule) {
 	"use strict";
 
 	runnerModule.run([
-		"$ionicPlatform", "$cordovaPush", "$rootScope", "$window", "$http", "ssn.socketService", "ssn.errorService",
-		function ($ionicPlatform, $cordovaPush, $rootScope, $window, $http, socketService, errorService) {
-		if (!window.PushNotification) {
+		"$rootScope", "$window", "ssn.socketService", "ssn.errorService",
+		function ($rootScope, $window, socketService, errorService) {
+		if (!$window.PushNotification) {
 			console.warn("no push notifications");
 			return;
 		}
-		var push = window.PushNotification.init({
+		var push = $window.PushNotification.init({
 			"android": {
 				"senderID": "649891747084"
 			},
@@ -22,9 +22,9 @@ define(["runners/runnerModule"], function (runnerModule) {
 		push.on("registration", function(data) {
 			var type = "";
 
-			if (window.ionic.Platform.isAndroid()) {
+			if ($window.ionic.Platform.isAndroid()) {
 				type = "android";
-			} else if (window.ionic.Platform.isIOS()) {
+			} else if ($window.ionic.Platform.isIOS()) {
 				type = "ios";
 			}
 
