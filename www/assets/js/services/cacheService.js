@@ -1,23 +1,116 @@
 define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], function (h, Dexie, Promise, serviceModule) {
 	"use strict";
 
-	var db, errorService;
+	function getDirectoryFileList(directoryEntry) {
+		var reader = directoryEntry.createReader();
+
+		return new Promise(function (resolve, reject) {
+			var files = [];
+
+			function doRead() {
+				reader.readEntries(function (toAddFiles) {
+					if (toAddFiles.length === 0) {
+						resolve(files);
+						return;
+					}
+
+					files = files.concat(toAddFiles);
+					doRead();
+				}, reject);
+			}
+
+			doRead();
+		});
+	}
+
+	function promisify(func, thisArg) {
+		return function () {
+			var $_len = arguments.length;
+			var args = new Array($_len);
+			for(var $_i = 0; $_i < $_len; ++$_i) {
+				args[$_i] = arguments[$_i];
+			}
+
+			return new Promise(function (resolve, reject) {
+				args.push(resolve, reject);
+
+				func.apply(thisArg, args);
+			});
+		};
+	}
+
+	function getFileContent(directoryEntry, filename, options) {
+		var getFileAsync = promisify(directoryEntry.getFile, directoryEntry);
+
+		return getFileAsync(filename, options).then(function (fileEntry) {
+			var getFileObject = promisify(fileEntry.file, fileEntry);
+			return getFileObject();
+		}).then(function (fileObject) {
+			if (options.raw) {
+				return fileObject;
+			}
+
+			var reader = new FileReader();
+
+			var resultPromise = new Promise(function (resolve) {
+				reader.onload = function (evt) {
+					resolve(evt.target.result);
+				};
+			});
+
+			reader.readAsText(fileObject);
+
+			return resultPromise;
+		});
+	}
+
+	function writeFile(directoryEntry, filename, options, data) {
+		var getFileAsync = promisify(directoryEntry.getFile, directoryEntry);
+
+		return getFileAsync(filename, options).then(function (fileEntry) {
+			var createWriterAsync = promisify(fileEntry.createWriter, fileEntry);
+			return createWriterAsync();
+		}).then(function (fileWriter) {
+			var resultPromise = new Promise(function (resolve, reject) {
+				fileWriter.onwriteend = resolve;
+				fileWriter.onerror = reject;
+			});
+
+			fileWriter.write(data);
+
+			return resultPromise;
+		});
+	}
+
+	var resolveLocalFileSystemURLAsync = promisify(window.resolveLocalFileSystemURL);
+	var openCacheDirectory = resolveLocalFileSystemURLAsync(cordova.file.cacheDirectory).then(function (fs) {
+		var getDirectoryAsync = promisify(fs.getDirectory, fs);
+		return getDirectoryAsync("whispeerCacheDatabase", {create: true});
+	});
+
+	var errorService;
 
 	function Cache(name, options) {
 		this._name = name;
 		this._options = options || {};
+
+		this._openSubCacheDirectory = openCacheDirectory.then(function (directoryEntry) {
+			var getDirectoryAsync = promisify(directoryEntry.getDirectory, directoryEntry);
+			return getDirectoryAsync(name, {create: true});
+		});
 	}
 
 	Cache.prototype.entryCount = function () {
-		return Promise.resolve(db.cache.where("type").equals(this._name).count());
-	};
-
-	Cache.prototype._fixBlobStorage = function (cacheEntry) {
-		var blobToDataURI = Promise.promisify(h.blobToDataURI, h);
-
-		return blobToDataURI(cacheEntry.blob).then(function (blobAsUri) {
-			cacheEntry.blob = blobAsUri;
-			return db.cache.add(cacheEntry);
+		return this._openSubCacheDirectory.then(function (cacheDir) {
+			return getDirectoryFileList(cacheDir);
+		}).then(function (files) {
+			return files.filter(function (file) {
+				return file.isFile;
+			}).filter(function (file) {
+				return file.name.indexOf("Data") > -1;
+			});
+		}).then(function (files) {
+			return files.length;
 		});
 	};
 
@@ -30,100 +123,79 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], functi
 			return this.cleanUp();
 		}).catch(errorService.criticalError);
 
-		var cacheEntry = {
-			data: JSON.stringify(data),
-			created: new Date().getTime(),
-			used: new Date().getTime(),
-			id: this._name + "/" + id,
-			type: this._name,
-			size: 0
-		}, that = this;
+		return this._openSubCacheDirectory.bind(this).then(function (cacheDir) {
+			var metaEntry = {
+				created: new Date().getTime(),
+				used: new Date().getTime(),
+				id: this._name + "/" + id,
+				type: this._name,
+				size: 0
+			};
 
-		if (blob) {
-			cacheEntry.blob = blob;
-			cacheEntry.size = blob.size;
-		}
-
-		return Promise.resolve(db.cache.put(cacheEntry).catch(function (e) {
-			if (e.code && e.code === e.DATA_CLONE_ERR) {
-				return that._fixBlobStorage(cacheEntry);
-			} else {
-				return Promise.reject(e);
+			if (blob) {
+				metaEntry.blob = true;
+				metaEntry.size = blob.size;
 			}
-		}));
+
+			var done = [
+				writeFile(cacheDir, "Cache" + id + "Meta", {create: true}, JSON.stringify(metaEntry)),
+				writeFile(cacheDir, "Cache" + id + "Data", {create: true}, JSON.stringify(data))
+			];
+
+			if (blob) {
+				done.push(writeFile(cacheDir, "Cache" + id + "Blob", {create: true}, blob));
+			}
+
+			return Promise.all(done);
+		});
 	};
 
 	Cache.prototype.get = function (id) {
-		var cacheResult = db.cache.where(":id").equals(this._name + "/" + id);
+		//TODO: modify to update used!
 
-		cacheResult.modify({ used: new Date().getTime() });
-		return Promise.resolve(cacheResult.first().then(function (data) {
-			if (typeof data !== "undefined") {
-				data.data = JSON.parse(data.data);
+		var cacheDir, parsedContent;
+		return this._openSubCacheDirectory.bind(this).then(function (_cacheDir) {
+			cacheDir = _cacheDir;
 
-				if (typeof data.blob === "string") {
-					data.blob = h.dataURItoBlob(data.blob);
-				}
+			return getFileContent(cacheDir, "Cache" + id + "Meta", {});
+		}).then(function (content) {
+			return JSON.parse(content);
+		}).then(function (_parsedContent) {
+			parsedContent = _parsedContent;
 
-				return data;
+			var files = [getFileContent(cacheDir, "Cache" + id + "Data", {})];
+
+			if (parsedContent.blob) {
+				files.push(getFileContent(cacheDir, "Cache" + id + "Blob", { raw: true }));
 			}
 
+			return Promise.all(files);
+		}).spread(function (data, blob) {
+			parsedContent.blob = blob;
+			parsedContent.data = JSON.parse(data);
+
+			return parsedContent;
+		}).catch(function (err) {
+			console.error(err);
+
 			throw new Error("cache miss");
-		}));
+		});
 	};
 
 	Cache.prototype.cleanUp = function () {
+		//TODO
+
 		//remove data which hasn't been used in a long time or is very big
 		return Promise.resolve(this.entryCount().then(function (count) {
 			if (count > 100) {
-				db.cache.orderBy("used").limit(count - 100).delete();
+				//TODO
+				//db.cache.orderBy("used").limit(count - 100).delete();
 			}
 		}));
 	};
 
-	function NoCache() {}
-
-	NoCache.prototype.entryCount = function () {
-		return Promise.reject();
-	};
-
-	NoCache.prototype.store = function () {
-		return Promise.resolve();
-	};
-
-	NoCache.prototype.get = function () {
-		return Promise.reject();
-	};
-
-	NoCache.prototype.cleanUp = function () {
-		return Promise.resolve();
-	};
-
-	try {
-		indexedDB.deleteDatabase("whispeer");
-	} catch (e) {}
-
-	try {
-		db = new Dexie("whispeerCache");
-
-		db.version(1).stores({
-			cache: "id,created,used,type,size"
-		});
-
-	    db.open();
-	} catch (e) {
-		console.error(e);
-		console.error("Dexie failed to initialize...");
-	}
-
 	function service (_errorService) {
 		errorService = _errorService;
-
-		if (!db) {
-			return NoCache;
-		}
-
-		db.on("blocked", errorService.logError);
 
 		return Cache;
 	}
