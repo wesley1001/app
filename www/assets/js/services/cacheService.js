@@ -171,6 +171,13 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], functi
 
 			return Promise.all(files);
 		}).spread(function (data, blob) {
+			if (new Date().getTime() - parsedContent.used > 12 * 60 * 60 * 1000) {
+				parsedContent.used = new Date().getTime();
+
+				var newContent = JSON.stringify(parsedContent);
+				writeFile(cacheDir, "Cache" + id + "Meta", {}, newContent).catch(errorService.criticalError);
+			}
+
 			parsedContent.blob = blob;
 			parsedContent.data = JSON.parse(data);
 
