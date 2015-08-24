@@ -193,12 +193,12 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], functi
 		//TODO
 
 		//remove data which hasn't been used in a long time or is very big
-		return Promise.resolve(this.entryCount().then(function (count) {
+		return this.entryCount().then(function (count) {
 			if (count > 100) {
 				//TODO
 				//db.cache.orderBy("used").limit(count - 100).delete();
 			}
-		}));
+		});
 	};
 
 	function service (_errorService) {
