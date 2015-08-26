@@ -39,6 +39,20 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], functi
 		};
 	}
 
+	function readFile(fileObject) {
+		var reader = new FileReader();
+
+		var resultPromise = new Promise(function (resolve) {
+			reader.onload = function (evt) {
+				resolve(evt.target.result);
+			};
+		});
+
+		reader.readAsText(fileObject);
+
+		return resultPromise;
+	}
+
 	function getFileContent(directoryEntry, filename, options) {
 		var getFileAsync = promisify(directoryEntry.getFile, directoryEntry);
 
@@ -50,17 +64,7 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], functi
 				return fileObject;
 			}
 
-			var reader = new FileReader();
-
-			var resultPromise = new Promise(function (resolve) {
-				reader.onload = function (evt) {
-					resolve(evt.target.result);
-				};
-			});
-
-			reader.readAsText(fileObject);
-
-			return resultPromise;
+			return readFile(fileObject);
 		});
 	}
 
@@ -82,11 +86,13 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], functi
 		});
 	}
 
-	var resolveLocalFileSystemURLAsync = promisify(window.resolveLocalFileSystemURL);
-	var openCacheDirectory = resolveLocalFileSystemURLAsync(cordova.file.cacheDirectory).then(function (fs) {
-		var getDirectoryAsync = promisify(fs.getDirectory, fs);
-		return getDirectoryAsync("whispeerCacheDatabase", {create: true});
-	});
+	if (window.cordova && window.cordova.file) {
+		var resolveLocalFileSystemURLAsync = promisify(window.resolveLocalFileSystemURL);
+		var openCacheDirectory = resolveLocalFileSystemURLAsync(window.cordova.file.cacheDirectory).then(function (fs) {
+			var getDirectoryAsync = promisify(fs.getDirectory, fs);
+			return getDirectoryAsync("whispeerCacheDatabase", {create: true});
+		});
+	}
 
 	var errorService;
 
@@ -193,18 +199,66 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], functi
 		//TODO
 
 		//remove data which hasn't been used in a long time or is very big
-		return this.entryCount().then(function (count) {
-			if (count > 100) {
-				//TODO
-				//db.cache.orderBy("used").limit(count - 100).delete();
-			}
+		return this.entryCount().bind(this).then(function (count) {
+			//if (count > 100) {
+				debugger;
+				return this._openSubCacheDirectory.bind(this).then(function (cacheDir) {
+					return getDirectoryFileList(cacheDir);
+				}).then(function (files) {
+					return files.filter(function (file) {
+						return file.isFile;
+					}).filter(function (file) {
+						return file.name.indexOf("Meta") > -1;
+					});
+				}).map(function (fileEntry) {
+					var getFileObject = promisify(fileEntry.file, fileEntry);
+					return getFileObject().then(function (file) {
+						return readFile(file);
+					}).then(function (content) {
+						return {
+							name: fileEntry,
+							content: JSON.parse(content)
+						};
+					});
+				}).then(function (files) {
+					return files.sort(function (f1, f2) {
+						return f1.content.used - f2.content.used;
+					}).slice(0, files.length - 70);
+				}).map(function (fileData) {
+					//delete the file and the data/blob sub-file
+					//var removeFile = promisify(fileData.file.remove, fileData.file);
+					//return removeFile();
+				});
+			//}
 		});
+	};
+
+	function NoCache() {}
+
+	NoCache.prototype.entryCount = function () {
+		return Promise.reject();
+	};
+
+	NoCache.prototype.store = function () {
+		return Promise.resolve();
+	};
+
+	NoCache.prototype.get = function () {
+		return Promise.reject();
+	};
+
+	NoCache.prototype.cleanUp = function () {
+		return Promise.resolve();
 	};
 
 	function service (_errorService) {
 		errorService = _errorService;
 
-		return Cache;
+		if (window.cordova && window.cordova.file) {
+			return Cache;
+		}
+
+		return NoCache;
 	}
 
 	service.$inject = ["ssn.errorService"];
