@@ -41,6 +41,8 @@ define(["runners/runnerModule"], function (runnerModule) {
 			if (data.additionalData && data.additionalData) {
 				console.log(data.additionalData);
 				debugger;
+
+				messageService.addData(data.additionalData);
 			}
 		});
 
