@@ -156,42 +156,59 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], functi
 		});
 	};
 
+	Cache.prototype._updateUsed = function (id, meta) {
+		if (new Date().getTime() - meta.used > 12 * 60 * 60 * 1000) {
+			meta.used = new Date().getTime();
+
+			var newContent = JSON.stringify(meta);
+			this._openSubCacheDirectory.then(function (cacheDir) {
+				return writeFile(cacheDir, "Cache" + id + "Meta", {}, newContent);
+			}).catch(errorService.criticalError);
+		}
+	};
+
 	Cache.prototype.get = function (id) {
-		//TODO: modify to update used!
+		return this.getMeta(id).bind(this).then(function (parsedContent) {
+			this._updateUsed(id, parsedContent);
 
-		var cacheDir, parsedContent;
-		return this._openSubCacheDirectory.bind(this).then(function (_cacheDir) {
-			cacheDir = _cacheDir;
-
-			return getFileContent(cacheDir, "Cache" + id + "Meta", {});
-		}).then(function (content) {
-			return JSON.parse(content);
-		}).then(function (_parsedContent) {
-			parsedContent = _parsedContent;
-
-			var files = [getFileContent(cacheDir, "Cache" + id + "Data", {})];
+			var files = [this.getData()];
 
 			if (parsedContent.blob) {
-				files.push(getFileContent(cacheDir, "Cache" + id + "Blob", { raw: true }));
+				files.push(this.getBlob());
 			}
 
-			return Promise.all(files);
-		}).spread(function (data, blob) {
-			if (new Date().getTime() - parsedContent.used > 12 * 60 * 60 * 1000) {
-				parsedContent.used = new Date().getTime();
+			return Promise.all(files).spread(function (data, blob) {
+				parsedContent.blob = blob;
+				parsedContent.data = data;
 
-				var newContent = JSON.stringify(parsedContent);
-				writeFile(cacheDir, "Cache" + id + "Meta", {}, newContent).catch(errorService.criticalError);
-			}
-
-			parsedContent.blob = blob;
-			parsedContent.data = JSON.parse(data);
-
-			return parsedContent;
+				return parsedContent;
+			});
 		}).catch(function (err) {
 			console.error(err);
 
 			throw new Error("cache miss");
+		});
+	};
+
+	Cache.prototype.getData = function (id) {
+		return this._openSubCacheDirectory.bind(this).then(function (cacheDir) {
+			return getFileContent(cacheDir, "Cache" + id + "Data", {});
+		}).then(function (data) {
+			return JSON.parse(data);
+		});
+	};
+
+	Cache.prototype.getBlob = function (id) {
+		return this._openSubCacheDirectory.bind(this).then(function (cacheDir) {
+			return getFileContent(cacheDir, "Cache" + id + "Blob", { raw: true });
+		});
+	};
+
+	Cache.prototype.getMeta = function (id) {
+		return this._openSubCacheDirectory.then(function (cacheDir) {
+			return getFileContent(cacheDir, "Cache" + id + "Meta", {});
+		}).then(function (content) {
+			return JSON.parse(content);
 		});
 	};
 
@@ -205,29 +222,47 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], functi
 				return this._openSubCacheDirectory.bind(this).then(function (cacheDir) {
 					return getDirectoryFileList(cacheDir);
 				}).then(function (files) {
-					return files.filter(function (file) {
+					var byIDs = {}, groupedFiles = [];
+
+					files.filter(function (file) {
 						return file.isFile;
-					}).filter(function (file) {
-						return file.name.indexOf("Meta") > -1;
+					}).forEach(function (file) {
+						var id = file.name
+							.replace(/Meta$/, "")
+							.replace(/Data$/, "")
+							.replace(/Blob$/, "")
+							.replace(/^Cache/, "");
+
+						console.log(id);
+						if (!byIDs[id]) {
+							byIDs[id] = {
+								files: [],
+								id: id
+							};
+						}
+						byIDs[id].push(file);
 					});
-				}).map(function (fileEntry) {
-					var getFileObject = promisify(fileEntry.file, fileEntry);
-					return getFileObject().then(function (file) {
-						return readFile(file);
-					}).then(function (content) {
-						return {
-							name: fileEntry,
-							content: JSON.parse(content)
-						};
+
+					h.objectEach(byIDs, function (key, val) {
+						groupedFiles.push(val);
+					});
+
+					return groupedFiles;
+				}).map(function (cacheEntry) {
+					return this.getMeta(cacheEntry.id).then(function (metaData) {
+						cacheEntry.meta = metaData;
+
+						return cacheEntry;
 					});
 				}).then(function (files) {
 					return files.sort(function (f1, f2) {
-						return f1.content.used - f2.content.used;
+						return f1.meta.used - f2.meta.used;
 					}).slice(0, files.length - 70);
 				}).map(function (fileData) {
-					//delete the file and the data/blob sub-file
-					//var removeFile = promisify(fileData.file.remove, fileData.file);
-					//return removeFile();
+					return Promise.all(fileData.files.map(function (fileEntry) {
+						var rem = promisify(fileEntry.remove, fileEntry);
+						return rem();
+					}));
 				});
 			//}
 		});
