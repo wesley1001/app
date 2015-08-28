@@ -213,12 +213,9 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], functi
 	};
 
 	Cache.prototype.cleanUp = function () {
-		//TODO
-
 		//remove data which hasn't been used in a long time or is very big
 		return this.entryCount().bind(this).then(function (count) {
-			//if (count > 100) {
-				debugger;
+			if (count > 100) {
 				return this._openSubCacheDirectory.bind(this).then(function (cacheDir) {
 					return getDirectoryFileList(cacheDir);
 				}).then(function (files) {
@@ -240,7 +237,7 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], functi
 								id: id
 							};
 						}
-						byIDs[id].push(file);
+						byIDs[id].files.push(file);
 					});
 
 					h.objectEach(byIDs, function (key, val) {
@@ -264,7 +261,7 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], functi
 						return rem();
 					}));
 				});
-			//}
+			}
 		});
 	};
 
