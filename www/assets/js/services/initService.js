@@ -26,7 +26,7 @@ define(["step", "whispeerHelper", "services/serviceModule", "bluebird"], functio
 
 		function setCache(initResponse, transformedData) {
 			if (!transformedData) {
-				return Promise.resolve(initResponse);
+				return Bluebird.resolve(initResponse);
 			}
 
 			return new CacheService(initResponse.domain)
