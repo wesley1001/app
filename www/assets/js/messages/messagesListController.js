@@ -24,6 +24,8 @@ define(["step", "whispeerHelper", "asset/state", "bluebird", "controllers/contro
 
 		if ($scope.topics.length < 10) {
 			loadTopics();
+		} else {
+			topicsLoadingState.success();
 		}
 
 		$scope.loadMoreTopics = function () {
