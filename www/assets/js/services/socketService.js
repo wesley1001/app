@@ -110,6 +110,9 @@ define([
 				isConnected: function () {
 					return socket.connected;
 				},
+				getSocket: function () {
+					return socket;
+				},
 				awaitConnection: function () {
 					return new Bluebird(function (resolve) {
 						if (socketS.isConnected()) {
