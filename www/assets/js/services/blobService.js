@@ -225,6 +225,8 @@ define(["step", "whispeerHelper", "asset/Progress", "asset/Queue", "services/ser
 				try {
 					if (that._legacy) {
 						this.ne(that._blobData);
+					} else if (that._blobData.localURL) {
+						this.ne(that._blobData.localURL);
 					} else if (typeof window.URL !== "undefined") {
 						this.ne(window.URL.createObjectURL(that._blobData));
 					} else if (typeof webkitURL !== "undefined") {

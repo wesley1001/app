@@ -26,7 +26,7 @@ define(["step", "whispeerHelper", "services/serviceModule", "bluebird"], functio
 
 		function setCache(initResponse, transformedData) {
 			if (!transformedData) {
-				return Promise.resolve(initResponse);
+				return Bluebird.resolve(initResponse);
 			}
 
 			return new CacheService(initResponse.domain)
@@ -55,8 +55,12 @@ define(["step", "whispeerHelper", "services/serviceModule", "bluebird"], functio
 					requestObject.id = id;
 				}
 
-				if (request.cache && request.cache.data && request.cache.data._signature) {
-					requestObject.cacheSignature = request.cache.data._signature;
+				if (request.cache && request.cache.data) {
+					if (request.cache.data._signature) {
+						requestObject.cacheSignature = request.cache.data._signature;
+					} else if (request.cache.data.meta && request.cache.data.meta._signature) {
+						requestObject.cacheSignature = request.cache.data.meta._signature;
+					}
 				}
 
 				return socketService.emit(request.domain, requestObject).then(function (response) {

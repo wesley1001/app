@@ -47,6 +47,9 @@ define([
 		"ssn.routes.config",
 		"localization"
 	])
+		.config( ["$compileProvider", function($compileProvider) {
+			$compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|content|blob|ms-appx|x-wmapp0|cdvfile):|data:image\//);
+		}])
 		.run(["$ionicPlatform", "ssn.messageService", "ssn.sessionService", "ssn.trustService", function($ionicPlatform, messageService) {
 			function vibrate(message) {
 				if (!message.isOwn()) {
