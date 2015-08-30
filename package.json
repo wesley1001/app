@@ -23,7 +23,7 @@
   "cordovaPlugins": [
     "cordova-plugin-vibration",
     "ionic-plugin-keyboard",
-    "phonegap-plugin-push"
+    "phonegap-plugin-push",
     "cordova-plugin-file"
   ],
   "cordovaPlatforms": [
