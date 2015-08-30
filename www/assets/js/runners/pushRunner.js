@@ -1,19 +1,24 @@
 /**
 * SessionService
 **/
-define(["runners/runnerModule"], function (runnerModule) {
+define(["runners/runnerModule", "bluebird"], function (runnerModule, Bluebird) {
 	"use strict";
 
 	runnerModule.run([
-		"$rootScope", "$window", "ssn.socketService", "ssn.errorService",
-		function ($rootScope, $window, socketService, errorService) {
+		"$state", "$rootScope", "$window", "ssn.socketService", "ssn.errorService", "ssn.messageService",
+		function ($state, $rootScope, $window, socketService, errorService, messageService) {
 		if (!$window.PushNotification) {
 			console.warn("no push notifications");
 			return;
 		}
+
+		var ownLoaded = new Bluebird(function (resolve) {
+			$rootScope.$on("ssn.ownLoaded", resolve);
+		});
+
 		var push = $window.PushNotification.init({
 			"android": {
-				"senderID": "649891747084"
+				"senderID": "809266780938"
 			},
 			"ios": {},
 			"windows": {}
@@ -38,11 +43,11 @@ define(["runners/runnerModule"], function (runnerModule) {
 		});
 
 		push.on("notification", function(data) {
-			if (data.additionalData && data.additionalData) {
-				console.log(data.additionalData);
-				debugger;
-
-				messageService.addData(data.additionalData);
+			if (data.additionalData && data.additionalData && data.additionalData.content) {
+				ownLoaded.then(function () {
+					messageService.addData(data.additionalData.content);
+					$state.go("chat-detail", { chatId: data.additionalData.content.message.meta.topicid });
+				});
 			}
 		});
 
