@@ -4,6 +4,7 @@
 		<button class="button button-icon icon ion-ios-compose-outline" data-ng-click="loadNewMessageView()"></button>
 	</ion-nav-buttons>
 	<ion-content>
+		<div class="center padding" data-ng-if="topicsLoadingState.init || topicsLoadingState.pending"><ion-spinner></ion-spinner></div>
 		<ion-list>
 			<ion-item class="item-remove-animate item-avatar item-icon-right" data-ng-repeat="chat in chats" type="item-text-wrap" ui-sref="chat-detail({ chatId: chat.id })">
 				<div class="imgWrap imgWrap--group" data-ng-if="chat.type == 'groupChat'">
