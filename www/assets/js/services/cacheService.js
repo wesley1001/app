@@ -1,4 +1,4 @@
-define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], function (h, Dexie, Promise, serviceModule) {
+define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule", "optional!cordova"], function (h, Dexie, Promise, serviceModule) {
 	"use strict";
 
 	function getDirectoryFileList(directoryEntry) {
@@ -86,13 +86,21 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule"], functi
 		});
 	}
 
-	if (window.cordova && window.cordova.file) {
-		var resolveLocalFileSystemURLAsync = promisify(window.resolveLocalFileSystemURL);
-		var openCacheDirectory = resolveLocalFileSystemURLAsync(window.cordova.file.cacheDirectory).then(function (fs) {
-			var getDirectoryAsync = promisify(fs.getDirectory, fs);
-			return getDirectoryAsync("whispeerCacheDatabase", {create: true});
-		});
-	}
+	var deviceReady = new Promise(function (resolve) {
+		document.addEventListener("deviceready", resolve, false);
+	});
+
+	var openCacheDirectory = deviceReady.then(function () {
+		if (window.cordova && window.cordova.file) {
+			var resolveLocalFileSystemURLAsync = promisify(window.resolveLocalFileSystemURL);
+			return resolveLocalFileSystemURLAsync(window.cordova.file.cacheDirectory).then(function (fs) {
+				var getDirectoryAsync = promisify(fs.getDirectory, fs);
+				return getDirectoryAsync("whispeerCacheDatabase", {create: true});
+			});
+		}
+
+		throw new Error("files not available");
+	});
 
 	var errorService;
 
