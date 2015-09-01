@@ -43,10 +43,17 @@ define(["runners/runnerModule", "bluebird"], function (runnerModule, Bluebird) {
 		});
 
 		push.on("notification", function(data) {
-			if (data.additionalData && data.additionalData && data.additionalData.content) {
+			if (data.additionalData && data.additionalData) {
 				ownLoaded.then(function () {
-					messageService.addData(data.additionalData.content);
-					$state.go("chat-detail", { chatId: data.additionalData.content.message.meta.topicid });
+					if (data.additionalData.content) {
+						messageService.addData(data.additionalData.content);
+					}
+
+					var topicid = data.additionalData.topicid;
+
+					if (!data.additionalData.foreground && topicid) {
+						$state.go("chat-detail", { chatId: topicid });
+					}
 				});
 			}
 		});
