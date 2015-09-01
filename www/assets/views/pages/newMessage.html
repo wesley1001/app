@@ -13,6 +13,7 @@
 					Abbrechen
 				</button>
 			</div>
+			<div class="center padding" data-ng-if="friendsLoading"><ion-spinner></ion-spinner></div>
 			<ul class="list">
 				<li class="item item-avatar item-checkbox newMessageToFriend" data-ng-repeat="user in users | orderBy: 'name' | filter: {name: searchFriendsInput}">
 					<label class="checkbox checkbox-balanced newMessageToFriend-label">

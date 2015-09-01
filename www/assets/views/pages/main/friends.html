@@ -11,6 +11,7 @@
 					Abbrechen
 				</button>
 			</div>
+			<div class="center padding" data-ng-if="friendsLoading"><ion-spinner></ion-spinner></div>
 			<ul class="list">
 				<li class="item item-avatar" data-ng-repeat="user in friends | orderBy: 'name' | filter: {name: searchFriendsInput}" ui-sref="newMessageUser({userId: user.id})">
 					<div class="imgWrap imgWrap--peer">
