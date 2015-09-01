@@ -514,17 +514,7 @@ define([
 
 		socket.channel("message", function (e, data) {
 			if (!e) {
-				if (data.topic) {
-					var t = makeTopic(data.topic, function () {
-						addSocketMessage(data.message);
-					});
-
-					if (t.data.unread) {
-						messageService.data.unread += 1;
-					}
-				} else {
-					addSocketMessage(data.message);
-				}
+				messageService.addData(data);
 			} else {
 				errorService.criticalError(e);
 			}
@@ -535,6 +525,21 @@ define([
 		var activeTopic = 0;
 
 		messageService = {
+			addData: function (data) {
+				if (data.topic) {
+					var t = makeTopic(data.topic, function () {
+						if (data.message) {
+							addSocketMessage(data.message);
+						}
+					});
+
+					if (t.data.unread) {
+						messageService.data.unread += 1;
+					}
+				} else if (data.message) {
+					addSocketMessage(data.message);
+				}
+			},
 			isActiveTopic: function (topicid) {
 				return activeTopic === h.parseDecimal(topicid);
 			},

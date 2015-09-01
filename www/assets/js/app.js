@@ -1,17 +1,22 @@
 define([
 	"angular",
 	"ionic",
+	"ngCordova",
+
 	"config/localizationConfig",
 	"localizationModule",
 	"services/services",
 	"messages/messagesLoader",
 	"user/userLoader",
 	"models/models",
+	"runners/runners",
 	"config/interceptorsConfig",
+
 	"config/routesConfig",
 	"controllers/controllers",
 	"directives/userimage",
-	"directives/syntaxify"
+	"directives/syntaxify",
+	"optional!cordova"
 ], function (angular) {
 	"use strict";
 	// Ionic Starter App
@@ -28,6 +33,12 @@ define([
 		"ssn.messages",
 		"ssn.user",
 		"ssn.models",
+		"ssn.runners",
+		//"ssn.directives",
+		"ssn.interceptors.config",
+		"ssn.locale.config",
+		"localization",
+		"ngCordova",
 		"ssn.directives",
 		"ssn.interceptors.config",
 		"ssn.locale.config",
@@ -40,7 +51,7 @@ define([
 		.run(["$ionicPlatform", "ssn.messageService", "ssn.sessionService", "ssn.trustService", function($ionicPlatform, messageService) {
 			function vibrate(message) {
 				if (!message.isOwn()) {
-					navigator.vibrate(700);
+					navigator.vibrate(300);
 				}
 			}
 
