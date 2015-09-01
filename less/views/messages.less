@@ -47,18 +47,12 @@
 		margin: auto;
 		flex-shrink: 0;
 	}
-	.back-button {
-		position: relative;
-		margin: auto;
-		flex-shrink: 0;
-	}
 	.nav-bar-title {
 		display: inline-block;
 		width: 100%;
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		text-align: center;
 	}
 
 	.userimg {
@@ -73,7 +67,8 @@
 .platform-android .bar-chat-detail{
 	.title {
 		margin-top: -5px !important;
-		padding-left: 2.2941176471em;
+		text-align: left;
+		padding-left: 2em;
 	}
 	.userimg {
 		left: 0;
@@ -84,12 +79,16 @@
 }
 
 .platform-ios .bar-chat-detail {
+	.back-button {
+		width: 80px;
+		text-align: left;
+	}
 	.nav-bar-title {
 		text-align: center;
 	}
 	.title {
 		margin-top: 15px !important;
-		padding-right: 2.2941176471em;
+		padding-right: 80px;
 	}
 	.userimg {
 		right: 0;
