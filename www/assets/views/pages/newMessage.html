@@ -4,7 +4,7 @@
 	</ion-nav-title>
 	<ion-content scroll="false">
 		<ion-scroll id="newMessage-scroll">
-			<div class="item item-input-inset friends-search" data-ng-show="!usersLoading">
+			<div class="item item-input-inset friends-search" data-ng-if="!friendsLoading && users.length > 1">
 				<label class="item-input-wrapper">
 					<i class="icon ion-ios-search placeholder-icon"></i>
 					<input type="search" placeholder="Search" data-ng-model="searchFriendsInput">
