@@ -460,27 +460,61 @@
 	bottom: 0;
 	border-top: 1px solid #ddd;
 	box-sizing: border-box;
+}
 
-	textarea {
-		padding: 5px;
-		font-size: 16px;
-		height: 100%;
-		border-radius: 0px;
-		width: 100%;
-		flex-shrink: 1;
+#messageInput {
+	padding: 5px;
+	font-size: 16px;
+	height: 100%;
+	border-radius: 0px;
+	width: 100%;
+	flex-shrink: 1;
+	&::-webkit-input-placeholder {
+		line-height: 33px;
+		opacity: 1;
+		transition: 0.5s ease;
+		transform: translate3d(0, 0, 0);
 	}
-	#sendmessage {
-		margin: @form-margin 1% 0 0;
-		height: 40px;
-		line-height: 40px;
-		flex-shrink: 0;
-		.icon {
-			display: inline-block;
-			vertical-align: baseline;
-		}
+	&:focus::-webkit-input-placeholder {
+		opacity: 0;
 	}
-	#sendmessage {
-		width: 70px;
+}
+
+.sendmessage {
+	margin: @form-margin 1% 0 0;
+	height: 40px;
+	line-height: 40px;
+	flex-shrink: 0;
+	.icon {
+		display: inline-block;
+		vertical-align: baseline;
+	}
+	width: 70px;
+}
+.sendmessage-span {
+	display: inline-block;
+	height: 42px;
+	line-height: 42px;
+}
+.sendmessage-span--newMessage {
+	line-height: 3px;
+}
+.android-sendMessageButton {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	width: 32px !important;
+	height: 32px !important;
+	min-width: 0;
+	min-height: 0;
+	font-size: 0.5em;
+	border-radius: 100%;
+	&:before {
+		font-size: 16px !important;
+		line-height: 31px !important;
 	}
 }
 
