@@ -1,7 +1,7 @@
 <ion-view hide-back-button="true">
 	<ion-nav-title>Chats</ion-nav-title>
-	<ion-nav-buttons side="right" data-ng-if="::platform === 'ios'">
-		<button class="button button-icon icon ion-ios-compose-outline" data-ng-click="loadNewMessageView()"></button>
+	<ion-nav-buttons side="right">
+		<button class="button button-icon icon ion-ios-compose-outline" data-ng-if="::platform === 'ios'" data-ng-click="loadNewMessageView()"></button>
 	</ion-nav-buttons>
 	<button data-ng-if="::platform === 'android'" class="button button-balanced icon android-newMessageButton ion-android-create" data-ng-click="loadNewMessageView()"></button>
 	<ion-content>
