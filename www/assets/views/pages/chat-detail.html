@@ -42,7 +42,7 @@
 	<ion-footer-bar keyboard-attach id="chat-detail-footer">
 		<form id="inputWrap">
 			<textarea class="no-resize" focus-me="canSend" id="messageInput" data-advancedsend="sendMessage(activeTopic.newMessage)" type="text" data-ng-model="activeTopic.newMessage" data-i18n-attr="messages.sendMessage.text|placeholder" placeholder="Gib deine Nachricht ein!"></textarea>
-			<button data-ng-click="create.send(create.text)" class="button button-balanced sendmessage" data-ng-class="::{'android-sendMessageButton icon ion-android-send': platform === 'android', 'button-clear': platform !== 'android'}">
+			<button data-ng-click="sendMessage(activeTopic.newMessage)" class="button button-balanced sendmessage" data-ng-class="::{'android-sendMessageButton icon ion-android-send': platform === 'android', 'button-clear': platform !== 'android'}">
 				<span data-ng-if="platform !== 'android'" class="sendmessage-span">Senden</span>
 			</button>
 		</form>
