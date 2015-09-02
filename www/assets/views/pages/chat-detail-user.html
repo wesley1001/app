@@ -10,7 +10,7 @@
 			<span class="messages-nav-title">Chat mit {{::user.basic.shortname}}</span>
 			<span data-ng-if="::activeTopic.type === 'peerChat'" class="messages-nav-status">
 				<br>
-				<small data-ng-if="activeTopic.partners[0].online === 0">online</small>
+				<small data-ng-if="activeTopic.partners[0].online === 2">online</small>
 			</span>
 			<div class="userimg">
 				<userimage data-userID="user.id" data-user="user" data-trustlevel="0">
