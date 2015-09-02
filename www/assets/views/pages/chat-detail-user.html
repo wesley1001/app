@@ -7,13 +7,17 @@
 <ion-view cache-view="false" overflow-scroll="true">
 	<ion-nav-bar class="bar-balanced bar-chat-detail">
 		<ion-nav-title>
-			Chat mit {{::user.basic.shortname}}
+			<span class="messages-nav-title">Chat mit {{::user.basic.shortname}}</span>
+			<span data-ng-if="::activeTopic.type === 'peerChat'" class="messages-nav-status">
+				<br>
+				<small data-ng-if="activeTopic.partners[0].online === 0">online</small>
+			</span>
 			<div class="userimg">
 				<userimage data-userID="user.id" data-user="user" data-trustlevel="0">
 			</div>
 		</ion-nav-title>
 		<ion-nav-back-button class="button-clear">
-			<i class="ion-chevron-left"></i> Zurück
+			<span data-ng-show="topics.unread > 0">({{topics.unread}})</span>
 		</ion-nav-back-button>
 	</ion-nav-bar>
 	<ion-content id="messageList" class="content-stable delegate-handle" delegate-handle="messageScroll">
