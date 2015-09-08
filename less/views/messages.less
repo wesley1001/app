@@ -41,7 +41,6 @@
 		flex-shrink: 1;
 		left: 0 !important;
 		right: 0 !important;
-		padding-right: 2.2941176471em;
 	}
 	.back-button {
 		position: relative;
@@ -54,25 +53,63 @@
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		text-align: center;
+		line-height: 22px;
 	}
 
 	.userimg {
 		position: absolute;
 		top: 50%;
-		right: 0;
 		margin-top: -1em;
 		width: 2em;
 		height: 2em;
 	}
 }
 
-.platform-android .bar-chat-detail .title {
-	margin-top: -5px !important;
+.messages-nav-title {
+	line-height: 26px;
 }
 
-.platform-ios .bar-chat-detail .title {
-	margin-top: 15px !important;
+.messages-nav-status small {
+	color: #fff;
+	font-size: 14px;
+	line-height: 10px;
+	font-weight: 200;
+	vertical-align: top;
+}
+
+.platform-android .messages-nav-status {
+	padding-left: 1px;
+}
+
+.platform-android .bar-chat-detail{
+	.title {
+		margin-top: -5px !important;
+		text-align: left;
+		padding-left: 2em;
+	}
+	.userimg {
+		left: 0;
+		margin-top: -0.8em;
+		width: 1.6em;
+		height: 1.6em;
+	}
+}
+
+.platform-ios .bar-chat-detail {
+	.back-button {
+		width: 80px;
+		text-align: left;
+	}
+	.nav-bar-title {
+		text-align: center;
+	}
+	.title {
+		margin-top: 15px !important;
+		padding-right: 80px;
+	}
+	.userimg {
+		right: 0;
+	}
 }
 
 .topic-unreadCount {
@@ -98,6 +135,20 @@
 	margin: auto;
 	font-size: 0.8em;
 	text-align: center;
+}
+
+.topic-time {
+	display: inline-block;
+	height: 20px;
+	float: right;
+	margin-top: -21px;
+	margin-right: -25px;
+	font-size: 0.65em;
+	line-height: 20px;
+}
+
+.username {
+	padding-right: 20px;
 }
 
 .time {
@@ -144,11 +195,20 @@
 	width: 40px;
 	height: 40px;
 
-	margin-left: -52px;
-	margin-right: 24px;
+	margin-left: -64px;
+	margin-right: 12px;
 
 	border-radius: 100%;
 	position: relative;
+}
+
+.imgWrap--peer {
+	width: 50px;
+	height: 45px;
+}
+
+.imgWrap--newMessage {
+	margin-top: 5px;
 }
 
 .userimg {
@@ -302,7 +362,7 @@
 		margin: 0 @extended-padding @extended-padding;
 		border-radius: @extended-padding;
 		background: @foreign-message-bg;
-		border: 1px solid @foreign-message-bg2;
+		border: none;
 		position: relative;
 	}
 
@@ -339,6 +399,7 @@
 	.other {
 		.messages {
 			margin-right: @message-image-size + @extended-padding;
+			box-shadow: 2px 2px 1px rgba(179, 179, 179, 0.65);
 		}
 		.messages:after {
 			border-right-color: @foreign-message-bg;
@@ -361,6 +422,7 @@
 			margin-left: @message-image-size + @extended-padding;
 			background-color: @own-message-bg;
 			color: @own-message-fg;
+			box-shadow: -2px 2px 1px fade(darken(@own-message-bg, 8%), 85%);
 		}
 		.messages:after, .messages:before {
 			left: 100%;
@@ -415,27 +477,65 @@
 	bottom: 0;
 	border-top: 1px solid #ddd;
 	box-sizing: border-box;
+}
 
-	textarea {
-		padding: 5px;
-		font-size: 16px;
-		height: 100%;
-		border-radius: 0px;
-		width: 100%;
-		flex-shrink: 1;
+#messageInput {
+	padding: 5px;
+	font-size: 1em;
+	height: 100%;
+	border-radius: 0px;
+	width: 100%;
+	flex-shrink: 1;
+	&::-webkit-input-placeholder {
+		line-height: 33px;
+		opacity: 1;
+		transition: 0.5s ease;
+		transform: translate3d(0, 0, 0);
 	}
-	#sendmessage {
-		margin: @form-margin 1% 0 0;
-		height: 40px;
-		line-height: 40px;
-		flex-shrink: 0;
-		.icon {
-			display: inline-block;
-			vertical-align: baseline;
-		}
+	&:focus::-webkit-input-placeholder {
+		opacity: 0;
 	}
-	#sendmessage {
-		width: 70px;
+}
+
+.platform-android #messageInput {
+	padding-right: 42px;
+}
+
+.sendmessage {
+	margin: @form-margin 1% 0 0;
+	height: 40px;
+	line-height: 40px;
+	flex-shrink: 0;
+	.icon {
+		display: inline-block;
+		vertical-align: baseline;
+	}
+	width: 70px;
+}
+.sendmessage-span {
+	display: inline-block;
+	height: 42px;
+	line-height: 42px;
+}
+.sendmessage-span--newMessage {
+	line-height: 3px;
+}
+.android-sendMessageButton {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	width: 32px !important;
+	height: 32px !important;
+	min-width: 0;
+	min-height: 0;
+	font-size: 0.5em;
+	border-radius: 100%;
+	&:before {
+		font-size: 16px !important;
+		line-height: 31px !important;
 	}
 }
 
@@ -444,5 +544,32 @@
 }
 
 #newMessage-scroll {
-	max-height: ~"calc(100% - 54px - 42px)";
+	max-height: ~"calc(100% - 42px)";
+}
+
+.newMessageToFriend {
+	padding: 0;
+	height: 75px;
+}
+
+.newMessageToFriend {
+	// this or everything with !important ;-)
+	.newMessageToFriend-label {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+	}
+	.newMessageToFriend-content {
+		min-height: 0;
+		height: 100%;
+		padding-right: 50px;
+	}
+}
+.newMessageToFriend-content-username {
+	line-height: 58px;
 }

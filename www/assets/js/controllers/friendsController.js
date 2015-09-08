@@ -5,7 +5,7 @@
 define(["step", "whispeerHelper", "controllers/controllerModule"], function (step, h, controllerModule) {
 	"use strict";
 
-	function friendsController($scope, friendsService, userService, localize)  {
+	function friendsController($scope, $ionicScrollDelegate, friendsService, userService, localize)  {
 		$scope.friends = [];
 		$scope.requests = [];
 		$scope.friendsLoading = true;
@@ -25,6 +25,7 @@ define(["step", "whispeerHelper", "controllers/controllerModule"], function (ste
 			}, h.sF(function (result) {
 				$scope.friends = result;
 				$scope.friendsLoading = false;
+				$ionicScrollDelegate.scrollTo(0,55);
 			}));
 		}
 
@@ -51,7 +52,7 @@ define(["step", "whispeerHelper", "controllers/controllerModule"], function (ste
 		};
 	}
 
-	friendsController.$inject = ["$scope", "ssn.friendsService", "ssn.userService", "localize"];
+	friendsController.$inject = ["$scope", "$ionicScrollDelegate", "ssn.friendsService", "ssn.userService", "localize"];
 
 	controllerModule.controller("ssn.friendsController", friendsController);
 });

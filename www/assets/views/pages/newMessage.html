@@ -3,32 +3,35 @@
 		Neue Nachricht
 	</ion-nav-title>
 	<ion-content scroll="false">
-		<div class="item item-input-inset friends-search" data-ng-if="!friendsLoading && users.length > 1">
-			<label class="item-input-wrapper">
-				<i class="icon ion-ios-search placeholder-icon"></i>
-				<input type="search" placeholder="Search" data-ng-model="searchFriendsInput">
-			</label>
-			<button class="button button-clear" data-ng-click="searchFriendsInput = ''" data-ng-show="searchFriendsInput.length > 0">
-				Abbrechen
-			</button>
-		</div>
 		<ion-scroll id="newMessage-scroll">
+			<div class="item item-input-inset friends-search" data-ng-if="!friendsLoading && users.length > 1">
+				<label class="item-input-wrapper">
+					<i class="icon ion-ios-search placeholder-icon"></i>
+					<input type="search" placeholder="Search" data-ng-model="searchFriendsInput">
+				</label>
+				<button class="button button-clear" data-ng-click="searchFriendsInput = ''" data-ng-show="searchFriendsInput.length > 0">
+					Abbrechen
+				</button>
+			</div>
 			<div class="center padding" data-ng-if="friendsLoading"><ion-spinner></ion-spinner></div>
 			<ul class="list">
-				<li class="item item-avatar item-checkbox" data-ng-repeat="user in users | orderBy: 'name' | filter: {name: searchFriendsInput}">
-					<img data-ng-src="{{user.basic.image}}">
-					<h2>{{user.name}}</h2>
-					<label class="checkbox checkbox-balanced checkbox-pullRight">
-						<input type="checkbox" ng-model="create.selectedUsers[user.id]">
+				<li class="item item-avatar item-checkbox newMessageToFriend" data-ng-repeat="user in users | orderBy: 'name' | filter: {name: searchFriendsInput}">
+					<label class="checkbox checkbox-balanced newMessageToFriend-label">
+						<div class="item-avatar newMessageToFriend-content">
+							<div class="imgWrap imgWrap--peer imgWrap--newMessage">
+								<userimage class="userimg--topic" data-user="user">
+							</div>
+							<h2 class="newMessageToFriend-content-username">{{user.name}}</h2>
+						</div>
+						<input class="checkbox-pullRight" type="checkbox" ng-model="create.selectedUsers[user.id]">
 					</label>
 				</li>
 			</ul>
 		</ion-scroll>
 		<form id="inputWrap">
 			<textarea class="no-resize" focus-me="canSend" id="messageInput" type="text" data-ng-model="create.text" data-i18n-attr="messages.sendMessage.text|placeholder" placeholder="Gib deine Nachricht ein!"></textarea>
-			<button id="sendmessage" data-ng-click="create.send(create.text)" class="button button-clear button-balanced">
-				<span data-ng-if="platform != 'android'">Senden</span>
-				<i class="icon ion-android-send" data-ng-if="platform == 'android'"></i>
+			<button data-ng-click="create.send(create.text)" class="button button-balanced sendmessage" data-ng-class="::{'android-sendMessageButton icon ion-android-send': platform === 'android', 'button-clear': platform !== 'android'}">
+				<span data-ng-if="platform !== 'android'" class="sendmessage-span sendmessage-span--newMessage">Senden</span>
 			</button>
 		</form>
 	</ion-content>

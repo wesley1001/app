@@ -7,23 +7,26 @@
 <ion-view cache-view="false">
 	<ion-nav-bar class="bar-balanced" data-ng-class="::{'bar-chat-detail': activeTopic.type === 'peerChat'}">
 		<ion-nav-title>
-			Chat mit {{activeTopic.partners[0].basic.shortname}} <span data-ng-if="activeTopic.partners.length > 1">und {{activeTopic.partners.length - 1}} Anderen</span>
+			<span class="messages-nav-title">Chat mit {{::activeTopic.partners[0].basic.shortname}} <span data-ng-if="::activeTopic.type === 'groupChat'">und {{::activeTopic.partners.length - 1}} Anderen</span></span>
+			<span data-ng-if="::activeTopic.type === 'peerChat'" class="messages-nav-status">
+				<br>
+				<small data-ng-if="activeTopic.partners[0].online === 2">online</small>
+			</span>
 			<div class="userimg" data-ng-if="::activeTopic.type === 'peerChat'">
 				<userimage data-userID="sender{{burst.sender().id}}" data-user="activeTopic.partners[0]" data-trustlevel="0">
 			</div>
 		</ion-nav-title>
 		<ion-nav-back-button class="button-clear">
-			<i class="ion-chevron-left"></i> Zurück <span data-ng-show="topics.unread > 0">({{topics.unread}})</span>
+			<span data-ng-show="topics.unread > 0">({{topics.unread}})</span>
 		</ion-nav-back-button>
 	</ion-nav-bar>
 	<ion-content id="messageList" class="content-stable delegate-handle" delegate-handle="messageScroll">
 		<ul class="u-unstyled">
 			<li data-i18n="messages.endOfStream" data-ng-if="activeTopic.remaining == 0" id="messagesView-endOfStream"><span data-for="date">{{::messageBursts()[0].firstMessage().timestamp|date}}</span></li>
-			<li class="padding" data-ng-if="activeTopic.remaining > 0">
-				<button class="button button-block" data-ng-click="loadMoreMessages()">
-					<ion-spinner id="messageView-loadingIcon" class="spinner-button" data-icon="crescent" data-ng-if="loadingMessages"></ion-spinner>
-					<span data-i18n="messages.remaining" data-ng-if="loadingMessages"></span>
-					<span data-i18n="messages.loadMore" data-ng-if="!loadingMessages" class="balanced"></span>
+			<li class="padding center" data-ng-if="activeTopic.remaining > 0">
+				<ion-spinner class="spinner-button" data-ng-if="loadingMessages"></ion-spinner>
+				<button class="button button-block" data-ng-click="loadMoreMessages()" data-ng-if="!loadingMessages">
+					<span data-i18n="messages.loadMore"></span>
 				</button>
 			</li>
 			<li class="burst" data-ng-repeat="burst in (bursts = messageBursts())" data-ng-class="::{me:burst.isMe(), other:burst.isOther()}">
@@ -43,10 +46,9 @@
 	<ion-footer-bar keyboard-attach id="chat-detail-footer">
 		<form id="inputWrap">
 			<textarea class="no-resize" focus-me="canSend" id="messageInput" data-advancedsend="sendMessage(activeTopic.newMessage)" type="text" data-ng-model="activeTopic.newMessage" data-i18n-attr="messages.sendMessage.text|placeholder" placeholder="Gib deine Nachricht ein!"></textarea>
- 			<!--<savebutton id="sendmessage" class="button-outline" data-ng-click="sendMessage(activeTopic.newMessage)" data-translation="messages.sendMessage.send" data-state="sendMessageState" data-noiniticon></savebutton>-->
-			<button id="sendmessage" data-ng-click="sendMessage(activeTopic.newMessage)" class="button button-clear button-balanced">
-				<span data-ng-if="platform != 'android'">Senden</span>
-				<i class="icon ion-android-send" data-ng-if="platform == 'android'"></i></button>
+			<button data-ng-click="sendMessage(activeTopic.newMessage)" class="button button-balanced sendmessage" data-ng-class="::{'android-sendMessageButton icon ion-android-send': platform === 'android', 'button-clear': platform !== 'android'}">
+				<span data-ng-if="platform !== 'android'" class="sendmessage-span">Senden</span>
+			</button>
 		</form>
 	</ion-footer-bar>
 </ion-view>

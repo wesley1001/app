@@ -1,20 +1,23 @@
 <ion-view hide-back-button="true">
 	<ion-nav-title>Chats</ion-nav-title>
 	<ion-nav-buttons side="right">
-		<button class="button button-icon icon ion-ios-compose-outline" data-ng-click="loadNewMessageView()"></button>
+		<button class="button button-icon icon ion-ios-compose-outline" data-ng-if="::platform === 'ios'" data-ng-click="loadNewMessageView()"></button>
 	</ion-nav-buttons>
+	<button data-ng-if="::platform === 'android'" class="button button-balanced icon android-newMessageButton ion-android-create" data-ng-click="loadNewMessageView()"></button>
 	<ion-content>
 		<div class="center padding" data-ng-if="topicsLoadingState.init || topicsLoadingState.pending"><ion-spinner></ion-spinner></div>
 		<ion-list>
-			<ion-item class="item-remove-animate item-avatar item-icon-right" data-ng-repeat="chat in chats" type="item-text-wrap" ui-sref="chat-detail({ chatId: chat.id })">
+			<ion-item class="item-avatar item-icon-right" data-ng-repeat="chat in chats" type="item-text-wrap" ui-sref="chat-detail({ chatId: chat.id })">
 				<div class="imgWrap imgWrap--group" data-ng-if="chat.type == 'groupChat'">
 					<img class="userimg userimg--group" data-ng-repeat="partner in chat.partners | limitTo: 2" data-ng-src="{{partner.basic.image}}" alt="{{partner.name}}">
 					<span class="userimg userimg--remaining" data-ng-if="chat.partners.length > 2">+{{chat.partners.length - 2}}</span>
 				</div>
-				<div class="imgWrap" data-ng-if="chat.type == 'peerChat'">
-					<userimage class="userimg--topic" data-ng-repeat="partner in chat.partners" data-user="partner">
+				<div class="imgWrap imgWrap--peer" data-ng-if="chat.type == 'peerChat'">
+					<userimage class="userimg--topic" data-user="chat.partners[0]">
 				</div>
-				<h2><span data-ng-repeat="partner in chat.partners">{{partner.name}}{{$last?"":", "}}</span></h2>
+				<h2 class="username" data-ng-if="::chat.type === 'peerChat'">{{chat.partners[0].name}}</h2>
+				<h2 class="username" data-ng-if="::chat.type === 'groupChat'"><span data-ng-repeat="partner in chat.partners">{{partner.basic.shortname}}{{$last?"":", "}}</span></h2>
+				<small class="topic-time" data-smart-date="chat.latestMessage.data.timestamp"></small>
 				<p>{{chat.latestMessage.data.sender.basic.shortname}}: {{chat.latestMessage.data.text}}</p>
 				<p data-ng-if="chat.unread" class="topic-unreadCount"><span class="topic-unreadCount-text">{{chat.unreadCount}}</span></p>
 				<i class="icon ion-chevron-right icon-accessory"></i>
