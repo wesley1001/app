@@ -179,10 +179,10 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule", "option
 		return this.getMeta(id).bind(this).then(function (parsedContent) {
 			this._updateUsed(id, parsedContent);
 
-			var files = [this.getData()];
+			var files = [this.getData(id)];
 
 			if (parsedContent.blob) {
-				files.push(this.getBlob());
+				files.push(this.getBlob(id));
 			}
 
 			return Promise.all(files).spread(function (data, blob) {
