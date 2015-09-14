@@ -90,17 +90,19 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule", "option
 		document.addEventListener("deviceready", resolve, false);
 	});
 
-	var openCacheDirectory = deviceReady.then(function () {
-		if (window.cordova && window.cordova.file) {
-			var resolveLocalFileSystemURLAsync = promisify(window.resolveLocalFileSystemURL);
-			return resolveLocalFileSystemURLAsync(window.cordova.file.cacheDirectory).then(function (fs) {
-				var getDirectoryAsync = promisify(fs.getDirectory, fs);
-				return getDirectoryAsync("whispeerCacheDatabase", {create: true});
-			});
+	var init = deviceReady.then(function () {
+		if (!window.cordova && !window.cordova.file) {
+			throw new Error("files not available");	
 		}
-
-		throw new Error("files not available");
 	});
+
+	function openCacheDirectory() {
+		var resolveLocalFileSystemURLAsync = promisify(window.resolveLocalFileSystemURL);
+		return resolveLocalFileSystemURLAsync(window.cordova.file.cacheDirectory).then(function (fs) {
+			var getDirectoryAsync = promisify(fs.getDirectory, fs);
+			return getDirectoryAsync("whispeerCacheDatabase", {create: true});
+		});
+	}
 
 	var errorService;
 
@@ -108,14 +110,18 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule", "option
 		this._name = name;
 		this._options = options || {};
 
-		this._openSubCacheDirectory = openCacheDirectory.then(function (directoryEntry) {
-			var getDirectoryAsync = promisify(directoryEntry.getDirectory, directoryEntry);
-			return getDirectoryAsync(name, {create: true});
-		});
+		this._openSubCacheDirectory = function () {
+			return init.then(function () {
+				return openCacheDirectory();
+			}).then(function (directoryEntry) {
+				var getDirectoryAsync = promisify(directoryEntry.getDirectory, directoryEntry);
+				return getDirectoryAsync(name, {create: true});
+			});
+		};
 	}
 
 	Cache.prototype.entryCount = function () {
-		return this._openSubCacheDirectory.then(function (cacheDir) {
+		return this._openSubCacheDirectory().then(function (cacheDir) {
 			return getDirectoryFileList(cacheDir);
 		}).then(function (files) {
 			return files.filter(function (file) {
@@ -137,7 +143,7 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule", "option
 			return this.cleanUp();
 		}).catch(errorService.criticalError);
 
-		return this._openSubCacheDirectory.bind(this).then(function (cacheDir) {
+		return this._openSubCacheDirectory().bind(this).then(function (cacheDir) {
 			var metaEntry = {
 				created: new Date().getTime(),
 				used: new Date().getTime(),
@@ -169,7 +175,7 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule", "option
 			meta.used = new Date().getTime();
 
 			var newContent = JSON.stringify(meta);
-			this._openSubCacheDirectory.then(function (cacheDir) {
+			this._openSubCacheDirectory().then(function (cacheDir) {
 				return writeFile(cacheDir, "Cache" + id + "Meta", {}, newContent);
 			}).catch(errorService.criticalError);
 		}
@@ -199,7 +205,7 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule", "option
 	};
 
 	Cache.prototype.getData = function (id) {
-		return this._openSubCacheDirectory.bind(this).then(function (cacheDir) {
+		return this._openSubCacheDirectory().bind(this).then(function (cacheDir) {
 			return getFileContent(cacheDir, "Cache" + id + "Data", {});
 		}).then(function (data) {
 			return JSON.parse(data);
@@ -207,13 +213,13 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule", "option
 	};
 
 	Cache.prototype.getBlob = function (id) {
-		return this._openSubCacheDirectory.bind(this).then(function (cacheDir) {
+		return this._openSubCacheDirectory().bind(this).then(function (cacheDir) {
 			return getFileContent(cacheDir, "Cache" + id + "Blob", { raw: true });
 		});
 	};
 
 	Cache.prototype.getMeta = function (id) {
-		return this._openSubCacheDirectory.then(function (cacheDir) {
+		return this._openSubCacheDirectory().then(function (cacheDir) {
 			return getFileContent(cacheDir, "Cache" + id + "Meta", {});
 		}).then(function (content) {
 			return JSON.parse(content);
@@ -224,7 +230,7 @@ define(["whispeerHelper", "Dexie", "bluebird", "services/serviceModule", "option
 		//remove data which hasn't been used in a long time or is very big
 		return this.entryCount().bind(this).then(function (count) {
 			if (count > 100) {
-				return this._openSubCacheDirectory.bind(this).then(function (cacheDir) {
+				return this._openSubCacheDirectory().bind(this).then(function (cacheDir) {
 					return getDirectoryFileList(cacheDir);
 				}).then(function (files) {
 					var byIDs = {}, groupedFiles = [];
