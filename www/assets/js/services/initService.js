@@ -15,8 +15,10 @@ define(["step", "whispeerHelper", "services/serviceModule", "bluebird"], functio
 		}
 
 		function getCache(initRequest) {
+			console.time("cacheGet" + initRequest.domain);
 			return new CacheService(initRequest.domain).get(initRequest.id || sessionService.getUserID()).then(function (cache) {
 				initRequest.cache = cache;
+				console.time("cacheGet" + initRequest.domain);
 
 				return initRequest;
 			}).catch(function () {
