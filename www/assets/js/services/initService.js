@@ -69,7 +69,9 @@ define(["step", "whispeerHelper", "services/serviceModule", "bluebird"], functio
 					}
 				}
 
+				console.time("getServerData" + request.domain);
 				return socketService.emit(request.domain, requestObject).then(function (response) {
+					console.timeEnd("getServerData" + request.domain);
 					request.data = response;
 
 					return request;
