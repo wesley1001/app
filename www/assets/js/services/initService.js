@@ -84,15 +84,19 @@ define(["step", "whispeerHelper", "services/serviceModule", "bluebird"], functio
 				return (shouldBePriorized ? response.options.priorized : !response.options.priorized);
 			})).map(function (response) {
 				var callback = Bluebird.promisify(response.callback);
+				console.time("runCallback" + response.domain);
 
 				if (response.options.cache) {
 					return callback(response.data.content, response.cache).then(function (transformedData) {
+						console.timeEnd("runCallback" + response.domain);
 						return setCache(response, transformedData);
 					});
 				}
 
-				return callback(response.data.content);
-			});
+				return callback(response.data.content).then(function () {
+					console.timeEnd("runCallback" + response.domain);
+				});
+			}, { concurrency: shouldBePriorized ? 2 : 1 });
 		}
 
 		function runCallbacks(initResponses) {
