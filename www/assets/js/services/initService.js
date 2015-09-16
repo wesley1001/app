@@ -18,10 +18,11 @@ define(["step", "whispeerHelper", "services/serviceModule", "bluebird"], functio
 			console.time("cacheGet" + initRequest.domain);
 			return new CacheService(initRequest.domain).get(initRequest.id || sessionService.getUserID()).then(function (cache) {
 				initRequest.cache = cache;
-				console.time("cacheGet" + initRequest.domain);
+				console.timeEnd("cacheGet" + initRequest.domain);
 
 				return initRequest;
 			}).catch(function () {
+				console.timeEnd("cacheGet" + initRequest.domain);
 				return initRequest;
 			});
 		}
@@ -31,12 +32,15 @@ define(["step", "whispeerHelper", "services/serviceModule", "bluebird"], functio
 				return Bluebird.resolve(initResponse);
 			}
 
+			console.time("cacheSet" + initResponse.domain);
 			return new CacheService(initResponse.domain)
 				.store(initResponse.id || sessionService.getUserID(), transformedData)
 				.then(function () {
+					console.timeEnd("cacheSet" + initResponse.domain);
 					return initResponse;
 				})
 				.catch(function () {
+					console.timeEnd("cacheSet" + initResponse.domain);
 					return initResponse;
 				});
 		}
