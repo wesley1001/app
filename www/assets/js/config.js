@@ -1,7 +1,7 @@
 /* global module */
 
 var production = false;
-var useServer = false;
+var useServer = true;
 var buildDate = "2015429";
 
 if (production) {
