@@ -1,5 +1,7 @@
-define(["step", "whispeerHelper", "services/serviceModule", "bluebird"], function (step, h, serviceModule, Bluebird) {
+define(["step", "whispeerHelper", "services/serviceModule", "bluebird", "debug"], function (step, h, serviceModule, Bluebird, myDebug) {
 	"use strict";
+
+	myDebug.enable("whispeer:*");
 
 	var service = function ($timeout, $rootScope, errorService, socketService, sessionService, migrationService, CacheService) {
 		var newCallbacks = [];
