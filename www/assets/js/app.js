@@ -2,6 +2,7 @@ define([
 	"angular",
 	"ionic",
 	"ngCordova",
+	"angularElastic",
 
 	"config/localizationConfig",
 	"localizationModule",
@@ -40,6 +41,7 @@ define([
 		"ssn.locale.config",
 		"localization",
 		"ngCordova",
+		"monospaced.elastic",
 		"ssn.directives",
 		"ssn.interceptors.config",
 		"ssn.locale.config",
