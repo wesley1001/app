@@ -302,6 +302,7 @@
 		width: 100%;
 		word-wrap: break-word;
 		position: relative;
+		padding-bottom: @extended-padding;
 		&:first-child {
 			// additional margin at the top, this will be useful when we have a
 			// 'pull down to load more' feature.
@@ -359,7 +360,7 @@
 		min-height: @message-image-size - 2 * @default-padding;
 		min-width: @message-image-size - 2 * @extended-padding;
 		padding: @default-padding @extended-padding;
-		margin: 0 @extended-padding @extended-padding;
+		margin: 0 @extended-padding 0;
 		border-radius: @extended-padding;
 		background: @foreign-message-bg;
 		border: none;
