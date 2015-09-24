@@ -5,7 +5,9 @@ define(["step", "whispeerHelper", "controllers/controllerModule", "asset/state"]
 		function($scope, $state, $ionicScrollDelegate, friendsService, userService, messageService, errorService) {
 		$scope.users = [];
 		$scope.friendsLoading = true;
-		$scope.searchFriendsInput = "";
+		$scope.search = {
+			friendsInput: ""
+		};
 
 		step(function () {
 			var friends = friendsService.getFriends();
