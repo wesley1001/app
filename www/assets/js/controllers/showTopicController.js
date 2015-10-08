@@ -50,6 +50,11 @@ define(["step", "whispeerHelper", "asset/state", "controllers/controllerModule"]
 
 			var scroller = $ionicScrollDelegate.$getByHandle("messageScroll");
 
+			$scope.$on('elastic:resize', function(event, element, oldInputHeight, newInputHeight) {
+				jQuery("#messageList").css("bottom", jQuery("#inputWrap").height() - oldInputHeight + newInputHeight + 1);
+				scroller.resize();
+			});
+
 			window.addEventListener("native.keyboardshow", function() {
 				scroller.scrollBottom();
 			});
