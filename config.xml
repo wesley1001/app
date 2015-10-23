@@ -11,11 +11,11 @@
     Daniel Melchior
   </author>
   <content src="index.html"/>
-  <access origin="*" />
-  <!--<access origin="https://*.whispeer.de" />
+
+  <access origin="https://*.whispeer.de" />
   <access origin="https://whispeer.de" />
   <access origin="blob:*" />
-  <access origin="cdvfile://*" />-->
+  <access origin="cdvfile://*" />
 
   <!-- Allow links to web pages to open in a browser -->
   <allow-intent href="http://*/*" />
@@ -27,7 +27,7 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
-  <preference name="android-minSdkVersion" value="13"/>
+  <preference name="android-minSdkVersion" value="14"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
