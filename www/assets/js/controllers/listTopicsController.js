@@ -1,35 +1,34 @@
 define(["step", "whispeerHelper", "asset/state", "controllers/controllerModule"], function (step, h, State, controllerModule) {
-    "use strict";
-    controllerModule.controller("ssn.listTopicsController", ["$scope", "ssn.messageService", "ssn.errorService", function($scope, messageService, errorService) {
-        $scope.loggedin = true;
+	"use strict";
+	controllerModule.controller("ssn.listTopicsController", ["$scope", "ssn.messageService", "ssn.errorService", function($scope, messageService, errorService) {
+		$scope.loggedin = true;
 
-        $scope.chats = messageService.data.latestTopics.data;
+		$scope.chats = messageService.data.latestTopics.data;
 
-        var topicsLoadingState = new State();
-        $scope.topicsLoadingState = topicsLoadingState.data;
+		var topicsLoadingState = new State();
+		$scope.topicsLoadingState = topicsLoadingState.data;
 
-        function loadTopics() {
-            if (topicsLoadingState.isPending()) {
-                return;
-            }
+		function loadTopics() {
+			if (topicsLoadingState.isPending()) {
+				return;
+			}
 
-            topicsLoadingState.pending();
-            step(function () {
-                messageService.loadMoreLatest(this);
-            }, errorService.failOnError(topicsLoadingState));
-        }
+			topicsLoadingState.pending();
+			step(function () {
+				messageService.loadMoreLatest(this);
+			}, errorService.failOnError(topicsLoadingState));
+		}
 
-        if ($scope.chats.length < 10) {
-            loadTopics();
-        }
+		if ($scope.chats.length < 10) {
+			loadTopics();
+		} else {
+			topicsLoadingState.pending();
+			topicsLoadingState.success();
+		}
 
-        $scope.loadMoreTopics = function () {
-            loadTopics();
-        };
+		$scope.loadMoreTopics = function () {
+			loadTopics();
+		};
 
-        messageService.loadMoreLatest(function () {
-            $scope.chats = messageService.data.latestTopics.data;
-        });
-
-    }]);
+	}]);
 });
