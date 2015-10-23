@@ -11,13 +11,23 @@
     Daniel Melchior
   </author>
   <content src="index.html"/>
-  <access origin="*"/>
+  <access origin="*" />
+  <!--<access origin="https://*.whispeer.de" />
+  <access origin="https://whispeer.de" />
+  <access origin="blob:*" />
+  <access origin="cdvfile://*" />-->
+
+  <!-- Allow links to web pages to open in a browser -->
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="android-minSdkVersion" value="13"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
