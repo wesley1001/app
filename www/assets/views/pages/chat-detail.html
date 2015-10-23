@@ -16,9 +16,13 @@
 				<userimage data-userID="sender{{burst.sender().id}}" data-user="activeTopic.partners[0]" data-trustlevel="0">
 			</div>
 		</ion-nav-title>
-		<ion-nav-back-button class="button-clear">
-			<span data-ng-show="topics.unread > 0">({{topics.unread}})</span>
-		</ion-nav-back-button>
+
+		<ion-nav-buttons class="button-clear">
+			<a class="button back-button buttons button-clear header-item" ui-sref="main.chats">
+				<i class="icon ion-android-arrow-back"></i>
+				<span data-ng-show="topics.unread > 0">({{topics.unread}})</span>
+			</a>
+		</ion-nav-buttons>
 	</ion-nav-bar>
 	<ion-content id="messageList" class="content-stable delegate-handle" delegate-handle="messageScroll">
 		<ul class="u-unstyled">
