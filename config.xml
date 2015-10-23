@@ -12,11 +12,10 @@
 	</author>
 	<content src="index.html"/>
 
-	<access origin="*" />
-	<!--<access origin="https://*.whispeer.de" />
+	<access origin="https://*.whispeer.de" />
 	<access origin="https://whispeer.de" />
 	<access origin="blob:*" />
-	<access origin="cdvfile://*" />-->
+	<access origin="cdvfile://*" />
 
 	<!-- Allow links to web pages to open in a browser -->
 	<allow-intent href="http://*/*" />
