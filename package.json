@@ -24,9 +24,9 @@
     "cordova-plugin-vibration",
     "ionic-plugin-keyboard",
     "phonegap-plugin-push",
-    "cordova-plugin-file",
     "cordova-plugin-whitelist",
-    "cordova-plugin-wkwebview"
+    "cordova-plugin-wkwebview",
+    "cordova-plugin-file"
   ],
   "cordovaPlatforms": [
     "ios",
