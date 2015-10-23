@@ -478,17 +478,24 @@
 	bottom: 0;
 	border-top: 1px solid #ddd;
 	box-sizing: border-box;
+	background: #f9f9f9;
+	min-height: 44px;
+	height: auto !important;
 }
 
 #messageInput {
+	-webkit-appearance: none;
 	padding: 5px;
 	font-size: 1em;
-	height: 100%;
+	height: 2em;
+	max-height: 100px;
 	border-radius: 0px;
 	width: 100%;
 	flex-shrink: 1;
+	line-height: 15px;
+	box-shadow: none !important;
 	&::-webkit-input-placeholder {
-		line-height: 33px;
+		line-height: 15px;
 		opacity: 1;
 		transition: 0.5s ease;
 		transform: translate3d(0, 0, 0);
@@ -498,8 +505,21 @@
 	}
 }
 
+.message-input-ios {
+	border: 1px solid rgba(192, 192, 192, 0.5);
+	border-radius: @inputBorderRadius !important;
+	margin: 9px auto 9px 0.5em;
+}
+
+.message-input-android {
+	min-height: 44px;
+}
+
 .platform-android #messageInput {
 	padding-right: 42px;
+	&::-webkit-input-placeholder {
+		line-height: 34px;
+	}
 }
 
 .sendmessage {
