@@ -5,7 +5,7 @@
   The Friends service returns an array of friend data
 -->
 <ion-view cache-view="false">
-	<ion-nav-bar class="bar-balanced" data-ng-class="::{'bar-chat-detail': activeTopic.type === 'peerChat'}">
+	<ion-nav-bar class="bar-stable" data-ng-class="::{'bar-chat-detail': activeTopic.type === 'peerChat'}">
 		<ion-nav-title>
 			<span class="messages-nav-title">Chat mit {{::activeTopic.partners[0].basic.shortname}} <span data-ng-if="::activeTopic.type === 'groupChat'">und {{::activeTopic.partners.length - 1}} Anderen</span></span>
 			<span data-ng-if="::activeTopic.type === 'peerChat'" class="messages-nav-status">
@@ -18,9 +18,10 @@
 		</ion-nav-title>
 
 		<ion-nav-buttons class="button-clear">
-			<a class="button back-button buttons button-clear header-item" ui-sref="main.chats">
-				<i class="icon ion-android-arrow-back"></i>
-				<span data-ng-show="topics.unread > 0">({{topics.unread}})</span>
+			<a class="button button-clear back-button header-item" ui-sref="main.chats">
+				<i class="icon" data-ng-class="::{'ion-android-arrow-back': platform === 'android', 'ion-ios-arrow-back': platform !== 'android'}"></i>
+				<span class="header-button-text">Chats
+				<span data-ng-show="topics.unread > 0">({{topics.unread}})</span></span>
 			</a>
 		</ion-nav-buttons>
 	</ion-nav-bar>
