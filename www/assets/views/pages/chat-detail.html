@@ -7,7 +7,7 @@
 <ion-view cache-view="false">
 	<ion-nav-bar class="bar-stable" data-ng-class="::{'bar-chat-detail': activeTopic.type === 'peerChat'}">
 		<ion-nav-title>
-			<span class="messages-nav-title">Chat mit {{::activeTopic.partners[0].basic.shortname}} <span data-ng-if="::activeTopic.type === 'groupChat'">und {{::activeTopic.partners.length - 1}} Anderen</span></span>
+			<span class="messages-nav-title" data-ng-class="{'messages-nav-title-center': activeTopic.partners[0].online !== 2}">Chat mit {{::activeTopic.partners[0].basic.shortname}} <span data-ng-if="::activeTopic.type === 'groupChat'">und {{::activeTopic.partners.length - 1}} Anderen</span></span>
 			<span data-ng-if="::activeTopic.type === 'peerChat'" class="messages-nav-status">
 				<br>
 				<small data-ng-if="activeTopic.partners[0].online === 2">online</small>
