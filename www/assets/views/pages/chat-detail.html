@@ -16,17 +16,21 @@
 				<br>
 				<small data-ng-if="activeTopic.partners[0].online === 2">online</small>
 			</span>
-			<div class="userimg" data-ng-if="::activeTopic.type === 'peerChat'">
-				<userimage data-userID="sender{{burst.sender().id}}" data-user="activeTopic.partners[0]" data-trustlevel="0">
-			</div>
 		</ion-nav-title>
 
-		<ion-nav-buttons class="button-clear">
+		<ion-nav-buttons side="left" class="button-clear">
 			<a class="button button-clear back-button header-item" ui-sref="main.chats">
 				<i class="icon" data-ng-class="::{'ion-android-arrow-back': platform === 'android', 'ion-ios-arrow-back': platform !== 'android'}"></i>
 				<span class="header-button-text">Chats
 				<span data-ng-show="topics.unread > 0">({{topics.unread}})</span></span>
 			</a>
+		</ion-nav-buttons>
+		<ion-nav-buttons side="right" class="button-clear">
+			<span class="button button-clear header-item">
+				<div class="userimg" data-ng-if="::activeTopic.type === 'peerChat'">
+					<userimage data-userID="sender{{burst.sender().id}}" data-user="activeTopic.partners[0]" data-trustlevel="0"></userimage>
+				</div>
+			</span>
 		</ion-nav-buttons>
 	</ion-nav-bar>
 	<ion-content id="messageList" class="content-stable delegate-handle" delegate-handle="messageScroll">
