@@ -18,8 +18,8 @@
 @message-arrow-offset: @message-image-size / 2;
 @own-message-bg: #48930a;
 @own-message-fg: white;
-@foreign-message-bg: #d5d5d5;
-@foreign-message-bg2: #b2b2b2; //border
+@foreign-message-bg: #f1f1f1;
+@foreign-message-bg2: #f1f1f1;
 
 // This is some paddings that are used troughout.
 @default-padding: 6px;
@@ -400,7 +400,7 @@
 	.other {
 		.messages {
 			margin-right: @message-image-size + @extended-padding;
-			box-shadow: 2px 2px 1px rgba(179, 179, 179, 0.65);
+			//box-shadow: 2px 2px 1px rgba(179, 179, 179, 0.65);
 		}
 		.messages:after {
 			border-right-color: @foreign-message-bg;
@@ -423,7 +423,7 @@
 			margin-left: @message-image-size + @extended-padding;
 			background-color: @own-message-bg;
 			color: @own-message-fg;
-			box-shadow: -2px 2px 1px fade(darken(@own-message-bg, 8%), 85%);
+			//box-shadow: -2px 2px 1px fade(darken(@own-message-bg, 8%), 85%);
 		}
 		.messages:after, .messages:before {
 			left: 100%;
