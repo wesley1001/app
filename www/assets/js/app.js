@@ -18,6 +18,7 @@ define([
 	"directives/userimage",
 	"directives/syntaxify",
 	"directives/smartDate",
+	"directives/gallery",
 	"optional!cordova"
 ], function (angular) {
 	"use strict";

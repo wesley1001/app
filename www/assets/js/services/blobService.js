@@ -17,6 +17,8 @@ define(["step", "whispeerHelper", "asset/Progress", "asset/Queue", "services/ser
 
 			if (typeof blobData === "string") {
 				this._legacy = true;
+			} else if (blobData instanceof File) {
+				this._file = true;
 			}
 
 			if (blobID) {
@@ -56,10 +58,18 @@ define(["step", "whispeerHelper", "asset/Progress", "asset/Queue", "services/ser
 			var that = this;
 			step(function () {
 				var reader = new FileReader();
-				reader.addEventListener("loadend", this.ne);
+
+				if (reader.addEventListener) {
+					reader.addEventListener("loadend", this.ne);
+				} else {
+					reader.onloadend = this.ne;
+				}
+
 				reader.readAsArrayBuffer(that._blobData);
 			}, h.sF(function (event) {
-				this.ne(event.currentTarget.result);
+				var target = event.currentTarget || event.target;
+
+				this.ne(target.result);
 			}), cb);
 		};
 
