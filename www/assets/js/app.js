@@ -52,8 +52,10 @@ define([
 			$compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|content|blob|ms-appx|x-wmapp0|cdvfile):|data:image\//);
 		}])
 		.run(["$ionicPlatform", "ssn.messageService", "ssn.sessionService", "ssn.trustService", function($ionicPlatform, messageService) {
+			var paused = false;
+
 			function vibrate(message) {
-				if (!message.isOwn()) {
+				if (!message.isOwn() && !paused) {
 					navigator.vibrate(300);
 				}
 			}
@@ -61,6 +63,9 @@ define([
 			messageService.listen(vibrate, "message");
 
 			$ionicPlatform.ready(function() {
+				document.addEventListener("pause", function () { paused = true; }, false);
+				document.addEventListener("resume", function () { paused = false; }, false);
+
 				// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 				// for form inputs)
 				if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard && window.ionic.Platform.isIOS()) {
