@@ -24,11 +24,9 @@
     "cordova-plugin-vibration",
     "ionic-plugin-keyboard",
     "phonegap-plugin-push",
-    "cordova-plugin-file",
-    {
-      "locator": "https://github.com/Telerik-Verified-Plugins/WKWebView.git",
-      "id": "com.telerik.plugins.wkwebview"
-    }
+    "cordova-plugin-whitelist",
+    "cordova-plugin-wkwebview",
+    "cordova-plugin-file"
   ],
   "cordovaPlatforms": [
     "ios",
