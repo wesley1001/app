@@ -280,8 +280,13 @@ define(["step", "whispeerHelper", "asset/Progress", "asset/Queue", "services/ser
 					});
 				}).then(function (data) {
 					var dataString = "data:image/png;base64," + data.blob;
-					var blob = h.dataURItoBlob(dataString);
-					var theBlob = new MyBlob(blob, blobID, { meta: data.meta });
+					var blob = h.dataURItoBlob(dataString), theBlob;
+
+					if (blob) {
+						theBlob = new MyBlob(blob, blobID, { meta: data.meta });
+					} else {
+						theBlob = new MyBlob(dataString, blobID, { meta: data.meta });
+					}
 
 					addBlobToDB(theBlob);
 
@@ -292,6 +297,9 @@ define(["step", "whispeerHelper", "asset/Progress", "asset/Queue", "services/ser
 
 		function loadBlobFromDB(blobID) {
 			return blobCache.get(blobID).then(function (data) {
+				if (typeof data.blob === "undefined") {
+					throw new Error("cache invalid!");
+				}
 				return new MyBlob(data.blob, blobID, { meta: data.data });
 			});
 		}
